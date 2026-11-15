@@ -1,11 +1,28 @@
-# Hearth & Co. — Hospitality Consultancy Website
+# Restro Consultancy — Website
 
 Marketing / lead-generation site for a restaurant & hospitality consulting firm.
 Dark, warm, editorial design: grainy lit-room backgrounds, oversized serif headlines,
 a floating photo collage in the hero and a single muted-gold accent.
 
-> **Phase 1 scope:** project scaffold, design system, Navbar, Hero, Footer and stub
-> pages. Other home sections and full inner pages come in later phases.
+> **Current scope:** full home-page layout with placeholder copy and images (real
+> content to come), plus stub inner pages.
+
+## Home page sections
+
+| Section        | File                                        | Behaviour                                                                                     |
+| -------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Hero           | `components/sections/home/Hero.tsx`         | Desktop: photos drift outward on scroll while a showcase frame rises and grows to full screen |
+| Ask Restro     | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it               |
+| Featured work  | `components/sections/home/FeaturedWork.tsx` | Case-study cards stack on top of each other (CSS sticky)                                      |
+| How we help    | `components/sections/home/HowWeHelp.tsx`    | Problem → solution rows, floating "Ask" bar pinned to the bottom                              |
+| Journal        | `components/sections/home/Insights.tsx`     | Pinned heading with cards scrolling past it                                                   |
+| Call to action | `components/sections/home/CtaBand.tsx`      | Gold band with animated equaliser bars                                                        |
+| Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                                       |
+| Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                                      |
+
+The "Ask" boxes have no backend yet — they submit to `/contact?q=…`.
+On phones and for visitors with "reduce motion" enabled, scroll effects fall back
+to a static layout.
 
 ## Tech stack
 
@@ -53,15 +70,15 @@ You should rarely need to touch components to change words:
 Hero headline accents: in `src/content/home.ts` each headline line is a list of
 segments; mark a segment with `accent: true` to render it in the gold italic.
 
-Hero images live in `public/images/hero/`. The current files are generated
-placeholders — replace them with real photography (same filenames, or update the
-paths in `src/content/home.ts`).
+Images live in `public/images/` (`hero/`, `projects/`, `insights/`). The current
+files are generated placeholders — replace them with real photography (same
+filenames, or update the paths in `src/content/home.ts`).
 
 ## Folder structure
 
 ```
 public/
-  images/hero/        Hero collage images (placeholders)
+  images/             hero/, projects/, insights/ — generated placeholders
   icons/              Static icons
   favicon.ico
 src/
@@ -72,14 +89,14 @@ src/
     not-found.tsx
     about/ services/ projects/ contact/   Stub pages
   components/
-    layout/           Navbar, MobileMenu, Footer
-    sections/         Page sections (home/Hero, StubPage)
-    ui/               Primitives: Button, Container, SectionLabel, Logo,
-                      SocialIcon, Reveal (motion wrapper)
+    layout/           Navbar, MenuOverlay, Footer
+    sections/         Page sections (home/*, StubPage)
+    ui/               Primitives: Button, Container, SectionLabel, Logo, AskForm,
+                      SocialIcon, FloatingDots, EqualizerBars, Reveal
   config/             Site + navigation config
   content/            Page copy
   lib/                utils (cn, isActivePath), fonts
-  hooks/              Custom hooks (empty for now)
+  hooks/              useMediaQuery
   types/              Shared TypeScript types
 ```
 

@@ -50,7 +50,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {navStrings.skipToContent}
         </a>
         <Navbar />
-        <main id="main" className="flex-1">
+        <main
+          id="main"
+          className="relative z-10 flex-1 bg-background shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
+        >
           {children}
         </main>
         <Footer />

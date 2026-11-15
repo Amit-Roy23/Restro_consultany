@@ -12,6 +12,11 @@
   --accent: #c9a15b;
   --accent-foreground: #14100d;
 
+  /* Light sections (featured work, journal) */
+  --paper: #fbf8f3;
+  --accent-deep: #8a6a2f;
+  --ink-muted: #6e6052;
+
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
@@ -31,6 +36,9 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-paper: var(--paper);
+  --color-accent-deep: var(--accent-deep);
+  --color-ink-muted: var(--ink-muted);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
@@ -44,6 +52,42 @@
   --text-hero--letter-spacing: -0.035em;
 
   --animate-scroll-cue: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  --animate-drift: drift 14s ease-in-out infinite alternate;
+  --animate-eq: eq 1.6s ease-in-out infinite alternate;
+  --animate-crossfade: crossfade 12s linear infinite;
+
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(var(--dx, 12px), var(--dy, -18px), 0);
+    }
+  }
+
+  @keyframes eq {
+    from {
+      transform: scaleY(0.25);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  /* 3 slides, 4s each: visible for the first third, hidden otherwise. */
+  @keyframes crossfade {
+    0%,
+    30% {
+      opacity: 1;
+    }
+    36%,
+    94% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   @keyframes scroll-cue {
     0% {

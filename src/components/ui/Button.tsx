@@ -3,7 +3,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "outline" | "ghost" | "inverse" | "dark";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -14,6 +14,10 @@ const variants: Record<Variant, string> = {
   outline:
     "border border-foreground/20 bg-foreground/[0.04] text-foreground backdrop-blur-md hover:border-accent hover:text-accent",
   ghost: "text-foreground hover:text-accent",
+  /** Dark button for use on accent-coloured backgrounds. */
+  inverse: "bg-background text-foreground hover:bg-foreground hover:text-background",
+  /** Dark button for use on light (paper) backgrounds. */
+  dark: "bg-background text-foreground hover:bg-accent hover:text-accent-foreground",
 };
 
 const sizes: Record<Size, string> = {
