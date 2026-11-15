@@ -9,12 +9,12 @@
   --border: #2e261f;
   --foreground: #f3ede4;
   --muted: #a89b8c;
-  --accent: #c9a15b;
+  --accent: #d9782a;
   --accent-foreground: #14100d;
 
   /* Light sections (featured work, journal) */
   --paper: #fbf8f3;
-  --accent-deep: #8a6a2f;
+  --accent-deep: #a9520c;
   --ink-muted: #6e6052;
 
   --radius-sm: 4px;
@@ -54,7 +54,7 @@
   --animate-scroll-cue: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
   --animate-drift: drift 14s ease-in-out infinite alternate;
   --animate-eq: eq 1.6s ease-in-out infinite alternate;
-  --animate-crossfade: crossfade 12s linear infinite;
+  --animate-marquee: marquee 45s linear infinite;
 
   @keyframes drift {
     from {
@@ -74,18 +74,12 @@
     }
   }
 
-  /* 3 slides, 4s each: visible for the first third, hidden otherwise. */
-  @keyframes crossfade {
-    0%,
-    30% {
-      opacity: 1;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
     }
-    36%,
-    94% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
+    to {
+      transform: translateX(-50%);
     }
   }
 

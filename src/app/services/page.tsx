@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
 
-import { StubPage } from "@/components/sections/StubPage";
-import { stubPages } from "@/content/pages";
+import { PageHeader } from "@/components/sections/PageHeader";
+import { CtaBand } from "@/components/sections/home/CtaBand";
+import { Services } from "@/components/sections/home/Services";
+import { pageHeaders } from "@/content/pages";
 
 export const metadata: Metadata = {
-  title: stubPages.services.title,
+  title: pageHeaders.services.label,
+  description: pageHeaders.services.intro,
 };
 
 export default function ServicesPage() {
-  return <StubPage content={stubPages.services} />;
+  return (
+    <>
+      <PageHeader content={pageHeaders.services} />
+      <Services showCta={false} showHeading={false} />
+      <CtaBand />
+    </>
+  );
 }

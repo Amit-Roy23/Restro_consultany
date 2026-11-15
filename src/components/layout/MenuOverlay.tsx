@@ -76,7 +76,7 @@ export function MenuOverlay({ open, onClose, pathname }: MenuOverlayProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="grain fixed inset-0 z-[60] overflow-y-auto bg-[linear-gradient(180deg,var(--background)_0%,#2a1a10_45%,#6b3416_80%,#9a6a2c_100%)]"
+            className="grain fixed inset-0 z-[60] overflow-y-auto bg-[linear-gradient(180deg,var(--background)_0%,#2a1a10_45%,#6b3416_80%,#a8551c_100%)]"
           >
             <div className="mx-auto flex min-h-full max-w-(--container-max) flex-col gap-12 px-5 py-6 md:px-8 lg:grid lg:grid-cols-[240px_1fr_240px] lg:gap-10 lg:px-10">
               {/* Left column: logo, links, promo */}

@@ -29,7 +29,7 @@ export function AskForm({
       method="get"
       role="search"
       className={cn(
-        "flex w-full items-center gap-2 rounded-full bg-foreground p-1.5 pl-6 text-background shadow-[0_0_0_1px_rgba(201,161,91,0.35),0_10px_40px_-10px_rgba(201,161,91,0.45)]",
+        "flex w-full items-center gap-2 rounded-full bg-foreground p-1.5 pl-6 text-background shadow-[0_0_0_1px_rgba(217,120,42,0.35),0_10px_40px_-10px_rgba(217,120,42,0.45)]",
         className,
       )}
     >

@@ -14,7 +14,7 @@ export function AskSection() {
 
   return (
     <section aria-labelledby="ask-heading" className="relative bg-background">
-      <div className="grain sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_60%_50%_at_20%_80%,rgba(150,70,35,0.28),transparent_70%),radial-gradient(ellipse_50%_50%_at_85%_20%,rgba(201,161,91,0.16),transparent_70%)]">
+      <div className="grain sticky top-0 flex h-svh items-center justify-center overflow-hidden bg-[radial-gradient(ellipse_60%_50%_at_20%_80%,rgba(150,70,35,0.28),transparent_70%),radial-gradient(ellipse_50%_50%_at_85%_20%,rgba(217,120,42,0.16),transparent_70%)]">
         <FloatingDots />
         <h2
           id="ask-heading"

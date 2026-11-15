@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { StubPage } from "@/components/sections/StubPage";
+import { PageHeader } from "@/components/sections/PageHeader";
+import { Button } from "@/components/ui/Button";
 import { notFoundContent } from "@/content/pages";
 
 export const metadata: Metadata = {
@@ -8,5 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
-  return <StubPage content={notFoundContent} cta={notFoundContent.cta} />;
+  return (
+    <PageHeader content={notFoundContent}>
+      <Button href={notFoundContent.cta.href} variant="outline" className="mt-10">
+        {notFoundContent.cta.label}
+      </Button>
+    </PageHeader>
+  );
 }
