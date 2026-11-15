@@ -1,10 +1,11 @@
 "use client";
 
-import { type Variants, motion } from "framer-motion";
-import type { ReactNode } from "react";
+import { type Variants, motion, useInView } from "framer-motion";
+import { type ReactNode, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useIntro } from "@/components/layout/IntroProvider";
 
 const curtain: Variants = {
   hidden: { clipPath: "inset(100% 0% 0% 0%)" },
@@ -33,13 +34,16 @@ export function ImageReveal({
   delay?: number;
 }) {
   const reduceMotion = usePrefersReducedMotion();
+  const { done } = useIntro();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.15 });
 
   return (
     <motion.div
       className={cn("relative", className)}
+      ref={ref}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
+      animate={done && inView ? "visible" : "hidden"}
     >
       <motion.div
         variants={curtain}

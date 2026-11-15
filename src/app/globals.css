@@ -108,6 +108,16 @@
    Base
    ------------------------------------------------------------------ */
 @layer base {
+  /* First-visit loader: hidden before paint once seen; no scrolling while it runs. */
+  html[data-intro="seen"] .preloader {
+    display: none;
+  }
+
+  html.is-loading,
+  html.is-loading body {
+    overflow: hidden;
+  }
+
   /* Smooth scrolling is handled by Lenis (components/layout/SmoothScroll). */
   html {
     color-scheme: dark;
