@@ -46,8 +46,10 @@ export const heroContent: HeroContent = {
     img("/images/training/training-01.jpg"),
   ],
   showcase: {
-    caption: "Kitchens, dining rooms and teams we've set up",
-    video: undefined, // e.g. "/videos/showreel.mp4"
+    caption: "Restaurants · Lounges · Hotels · Kitchens",
+    // Mood footage: a 9 s muted loop cut from supplied lounge footage.
+    video: "/videos/hero.mp4",
+    videoPoster: "/videos/hero-poster.jpg",
     tiles: [
       img("/images/interiors/interior-02.jpg"),
       img("/images/kitchens/kitchen-01.jpg"),

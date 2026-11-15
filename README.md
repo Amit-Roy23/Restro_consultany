@@ -39,7 +39,7 @@ to a static layout.
 ## Adding the videos
 
 Video slots show a photo until a file is set. Put the files in `public/videos/`
-(MP4/H.264, ideally under ~8 MB each) and set them in `src/content/home.ts`:
+(MP4/H.264, ideally under ~8 MB each; the hero loop is `public/videos/hero.mp4`) and set them in `src/content/home.ts`:
 
 | Slot                    | Field                                        |
 | ----------------------- | -------------------------------------------- |

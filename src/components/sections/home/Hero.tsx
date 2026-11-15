@@ -180,6 +180,7 @@ export function Hero() {
             {!animate && (
               <Showcase
                 video={showcase.video}
+                poster={showcase.videoPoster}
                 tiles={showcase.tiles}
                 className="mt-14 aspect-[16/10] w-full overflow-hidden rounded-lg"
               />
@@ -208,6 +209,7 @@ export function Hero() {
           >
             <Showcase
               video={showcase.video}
+              poster={showcase.videoPoster}
               tiles={showcase.tiles}
               className="absolute inset-0"
             />
@@ -274,10 +276,12 @@ function CollagePhoto({
 /** Showreel video when available, otherwise a mosaic of project photos. */
 function Showcase({
   video,
+  poster,
   tiles,
   className,
 }: {
   video?: string;
+  poster?: string;
   tiles: ImageAsset[];
   className?: string;
 }) {
@@ -285,7 +289,7 @@ function Showcase({
     <div className={cn("relative bg-background", className)}>
       <VideoSlot
         src={video}
-        poster={tiles[0]}
+        poster={poster ? { src: poster, alt: "" } : tiles[0]}
         fallback={
           <div className="grid h-full grid-cols-3 grid-rows-2 gap-1">
             {tiles.slice(0, 6).map((tile) => (
