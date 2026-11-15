@@ -1,76 +1,87 @@
-import { Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 
+import { AskForm } from "@/components/ui/AskForm";
 import { Container } from "@/components/ui/Container";
-import { Logo } from "@/components/ui/Logo";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { legalNav, mainNav, navStrings } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { askContent } from "@/content/home";
 
 async function CopyrightYear() {
   "use cache";
   return <>{new Date().getFullYear()}</>;
 }
 
-const linkClass = "text-muted transition-colors hover:text-foreground";
-
+/**
+ * Big gradient footer. On large screens it is pinned underneath the page
+ * (sticky bottom, below `main` in z-order) so the content above slides away
+ * to reveal it.
+ */
 export function Footer() {
   const { contact, socials } = siteConfig;
 
   return (
-    <footer className="grain border-t border-border bg-surface/40">
-      <Container className="grid gap-12 py-16 md:grid-cols-2 md:py-20 lg:grid-cols-12">
-        <div className="flex flex-col gap-5 lg:col-span-5">
-          <Logo className="text-[2rem] leading-[0.9]" />
-          <p className="max-w-sm text-muted">{siteConfig.tagline}</p>
+    <footer className="grain relative z-0 overflow-hidden border-t-4 border-accent bg-[linear-gradient(160deg,var(--background)_0%,#22160f_40%,#5a2c14_80%,#8a5a26_100%)] lg:sticky lg:bottom-0">
+      <Container className="flex min-h-[80svh] flex-col justify-between gap-16 py-14 md:py-20">
+        <p
+          aria-hidden="true"
+          className="font-display text-[clamp(3.5rem,11vw,10rem)] leading-[0.85] font-bold tracking-[-0.05em] text-accent"
+        >
+          {siteConfig.logoLines.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </p>
+
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">
+          <nav aria-label={navStrings.footerNavLabel} className="lg:col-span-3">
+            <h2 className="mb-5 eyebrow font-sans text-muted">
+              {navStrings.exploreHeading}
+            </h2>
+            <ul className="grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm font-medium">
+              {mainNav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="transition-colors hover:text-accent">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="lg:col-span-3">
+            <h2 className="mb-5 eyebrow font-sans text-muted">
+              {navStrings.footerContactHeading}
+            </h2>
+            <address className="flex flex-col gap-2.5 text-sm not-italic">
+              <a href={`mailto:${contact.email}`} className="break-all hover:text-accent">
+                {contact.email}
+              </a>
+              <a
+                href={`tel:${contact.phone.replace(/\s+/g, "")}`}
+                className="hover:text-accent"
+              >
+                {contact.phone}
+              </a>
+              <span className="text-foreground/75">{contact.city}</span>
+            </address>
+          </div>
+
+          <div className="md:col-span-2 lg:col-span-5 lg:col-start-8">
+            <h2 className="mb-5 eyebrow font-sans text-muted">{askContent.label}</h2>
+            <AskForm
+              id="footer"
+              placeholder={askContent.placeholder}
+              submitLabel={askContent.submitLabel}
+            />
+          </div>
         </div>
 
-        <nav aria-label={navStrings.footerNavLabel} className="lg:col-span-2">
-          <h2 className="mb-5 eyebrow font-sans text-foreground">
-            {navStrings.footerLinksHeading}
-          </h2>
-          <ul className="flex flex-col gap-3 text-sm">
-            {mainNav.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className={linkClass}>
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="lg:col-span-3">
-          <h2 className="mb-5 eyebrow font-sans text-foreground">
-            {navStrings.footerContactHeading}
-          </h2>
-          <address className="flex flex-col gap-3 text-sm not-italic">
-            <a href={`mailto:${contact.email}`} className={`${linkClass} flex gap-3`}>
-              <Mail className="mt-1 size-4 shrink-0 text-accent" aria-hidden="true" />
-              <span className="break-all">{contact.email}</span>
-            </a>
-            <a
-              href={`tel:${contact.phone.replace(/\s+/g, "")}`}
-              className={`${linkClass} flex gap-3`}
-            >
-              <Phone className="mt-1 size-4 shrink-0 text-accent" aria-hidden="true" />
-              {contact.phone}
-            </a>
-            <p className="flex gap-3 text-muted">
-              <MapPin className="mt-1 size-4 shrink-0 text-accent" aria-hidden="true" />
-              <span>
-                {contact.address}
-                <br />
-                {contact.city}
-              </span>
-            </p>
-          </address>
-        </div>
-
-        <div className="lg:col-span-2">
-          <h2 className="mb-5 eyebrow font-sans text-foreground">
-            {navStrings.footerSocialHeading}
-          </h2>
+        <div className="flex flex-col gap-6 border-t border-foreground/15 pt-6 text-xs text-foreground/70 md:flex-row md:items-center md:justify-between">
+          <p>
+            © <CopyrightYear /> {siteConfig.name}. {navStrings.rightsReserved}
+          </p>
           <ul className="flex gap-2">
             {socials.map((social) => (
               <li key={social.platform}>
@@ -79,21 +90,13 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="inline-flex size-11 items-center justify-center rounded-full border border-border text-foreground transition-colors hover:border-accent hover:text-accent"
+                  className="inline-flex size-10 items-center justify-center rounded-full border border-foreground/20 text-foreground transition-colors hover:border-accent hover:text-accent"
                 >
-                  <SocialIcon platform={social.platform} className="size-[18px]" />
+                  <SocialIcon platform={social.platform} className="size-4" />
                 </a>
               </li>
             ))}
           </ul>
-        </div>
-      </Container>
-
-      <div className="border-t border-border">
-        <Container className="flex flex-col gap-3 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © <CopyrightYear /> {siteConfig.name} {navStrings.rightsReserved}
-          </p>
           <ul className="flex gap-6">
             {legalNav.map((item) => (
               <li key={item.label}>
@@ -106,8 +109,8 @@ export function Footer() {
               </li>
             ))}
           </ul>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </footer>
   );
 }

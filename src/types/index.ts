@@ -65,3 +65,69 @@ export type StubPageContent = {
   title: string;
   body: string;
 };
+
+export type AskContent = {
+  label: string;
+  title: string;
+  placeholder: string;
+  submitLabel: string;
+  suggestionsLabel: string;
+  suggestions: string[];
+};
+
+export type Project = {
+  client: string;
+  sector: string;
+  summary: string;
+  image: ImageAsset;
+  href: string;
+};
+
+export type FeaturedWorkContent = {
+  number: number;
+  label: string;
+  title: string;
+  intro: string;
+  projects: Project[];
+  industryPrompt: Cta;
+  moreCta: Cta;
+  readMoreLabel: string;
+};
+
+export type HelpItem = {
+  problem: string;
+  solution: string;
+  href: string;
+};
+
+export type HowWeHelpContent = {
+  number: number;
+  label: string;
+  title: string;
+  intro: string;
+  items: HelpItem[];
+};
+
+export type InsightCard =
+  | { kind: "image"; tag: string; title: string; image: ImageAsset; href: string }
+  | { kind: "quote"; tag: string; quote: string; href: string }
+  | { kind: "stat"; tag: string; value: string; caption: string; href: string };
+
+export type InsightsContent = {
+  number: number;
+  label: string;
+  title: string;
+  cta: Cta;
+  cards: InsightCard[];
+};
+
+export type CtaBandContent = {
+  title: string;
+  body: string;
+  cta: Cta;
+};
+
+export type MenuPromo = {
+  title: string;
+  cta: Cta;
+};
