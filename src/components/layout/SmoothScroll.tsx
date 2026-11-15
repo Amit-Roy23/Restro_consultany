@@ -20,8 +20,11 @@ export function SmoothScroll() {
 
     const lenis = new Lenis({
       autoRaf: true,
-      lerp: 0.085,
-      wheelMultiplier: 0.9,
+      // Scroll feel — tune here:
+      // wheelMultiplier: distance per wheel notch (1 = browser default; lower = slower)
+      // lerp: how quickly it catches up (lower = softer, longer glide)
+      lerp: 0.07,
+      wheelMultiplier: 0.55,
       anchors: true,
       stopInertiaOnNavigate: true,
     });
