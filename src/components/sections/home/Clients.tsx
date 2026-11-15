@@ -2,6 +2,8 @@ import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { clientMarquee, clientsContent } from "@/content/home";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 /** Scrolling marquee of brand names plus the full grouped client list. */
 export function Clients() {
@@ -14,9 +16,11 @@ export function Clients() {
     >
       <Container>
         <SectionLabel number={number}>{label}</SectionLabel>
-        <h2 id="clients-heading" className="mt-6 max-w-4xl text-5xl md:text-7xl">
-          {title}
-        </h2>
+        <TextReveal
+          id="clients-heading"
+          text={title}
+          className="mt-6 max-w-4xl text-5xl md:text-7xl"
+        />
         <p className="mt-6 max-w-2xl text-lg text-muted">{intro}</p>
       </Container>
 
@@ -48,15 +52,15 @@ export function Clients() {
 
       <Container>
         <div className="mt-20 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {groups.map((group) => (
-            <div key={group.title}>
+          {groups.map((group, index) => (
+            <Reveal key={group.title} inView delay={index * 0.1}>
               <h3 className="eyebrow font-sans text-accent">{group.title}</h3>
               <ul className="mt-5 flex flex-col gap-3 text-sm leading-relaxed text-foreground/85">
                 {group.names.map((name) => (
                   <li key={name}>{name}</li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
         <p className="mt-14 max-w-3xl border-t border-border pt-8 text-muted">

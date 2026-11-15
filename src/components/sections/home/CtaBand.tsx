@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { EqualizerBars } from "@/components/ui/EqualizerBars";
 import { ctaBandContent } from "@/content/home";
+import { Magnetic } from "@/components/ui/Magnetic";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 export function CtaBand() {
   const { title, body, cta } = ctaBandContent;
@@ -19,17 +21,18 @@ export function CtaBand() {
         className="absolute top-0 right-0 h-1/2 w-1/2 bg-[radial-gradient(rgba(20,16,13,0.18)_1.5px,transparent_1.5px)] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] [background-size:18px_18px]"
       />
       <Container className="relative py-32 text-center">
-        <h2
+        <TextReveal
           id="cta-heading"
+          text={title}
           className="mx-auto max-w-4xl text-5xl font-normal md:text-7xl"
-        >
-          {title}
-        </h2>
+        />
         <p className="mx-auto mt-6 max-w-xl text-lg text-accent-foreground/75">{body}</p>
-        <Button href={cta.href} variant="inverse" size="lg" className="mt-10">
-          {cta.label}
-          <ArrowRight className="size-4" aria-hidden="true" />
-        </Button>
+        <Magnetic className="mt-10">
+          <Button href={cta.href} variant="inverse" size="lg">
+            {cta.label}
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Button>
+        </Magnetic>
       </Container>
       <EqualizerBars className="absolute bottom-0 left-0 text-background/60" />
     </section>

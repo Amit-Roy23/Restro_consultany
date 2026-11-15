@@ -3,10 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
+import { Parallax } from "@/components/ui/Parallax";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { wallContent } from "@/content/home";
 import { cn } from "@/lib/utils";
 import type { WallCard } from "@/types";
+import { TextReveal } from "@/components/ui/TextReveal";
+
+/** How far each card drifts, so neighbours move at different speeds. */
+const drift = [140, 60, 180, 90, 150, 50, 170, 110, 70];
 
 /**
  * Desktop placement of each card. The heading stays pinned in the middle of
@@ -36,9 +41,11 @@ export function Wall() {
         <SectionLabel number={number} tone="light">
           {label}
         </SectionLabel>
-        <h2 id="wall-heading" className="mt-6 max-w-3xl text-5xl md:text-7xl">
-          {title}
-        </h2>
+        <TextReveal
+          id="wall-heading"
+          text={title}
+          className="mt-6 max-w-3xl text-5xl md:text-7xl"
+        />
         <Button href={cta.href} variant="dark" className="mt-8">
           {cta.label}
           <ArrowRight className="size-4" aria-hidden="true" />
@@ -51,7 +58,9 @@ export function Wall() {
             key={index}
             className={cn("lg:absolute", placement[index % placement.length])}
           >
-            <WallTile card={card} />
+            <Parallax distance={drift[index % drift.length]}>
+              <WallTile card={card} />
+            </Parallax>
           </li>
         ))}
       </ul>

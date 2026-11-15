@@ -7,6 +7,7 @@ import { SocialIcon } from "@/components/ui/SocialIcon";
 import { legalNav, mainNav, navCta, navStrings } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { askContent } from "@/content/home";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 async function CopyrightYear() {
   "use cache";
@@ -33,13 +34,19 @@ export function Footer() {
             height={598}
             className="h-[clamp(4.5rem,13vw,11.5rem)] w-auto"
           />
-          <p className="font-display text-[clamp(3.5rem,11vw,10rem)] leading-[0.85] font-bold tracking-[-0.05em] text-accent">
-            {siteConfig.logoLines.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
+          <div className="font-display text-[clamp(3.5rem,11vw,10rem)] leading-[0.85] font-bold tracking-[-0.05em] text-accent">
+            {siteConfig.logoLines.map((line, index) => (
+              <TextReveal
+                key={line}
+                as="p"
+                by="char"
+                text={line}
+                delay={index * 0.15}
+                stagger={0.03}
+                className="block"
+              />
             ))}
-          </p>
+          </div>
         </div>
 
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-12">

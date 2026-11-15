@@ -9,22 +9,36 @@ type RevealProps = {
   delay?: number;
   /** Vertical offset in px the element rises from. */
   y?: number;
+  /** Animate when scrolled into view instead of on page load. */
+  inView?: boolean;
   className?: string;
 };
 
 /**
- * Small fade/slide-up entrance. With `reducedMotion="user"`, visitors who
- * prefer reduced motion get no movement (only a quick opacity fade), and the
+ * Fade/slide-up entrance. With `reducedMotion="user"`, visitors who prefer
+ * reduced motion get no movement (only a quick opacity fade), and the
  * server/client markup stays identical so hydration is clean.
  */
-export function Reveal({ children, delay = 0, y = 24, className }: RevealProps) {
+export function Reveal({
+  children,
+  delay = 0,
+  y = 24,
+  inView = false,
+  className,
+}: RevealProps) {
+  const transition = { duration: 1.1, delay, ease: [0.16, 1, 0.3, 1] as const };
   return (
     <MotionConfig reducedMotion="user">
       <motion.div
         className={className}
         initial={{ opacity: 0, y }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+        {...(inView
+          ? {
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true, amount: 0.3 },
+            }
+          : { animate: { opacity: 1, y: 0 } })}
+        transition={transition}
       >
         {children}
       </motion.div>

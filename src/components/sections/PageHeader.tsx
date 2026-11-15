@@ -4,6 +4,8 @@ import { Container } from "@/components/ui/Container";
 import { FloatingDots } from "@/components/ui/FloatingDots";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import type { PageHeaderContent } from "@/types";
+import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 /** Opening block for inner pages: label, h1 and intro on the dark grain. */
 export function PageHeader({
@@ -18,8 +20,16 @@ export function PageHeader({
       <FloatingDots className="opacity-60" />
       <Container className="relative pt-[calc(var(--nav-height)+5rem)] pb-20 md:pb-28">
         <SectionLabel>{content.label}</SectionLabel>
-        <h1 className="mt-6 max-w-5xl text-5xl md:text-8xl">{content.title}</h1>
-        <p className="mt-8 max-w-2xl text-lg text-muted md:text-xl">{content.intro}</p>
+        <TextReveal
+          as="h1"
+          immediate
+          delay={0.1}
+          text={content.title}
+          className="mt-6 max-w-5xl text-5xl md:text-8xl"
+        />
+        <Reveal delay={0.45}>
+          <p className="mt-8 max-w-2xl text-lg text-muted md:text-xl">{content.intro}</p>
+        </Reveal>
         {children}
       </Container>
     </section>

@@ -4,6 +4,9 @@ import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { VideoSlot } from "@/components/ui/VideoSlot";
 import { aboutContent } from "@/content/home";
+import { ImageReveal } from "@/components/ui/ImageReveal";
+import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 /** Who we are: story, founder portrait, market context and a team video slot. */
 export function AboutSection() {
@@ -20,13 +23,17 @@ export function AboutSection() {
         <SectionLabel number={number} tone="light">
           {label}
         </SectionLabel>
-        <h2 id="about-heading" className="mt-6 max-w-4xl text-5xl md:text-7xl">
-          {title}
-        </h2>
+        <TextReveal
+          id="about-heading"
+          text={title}
+          className="mt-6 max-w-4xl text-5xl md:text-7xl"
+        />
 
         <div className="mt-16 grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
-            <p className="font-display text-2xl leading-snug md:text-3xl">{lead}</p>
+            <Reveal inView>
+              <p className="font-display text-2xl leading-snug md:text-3xl">{lead}</p>
+            </Reveal>
             {rest.map((paragraph) => (
               <p key={paragraph} className="mt-6 text-lg text-ink-muted">
                 {paragraph}
@@ -40,7 +47,7 @@ export function AboutSection() {
 
           <div className="flex flex-col gap-6 lg:col-span-5">
             <figure className="overflow-hidden rounded-lg bg-paper">
-              <div className="relative aspect-square">
+              <ImageReveal className="aspect-square">
                 <Image
                   src={founder.image.src}
                   alt={founder.image.alt}
@@ -48,7 +55,7 @@ export function AboutSection() {
                   sizes="(min-width: 1024px) 36vw, 100vw"
                   className="object-cover"
                 />
-              </div>
+              </ImageReveal>
               <figcaption className="px-6 py-5">
                 {founder.name && (
                   <p className="font-sans text-lg font-semibold">{founder.name}</p>
@@ -69,13 +76,13 @@ export function AboutSection() {
           </div>
         </div>
 
-        <div className="relative mt-16 aspect-[16/9] overflow-hidden rounded-lg md:aspect-[1017/400]">
+        <ImageReveal className="mt-16 aspect-[16/9] rounded-lg md:aspect-[1017/400]">
           <VideoSlot
             src={video.src}
             poster={video.poster}
             sizes="(min-width: 1280px) 1200px, 100vw"
           />
-        </div>
+        </ImageReveal>
       </Container>
     </section>
   );

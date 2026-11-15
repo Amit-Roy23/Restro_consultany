@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { mainNav, menuPromo, navStrings } from "@/config/navigation";
 import { askContent } from "@/content/home";
+import { getLenis } from "@/lib/smoothScroll";
 import { cn, isActivePath } from "@/lib/utils";
 
 type MenuOverlayProps = {
@@ -28,6 +29,7 @@ export function MenuOverlay({ open, onClose, pathname }: MenuOverlayProps) {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    getLenis()?.stop();
     // Focus whichever close button is visible at this breakpoint.
     const closeButtons =
       dialogRef.current?.querySelectorAll<HTMLElement>("[data-menu-close]");
@@ -58,6 +60,7 @@ export function MenuOverlay({ open, onClose, pathname }: MenuOverlayProps) {
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      getLenis()?.start();
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [open, onClose]);
@@ -69,6 +72,7 @@ export function MenuOverlay({ open, onClose, pathname }: MenuOverlayProps) {
           <motion.div
             ref={dialogRef}
             id="site-menu"
+            data-lenis-prevent
             role="dialog"
             aria-modal="true"
             aria-label={navStrings.menuTitle}

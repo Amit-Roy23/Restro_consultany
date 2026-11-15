@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { askContent, servicesContent } from "@/content/home";
+import { Reveal } from "@/components/ui/Reveal";
+import { TextReveal } from "@/components/ui/TextReveal";
 
 type ServicesProps = {
   /** Show the "All services" link (home page only). */
@@ -24,43 +26,49 @@ export function Services({ showCta = true, showHeading = true }: ServicesProps) 
     >
       <Container>
         <SectionLabel number={number}>{label}</SectionLabel>
-        <h2
-          id="services-heading"
-          className={
-            showHeading ? "mt-6 max-w-4xl text-5xl text-accent md:text-7xl" : "sr-only"
-          }
-        >
-          {title}
-        </h2>
+        {showHeading ? (
+          <TextReveal
+            id="services-heading"
+            text={title}
+            className="mt-6 max-w-4xl text-5xl text-accent md:text-7xl"
+          />
+        ) : (
+          <h2 id="services-heading" className="sr-only">
+            {title}
+          </h2>
+        )}
         {showHeading && <p className="mt-6 max-w-2xl text-lg text-muted">{intro}</p>}
 
         <ol className="mt-16 border-b border-border">
           {groups.map((group, index) => (
-            <li
-              key={group.title}
-              className="grid gap-6 border-t border-border py-10 md:grid-cols-[4rem_1fr] lg:grid-cols-[4rem_1fr_1.5fr] lg:gap-10"
-            >
-              <span className="font-display text-2xl text-accent">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="text-3xl md:text-4xl">{group.title}</h3>
-                <p className="mt-3 max-w-sm text-muted">{group.summary}</p>
-              </div>
-              <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2 md:col-start-2 lg:col-start-auto">
-                {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-3 text-sm leading-relaxed text-foreground/90"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="mt-2 size-1.5 shrink-0 rounded-full bg-accent"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <li key={group.title} className="border-t border-border">
+              <Reveal
+                inView
+                delay={index * 0.08}
+                className="grid gap-6 py-10 md:grid-cols-[4rem_1fr] lg:grid-cols-[4rem_1fr_1.5fr] lg:gap-10"
+              >
+                <span className="font-display text-2xl text-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-3xl md:text-4xl">{group.title}</h3>
+                  <p className="mt-3 max-w-sm text-muted">{group.summary}</p>
+                </div>
+                <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2 md:col-start-2 lg:col-start-auto">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-3 text-sm leading-relaxed text-foreground/90"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 size-1.5 shrink-0 rounded-full bg-accent"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
             </li>
           ))}
         </ol>
