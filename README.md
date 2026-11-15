@@ -62,7 +62,8 @@ These fields are empty and hidden on the site until filled in
 - TypeScript (strict)
 - Tailwind CSS v4 (tokens defined in `src/app/globals.css`)
 - `next/font` — Fraunces (display serif) + Inter (body sans)
-- `next/image`, `lucide-react`, Framer Motion (entrance animations only)
+- `next/image`, `lucide-react`, Framer Motion (entrances, scroll effects, parallax)
+- Lenis — inertia smooth scrolling on desktop (off for touch and reduced motion)
 - ESLint + Prettier (`prettier-plugin-tailwindcss`)
 
 ## Getting started

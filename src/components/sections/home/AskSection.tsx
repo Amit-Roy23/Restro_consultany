@@ -25,7 +25,7 @@ export function AskSection() {
       </div>
 
       <Container className="relative z-10 -mt-[48svh] pb-[24svh]">
-        <div className="mx-auto max-w-xl rounded-[28px] border border-foreground/10 bg-surface/35 p-4 shadow-2xl backdrop-blur-2xl sm:p-6">
+        <div className="mx-auto max-w-xl rounded-[28px] border border-foreground/10 bg-surface/35 p-4 shadow-2xl backdrop-blur-xl sm:p-6">
           <p className="mb-4 text-center eyebrow text-muted">{suggestionsLabel}</p>
           <ul className="flex flex-col gap-2.5">
             {suggestions.map((suggestion) => (

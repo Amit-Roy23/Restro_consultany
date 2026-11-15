@@ -5,6 +5,7 @@ import {
   motion,
   useReducedMotion,
   useScroll,
+  useSpring,
   useTransform,
 } from "framer-motion";
 import Image from "next/image";
@@ -67,9 +68,17 @@ export function Hero() {
   const reduceMotion = useReducedMotion();
   const animate = isDesktop && !reduceMotion;
 
-  const { scrollYProgress: progress } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
+  });
+  // A light spring so the collage and showcase glide rather than track the
+  // scroll position frame-for-frame.
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 160,
+    damping: 32,
+    mass: 0.4,
+    restDelta: 0.0005,
   });
 
   const textOpacity = useTransform(progress, [0.08, 0.38], [1, 0]);

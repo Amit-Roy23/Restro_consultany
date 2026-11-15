@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { navStrings } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { fontDisplay, fontSans } from "@/lib/fonts";
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {navStrings.skipToContent}
         </a>
+        <SmoothScroll />
         <Navbar />
         <main
           id="main"

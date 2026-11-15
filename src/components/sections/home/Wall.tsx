@@ -3,10 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/Button";
+import { Parallax } from "@/components/ui/Parallax";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { wallContent } from "@/content/home";
 import { cn } from "@/lib/utils";
 import type { WallCard } from "@/types";
+
+/** How far each card drifts, so neighbours move at different speeds. */
+const drift = [140, 60, 180, 90, 150, 50, 170, 110, 70];
 
 /**
  * Desktop placement of each card. The heading stays pinned in the middle of
@@ -51,7 +55,9 @@ export function Wall() {
             key={index}
             className={cn("lg:absolute", placement[index % placement.length])}
           >
-            <WallTile card={card} />
+            <Parallax distance={drift[index % drift.length]}>
+              <WallTile card={card} />
+            </Parallax>
           </li>
         ))}
       </ul>

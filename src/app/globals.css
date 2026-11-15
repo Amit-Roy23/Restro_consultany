@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /* ------------------------------------------------------------------
    Design tokens
@@ -107,15 +108,9 @@
    Base
    ------------------------------------------------------------------ */
 @layer base {
+  /* Smooth scrolling is handled by Lenis (components/layout/SmoothScroll). */
   html {
     color-scheme: dark;
-    scroll-behavior: smooth;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
   }
 
   body {
@@ -184,7 +179,6 @@
     z-index: -1;
     pointer-events: none;
     background-image: var(--grain);
-    opacity: 0.14;
-    mix-blend-mode: overlay;
+    opacity: 0.06;
   }
 }
