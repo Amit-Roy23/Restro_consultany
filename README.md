@@ -32,6 +32,11 @@ All copy, the logo and the photos come from the company profile document
 | Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                               |
 | Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                              |
 
+Shared motion primitives (`components/ui/`): `TextReveal` (masked word/letter
+reveals), `ImageReveal` (curtain wipe), `Reveal` (fade-up), `StackCards`
+(shrinking stacked cards), `Parallax`, `Magnetic` (buttons follow the cursor);
+page fade-in lives in `app/template.tsx`.
+
 The "Ask" boxes have no backend yet — they submit to `/contact?q=…`.
 On phones and for visitors with "reduce motion" enabled, scroll effects fall back
 to a static layout.

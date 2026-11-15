@@ -10,6 +10,7 @@ import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { navCta, navStrings } from "@/config/navigation";
 import { cn } from "@/lib/utils";
+import { Magnetic } from "@/components/ui/Magnetic";
 
 /**
  * Minimal floating header: logo and CTA sit at the top of the page and slide
@@ -63,17 +64,19 @@ export function Navbar() {
               {navCta.label}
             </Button>
 
-            <button
-              ref={menuButtonRef}
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label={navStrings.openMenu}
-              aria-expanded={menuOpen}
-              aria-controls="site-menu"
-              className="pointer-events-auto inline-flex size-12 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg shadow-background/30 transition-[background-color,scale] hover:scale-105 hover:bg-foreground md:size-14"
-            >
-              <Menu className="size-5" aria-hidden="true" />
-            </button>
+            <Magnetic className="pointer-events-auto" strength={0.4}>
+              <button
+                ref={menuButtonRef}
+                type="button"
+                onClick={() => setMenuOpen(true)}
+                aria-label={navStrings.openMenu}
+                aria-expanded={menuOpen}
+                aria-controls="site-menu"
+                className="pointer-events-auto inline-flex size-12 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-lg shadow-background/30 transition-[background-color,scale] hover:scale-105 hover:bg-foreground md:size-14"
+              >
+                <Menu className="size-5" aria-hidden="true" />
+              </button>
+            </Magnetic>
           </div>
         </Container>
       </header>

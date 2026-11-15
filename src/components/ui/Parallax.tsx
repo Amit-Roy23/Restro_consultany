@@ -1,15 +1,10 @@
 "use client";
 
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { type ReactNode, useRef } from "react";
 
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 type ParallaxProps = {
   children: ReactNode;
@@ -22,7 +17,7 @@ type ParallaxProps = {
 export function Parallax({ children, distance = 80, className }: ParallaxProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: ref,

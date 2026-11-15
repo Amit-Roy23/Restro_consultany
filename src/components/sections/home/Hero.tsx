@@ -3,7 +3,6 @@
 import {
   type MotionValue,
   motion,
-  useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
@@ -13,6 +12,7 @@ import { useRef } from "react";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { Magnetic } from "@/components/ui/Magnetic";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { VideoSlot } from "@/components/ui/VideoSlot";
@@ -20,6 +20,8 @@ import { heroContent } from "@/content/home";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import type { ImageAsset } from "@/types";
+import { ImageReveal } from "@/components/ui/ImageReveal";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 /**
  * Floating photo collage around the headline. Order matches
@@ -65,7 +67,7 @@ export function Hero() {
 
   const sectionRef = useRef<HTMLElement>(null);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
   const animate = isDesktop && !reduceMotion;
 
   const { scrollYProgress } = useScroll({
@@ -131,13 +133,35 @@ export function Hero() {
               <SectionLabel className="justify-center">{eyebrow}</SectionLabel>
             </Reveal>
 
-            <Reveal delay={0.15} className="mt-6">
-              <h1
-                id="hero-heading"
-                className="max-w-[14ch] text-hero font-semibold sm:max-w-none"
-              >
-                {headline.map((line, lineIndex) => (
-                  <span key={lineIndex} className="block">
+            <motion.h1
+              id="hero-heading"
+              aria-label={headline
+                .map((line) => line.map((part) => part.text).join(""))
+                .join(" ")}
+              className="mt-6 max-w-[14ch] text-hero font-semibold sm:max-w-none"
+              initial={reduceMotion ? false : "hidden"}
+              animate="visible"
+              variants={{
+                visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+              }}
+            >
+              {headline.map((line, lineIndex) => (
+                <span
+                  key={lineIndex}
+                  aria-hidden="true"
+                  className="-mb-[0.1em] block overflow-hidden pb-[0.1em]"
+                >
+                  <motion.span
+                    className="block origin-bottom-left"
+                    variants={{
+                      hidden: { y: "110%", rotate: 3 },
+                      visible: {
+                        y: "0%",
+                        rotate: 0,
+                        transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] },
+                      },
+                    }}
+                  >
                     {line.map((segment, segmentIndex) =>
                       segment.accent ? (
                         <em key={segmentIndex} className="text-accent italic">
@@ -147,22 +171,24 @@ export function Hero() {
                         <span key={segmentIndex}>{segment.text}</span>
                       ),
                     )}
-                  </span>
-                ))}
-              </h1>
-            </Reveal>
+                  </motion.span>
+                </span>
+              ))}
+            </motion.h1>
 
-            <Reveal delay={0.3} className="mt-7 max-w-2xl">
+            <Reveal delay={0.55} className="mt-7 max-w-2xl">
               <p className="text-base text-pretty text-muted md:text-lg">{description}</p>
             </Reveal>
 
             <Reveal
-              delay={0.42}
+              delay={0.7}
               className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
             >
-              <Button href={primaryCta.href} size="lg" className="w-full sm:w-auto">
-                {primaryCta.label}
-              </Button>
+              <Magnetic className="w-full sm:w-auto">
+                <Button href={primaryCta.href} size="lg" className="w-full sm:w-auto">
+                  {primaryCta.label}
+                </Button>
+              </Magnetic>
               <Button
                 href={secondaryCta.href}
                 variant="outline"
@@ -173,7 +199,7 @@ export function Hero() {
               </Button>
             </Reveal>
 
-            <Reveal delay={0.55} className="mt-14 w-full max-w-xl">
+            <Reveal delay={0.85} className="mt-14 w-full max-w-xl">
               <dl className="grid grid-cols-3 divide-x divide-border border-y border-border">
                 {stats.map((stat) => (
                   <div key={stat.label} className="flex flex-col-reverse gap-1 px-2 py-5">
@@ -263,11 +289,7 @@ function CollagePhoto({
       style={animate ? { x, y, opacity } : undefined}
       className={cn("absolute", className)}
     >
-      <Reveal
-        delay={0.15 + index * 0.08}
-        y={16}
-        className="absolute inset-0 overflow-hidden rounded-sm"
-      >
+      <ImageReveal delay={0.1 + index * 0.1} className="absolute inset-0 rounded-sm">
         <Image
           src={image.src}
           alt=""
@@ -277,7 +299,7 @@ function CollagePhoto({
           preload={index === 0}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
-      </Reveal>
+      </ImageReveal>
     </motion.div>
   );
 }

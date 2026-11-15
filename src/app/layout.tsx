@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { MotionProvider } from "@/components/layout/MotionProvider";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { navStrings } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
@@ -50,15 +51,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {navStrings.skipToContent}
         </a>
-        <SmoothScroll />
-        <Navbar />
-        <main
-          id="main"
-          className="relative z-10 flex-1 bg-background shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
-        >
-          {children}
-        </main>
-        <Footer />
+        <MotionProvider>
+          <SmoothScroll />
+          <Navbar />
+          <main
+            id="main"
+            className="relative z-10 flex-1 bg-background shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]"
+          >
+            {children}
+          </main>
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );
