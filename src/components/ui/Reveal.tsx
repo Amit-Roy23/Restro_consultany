@@ -2,6 +2,7 @@
 
 import { MotionConfig, motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { useIntro } from "@/components/layout/IntroProvider";
 
 type RevealProps = {
   children: ReactNode;
@@ -26,6 +27,7 @@ export function Reveal({
   inView = false,
   className,
 }: RevealProps) {
+  const { done } = useIntro();
   const transition = { duration: 1.1, delay, ease: [0.16, 1, 0.3, 1] as const };
   return (
     <MotionConfig reducedMotion="user">
@@ -37,7 +39,7 @@ export function Reveal({
               whileInView: { opacity: 1, y: 0 },
               viewport: { once: true, amount: 0.3 },
             }
-          : { animate: { opacity: 1, y: 0 } })}
+          : { animate: done ? { opacity: 1, y: 0 } : { opacity: 0, y } })}
         transition={transition}
       >
         {children}

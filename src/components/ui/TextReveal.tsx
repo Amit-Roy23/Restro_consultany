@@ -3,6 +3,7 @@
 import { type Variants, motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { useIntro } from "@/components/layout/IntroProvider";
 
 export type RevealSegment = { text: string; accent?: boolean };
 
@@ -55,6 +56,7 @@ export function TextReveal({
   stagger,
   immediate = false,
 }: TextRevealProps) {
+  const { done } = useIntro();
   const Tag = tags[as];
   const parts: RevealSegment[] = segments ?? [{ text: text ?? "" }];
   const label = parts.map((part) => part.text).join("");
@@ -74,7 +76,7 @@ export function TextReveal({
       className={className}
       initial="hidden"
       {...(immediate
-        ? { animate: "visible" }
+        ? { animate: done ? "visible" : "hidden" }
         : { whileInView: "visible", viewport: { once: true, amount: 0.5 } })}
       variants={{
         visible: { transition: { staggerChildren: step, delayChildren: delay } },

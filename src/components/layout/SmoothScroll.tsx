@@ -3,7 +3,8 @@
 import Lenis from "lenis";
 import { useEffect } from "react";
 
-import { setLenis } from "@/lib/smoothScroll";
+import { useIntro } from "@/components/layout/IntroProvider";
+import { getLenis, setLenis } from "@/lib/smoothScroll";
 
 /**
  * Inertia ("buttery") wheel scrolling for desktop. Touch devices keep native
@@ -12,6 +13,8 @@ import { setLenis } from "@/lib/smoothScroll";
  * useScroll keep working unchanged.
  */
 export function SmoothScroll() {
+  const { done } = useIntro();
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -29,6 +32,12 @@ export function SmoothScroll() {
       setLenis(null);
     };
   }, []);
+
+  // Hold scrolling while the first-visit loader is on screen.
+  useEffect(() => {
+    if (done) getLenis()?.start();
+    else getLenis()?.stop();
+  }, [done]);
 
   return null;
 }

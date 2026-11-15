@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import type { ImageAsset } from "@/types";
 import { ImageReveal } from "@/components/ui/ImageReveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useIntro } from "@/components/layout/IntroProvider";
 
 /**
  * Floating photo collage around the headline. Order matches
@@ -68,6 +69,7 @@ export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const reduceMotion = usePrefersReducedMotion();
+  const { done } = useIntro();
   const animate = isDesktop && !reduceMotion;
 
   const { scrollYProgress } = useScroll({
@@ -140,7 +142,7 @@ export function Hero() {
                 .join(" ")}
               className="mt-6 max-w-[14ch] text-hero font-semibold sm:max-w-none"
               initial={reduceMotion ? false : "hidden"}
-              animate="visible"
+              animate={done ? "visible" : "hidden"}
               variants={{
                 visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
               }}

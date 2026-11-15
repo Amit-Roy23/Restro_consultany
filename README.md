@@ -37,6 +37,12 @@ reveals), `ImageReveal` (curtain wipe), `Reveal` (fade-up), `StackCards`
 (shrinking stacked cards), `Parallax`, `Magnetic` (buttons follow the cursor);
 page fade-in lives in `app/template.tsx`.
 
+First-visit loader: `components/layout/Preloader.tsx` (copy in `src/content/intro.ts`)
+plays once per browser session; entrance animations wait for it via
+`IntroProvider`. `src/lib/bootScript.ts` runs in `<head>` before paint: it skips
+the loader if it already played, and on a browser **reload** always sends the
+visitor to the homepage at the top.
+
 The "Ask" boxes have no backend yet — they submit to `/contact?q=…`.
 On phones and for visitors with "reduce motion" enabled, scroll effects fall back
 to a static layout.
