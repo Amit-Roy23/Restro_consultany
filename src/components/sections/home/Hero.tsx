@@ -14,7 +14,8 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { heroContent, heroShowcase } from "@/content/home";
+import { VideoSlot } from "@/components/ui/VideoSlot";
+import { heroContent } from "@/content/home";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import type { ImageAsset } from "@/types";
@@ -48,8 +49,6 @@ const collage: { className: string; drift: [number, number] }[] = [
   },
 ];
 
-const showcaseDelays = ["0s", "-8s", "-4s"];
-
 export function Hero() {
   const {
     eyebrow,
@@ -60,6 +59,7 @@ export function Hero() {
     stats,
     scrollLabel,
     images,
+    showcase,
   } = heroContent;
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -93,7 +93,7 @@ export function Hero() {
         className={cn(
           "grain flex flex-col overflow-hidden",
           animate ? "sticky top-0 h-svh" : "relative min-h-[100svh]",
-          "bg-[radial-gradient(ellipse_70%_55%_at_85%_10%,rgba(201,161,91,0.20),transparent_65%),radial-gradient(ellipse_60%_60%_at_0%_100%,rgba(150,70,35,0.22),transparent_70%),radial-gradient(ellipse_at_center,#1c1612,var(--background)_75%)]",
+          "bg-[radial-gradient(ellipse_70%_55%_at_85%_10%,rgba(217,120,42,0.20),transparent_65%),radial-gradient(ellipse_60%_60%_at_0%_100%,rgba(150,70,35,0.22),transparent_70%),radial-gradient(ellipse_at_center,#1c1612,var(--background)_75%)]",
         )}
       >
         {/* Floating photo collage */}
@@ -117,7 +117,7 @@ export function Hero() {
           }
           className="flex flex-1 flex-col"
         >
-          <Container className="flex flex-1 flex-col items-center justify-center pt-[calc(var(--nav-height)+3rem)] pb-28 text-center md:pt-[calc(var(--nav-height)+5rem)] lg:pb-24">
+          <Container className="flex flex-1 flex-col items-center justify-center pt-[calc(var(--nav-height)+3rem)] pb-28 text-center md:pt-[calc(var(--nav-height)+5rem)] lg:pb-32">
             <Reveal delay={0.05}>
               <SectionLabel className="justify-center">{eyebrow}</SectionLabel>
             </Reveal>
@@ -179,13 +179,14 @@ export function Hero() {
 
             {!animate && (
               <Showcase
-                images={heroShowcase}
-                className="mt-14 aspect-[16/10] w-full rounded-lg"
+                video={showcase.video}
+                tiles={showcase.tiles}
+                className="mt-14 aspect-[16/10] w-full overflow-hidden rounded-lg"
               />
             )}
           </Container>
 
-          <div className="absolute inset-x-0 bottom-6 hidden flex-col items-center gap-3 text-muted md:flex">
+          <div className="absolute inset-x-0 bottom-6 hidden flex-col items-center gap-3 text-muted [@media(min-width:768px)_and_(min-height:980px)]:flex">
             <span className="eyebrow text-[0.65rem]">{scrollLabel}</span>
             <span className="relative h-10 w-px overflow-hidden bg-border">
               <span className="absolute inset-0 animate-scroll-cue bg-accent motion-reduce:animate-none" />
@@ -205,13 +206,17 @@ export function Hero() {
             }}
             className="absolute inset-0 z-10 overflow-hidden will-change-transform"
           >
-            <Showcase images={heroShowcase} className="absolute inset-0" />
+            <Showcase
+              video={showcase.video}
+              tiles={showcase.tiles}
+              className="absolute inset-0"
+            />
             <motion.div
               style={{ opacity: captionOpacity }}
               className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/80 to-transparent p-10"
             >
               <Container>
-                <SectionLabel>{secondaryCta.label}</SectionLabel>
+                <SectionLabel>{showcase.caption}</SectionLabel>
               </Container>
             </motion.div>
           </motion.div>
@@ -266,28 +271,37 @@ function CollagePhoto({
   );
 }
 
-/** Stack of images that slowly cross-fade (pure CSS, stops for reduced motion). */
-function Showcase({ images, className }: { images: ImageAsset[]; className?: string }) {
+/** Showreel video when available, otherwise a mosaic of project photos. */
+function Showcase({
+  video,
+  tiles,
+  className,
+}: {
+  video?: string;
+  tiles: ImageAsset[];
+  className?: string;
+}) {
   return (
-    <div className={cn("relative overflow-hidden bg-surface", className)}>
-      {images.map((image, index) => (
-        <div
-          key={image.src}
-          className={cn(
-            "absolute inset-0 animate-crossfade motion-reduce:animate-none",
-            index > 0 && "motion-reduce:opacity-0",
-          )}
-          style={{ animationDelay: showcaseDelays[index] }}
-        >
-          <Image
-            src={image.src}
-            alt={image.alt}
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
-        </div>
-      ))}
+    <div className={cn("relative bg-background", className)}>
+      <VideoSlot
+        src={video}
+        poster={tiles[0]}
+        fallback={
+          <div className="grid h-full grid-cols-3 grid-rows-2 gap-1">
+            {tiles.slice(0, 6).map((tile) => (
+              <div key={tile.src} className="relative overflow-hidden">
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  fill
+                  sizes="34vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        }
+      />
     </div>
   );
 }

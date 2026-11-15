@@ -1,57 +1,63 @@
 import { navCta } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
+import { img } from "@/content/gallery";
 import type {
+  AboutContent,
   AskContent,
+  ClientsContent,
   CtaBandContent,
-  FeaturedWorkContent,
   HeroContent,
-  HowWeHelpContent,
-  ImageAsset,
-  InsightsContent,
+  ProjectsContent,
+  ServicesContent,
+  WallContent,
 } from "@/types";
+
+/*
+ * All copy below comes from the Resto Consultancy company profile.
+ * Video slots: add a file to /public/videos and set its `video` / `src`.
+ */
 
 /* ------------------------------------------------------------------ */
 /* Hero                                                               */
 /* ------------------------------------------------------------------ */
 
 export const heroContent: HeroContent = {
-  eyebrow: `Hospitality Consultancy · Since ${siteConfig.foundedYear}`,
+  eyebrow: `Food & Beverage Consultants · Since ${siteConfig.foundedYear}`,
   headline: [
-    [{ text: "We build restaurants" }],
-    [{ text: "that are still " }, { text: "profitable", accent: true }],
-    [{ text: "in year two." }],
+    [{ text: "Restaurants, hotels" }],
+    [{ text: "& kitchens that work" }],
+    [{ text: "from " }, { text: "day one.", accent: true }],
   ],
   description:
-    "Concept, kitchen, menu engineering and operations — we sit beside founders from the first sketch to the hundredth service, so the numbers hold up after the launch buzz fades.",
+    "We set up fully functional food & beverage businesses — from kitchen layout and menu planning to sourcing, SOPs, staffing and handover.",
   primaryCta: navCta,
-  secondaryCta: { label: "See our work", href: "/projects" },
+  secondaryCta: { label: "See our projects", href: "/projects" },
   stats: [
-    { value: "150+", label: "Projects" },
-    { value: "12", label: "Cities" },
-    { value: "15", label: "Years" },
+    { value: "11", label: "Projects" },
+    { value: "30+", label: "Brands" },
+    { value: "2", label: "Countries" },
   ],
   scrollLabel: "Scroll",
   images: [
-    { src: "/images/hero/kitchen-pass.jpg", alt: "Warm lights over a busy kitchen pass" },
-    {
-      src: "/images/hero/dining-room.jpg",
-      alt: "A softly lit dining room before service",
-    },
-    { src: "/images/hero/chef-table.jpg", alt: "Candlelight at a chef's table" },
-    { src: "/images/hero/bar-counter.jpg", alt: "Glowing bottles behind a bar counter" },
-    {
-      src: "/images/hero/tasting-menu.jpg",
-      alt: "Amber light across a tasting-menu service",
-    },
+    img("/images/team/hospitality-team.jpg"),
+    img("/images/team/chef-brigade.jpg"),
+    img("/images/interiors/interior-01.jpg"),
+    img("/images/kitchens/kitchen-03.jpg"),
+    img("/images/training/training-01.jpg"),
   ],
+  showcase: {
+    caption: "Kitchens, dining rooms and teams we've set up",
+    video: undefined, // e.g. "/videos/showreel.mp4"
+    tiles: [
+      img("/images/interiors/interior-02.jpg"),
+      img("/images/kitchens/kitchen-01.jpg"),
+      img("/images/interiors/interior-03.jpg"),
+      img("/images/training/training-02.jpg"),
+      img("/images/interiors/interior-04.jpg"),
+      img("/images/kitchens/kitchen-05.jpg"),
+    ],
+  },
 };
-
-/** Images that cross-fade inside the hero's growing showcase frame. */
-export const heroShowcase: ImageAsset[] = [
-  { src: "/images/projects/fine-dining.jpg", alt: "A fine-dining room we helped open" },
-  { src: "/images/projects/cafe-chain.jpg", alt: "A café chain interior" },
-  { src: "/images/projects/hotel-bar.jpg", alt: "A hotel bar after our redesign" },
-];
 
 /* ------------------------------------------------------------------ */
 /* Ask                                                                */
@@ -64,153 +70,385 @@ export const askContent: AskContent = {
   submitLabel: "Send question",
   suggestionsLabel: "Not sure where to start? Try one of these.",
   suggestions: [
-    "What does a restaurant consultant actually do?",
-    "How much does it cost to open a restaurant?",
-    "Show me work relevant to my concept…",
-    "How is Resto different from a typical agency?",
+    "Can you set up my restaurant from scratch?",
+    "What does a kitchen layout with SOP include?",
+    "Do you work with hotels and resorts?",
+    "Can you help with menu planning and costing?",
   ],
 };
 
 /* ------------------------------------------------------------------ */
-/* Featured work                                                      */
+/* About                                                              */
 /* ------------------------------------------------------------------ */
 
-export const featuredWorkContent: FeaturedWorkContent = {
+export const aboutContent: AboutContent = {
   number: 1,
-  label: "Featured work",
-  title: "We fix the problems that sink restaurants.",
-  intro:
-    "We don't start with the décor. We start with the people eating, cooking and serving — their habits, their constraints, and what's quietly eating into the margin.",
-  readMoreLabel: "Read the case study",
-  projects: [
-    {
-      client: "Regional Café Chain",
-      sector: "Quick service",
-      summary:
-        "Fourteen outlets, fourteen different menus and food costs drifting past 40%. We rebuilt the menu, the prep system and the supplier list — food cost is now under 29%.",
-      image: { src: "/images/projects/cafe-chain.jpg", alt: "Café chain counter" },
-      href: "/projects",
-    },
-    {
-      client: "Coastal Fine Dining",
-      sector: "Fine dining",
-      summary:
-        "A chef with a brilliant tasting menu and a room that was half empty on weekdays. We reworked pricing, service flow and the weekday offer until the books balanced.",
-      image: { src: "/images/projects/fine-dining.jpg", alt: "Fine-dining room" },
-      href: "/projects",
-    },
-    {
-      client: "Multi-brand Cloud Kitchen",
-      sector: "Delivery",
-      summary:
-        "Six delivery brands out of one kitchen, and none of them profitable. We merged the prep lines, cut the SKUs by half and relaunched two brands that now carry the site.",
-      image: { src: "/images/projects/cloud-kitchen.jpg", alt: "Cloud kitchen line" },
-      href: "/projects",
-    },
-    {
-      client: "Boutique Hotel Group",
-      sector: "Hotel F&B",
-      summary:
-        "Three hotel bars treated as an afterthought. We gave each a concept, a cocktail programme and a team structure — beverage revenue tripled in the first year.",
-      image: { src: "/images/projects/hotel-bar.jpg", alt: "Hotel bar" },
-      href: "/projects",
-    },
+  label: "Who we are",
+  title: "Expert food & beverage consultants, from first plan to handover.",
+  paragraphs: [
+    "We help our clients set up fully functional food & beverage businesses. Our team has extensive experience in developing, launching and supporting many national and international start-ups, with end-to-end consulting — from sourcing raw materials to testing and manufacturing the product.",
+    "We are a passionate, dedicated team providing hospitality solutions to prestigious clients. We offer technical and advisory support and work alongside architects and other consultants to deliver a product in line with the owner's vision and budget — and we're flexible enough to bring them on board as your project needs.",
   ],
-  industryPrompt: { label: "Show me work in my segment…", href: "/projects" },
-  moreCta: { label: "See more work", href: "/projects" },
+  founder: {
+    name: "", // TODO: founder's name is not in the profile
+    role: "Founder, Resto Consultancy",
+    image: img("/images/team/founder.jpg"),
+  },
+  video: {
+    src: undefined, // e.g. "/videos/about.mp4"
+    poster: img("/images/team/chef-brigade-2.jpg"),
+  },
+  market: {
+    value: "7.2%",
+    caption: "Projected CAGR of India's F&B market, 2019–2024 (Market Study)",
+    body: "Behind the success of food & beverage companies sit accurate, impeccable consultations — guidance on quality, productivity and process safety. Every new entrant needs a robust process plan, sound raw-material sourcing and the right ingredients in the right ratios.",
+  },
+  philosophy:
+    "We're inspired by clients who value creative design and want a competitive edge. We combine strategic thinking and creative insight with market trends and economic evaluation — so intuition and experience come together in an authentic brand story.",
 };
 
 /* ------------------------------------------------------------------ */
-/* How we help                                                        */
+/* Services                                                           */
 /* ------------------------------------------------------------------ */
 
-export const howWeHelpContent: HowWeHelpContent = {
+export const servicesContent: ServicesContent = {
   number: 2,
-  label: "How we help",
-  title: "You're running something complicated.",
+  label: "What we do",
+  title: "Everything it takes to open — and keep running.",
   intro:
-    "We've stood behind the pass before. The problems usually sound something like this.",
-  items: [
+    "End-to-end food & beverage consulting, organised the way a property actually comes together.",
+  groups: [
     {
-      problem: "“We're busy every night, but somehow there's never any money left.”",
-      solution:
-        "We find where the margin leaks — menu, waste, labour, rent — and plug it.",
-      href: "/services",
+      title: "Restaurant set-up & SOPs",
+      summary: "From the first floor plan to handing over a running property.",
+      items: [
+        "Kitchen and restaurant layout with SOP",
+        "Food & beverage menu planning",
+        "Menu-wise kitchen equipment & utensils procurement",
+        "Food & beverage budgeting",
+        "Menu, mocktail & cocktail trials",
+        "Final presentation of food",
+        "Standardised vendor management",
+        "Overall staff budgeting",
+        "Housekeeping materials as per SOP",
+        "Housekeeping operations as per SOP",
+        "Handover once the property is operational",
+      ],
     },
     {
-      problem: "“We have the idea and the site. We don't know what comes next.”",
-      solution:
-        "We turn a concept into a costed plan, a kitchen layout and an opening date.",
-      href: "/services",
+      title: "Kitchen operations",
+      summary: "Systems that keep the kitchen consistent, safe and costed.",
+      items: [
+        "Food receiving",
+        "Segregation of food products",
+        "Storage facilities development",
+        "Daily food & beverage operations as per SOP",
+        "Food & beverage inventory",
+        "Food & beverage costing",
+      ],
     },
     {
-      problem: "“Our kitchen is slow and the tickets keep backing up.”",
-      solution: "We redesign stations, prep and flow so the pass runs on time.",
-      href: "/services",
-    },
-    {
-      problem: "“Staff leave every three months and we're always training.”",
-      solution: "We build the hiring, training and SOPs that make good people stay.",
-      href: "/services",
-    },
-    {
-      problem: "“We want to open a second outlet without breaking the first.”",
-      solution: "We systemise what works so it can be repeated in a new city.",
-      href: "/services",
+      title: "Rooms",
+      summary:
+        "For hotels and resorts — rooms that are equipped, priced and booked properly.",
+      items: [
+        "Standard room amenities as per SOP",
+        "Room costing",
+        "Room tariff budgeting",
+        "Mini-bar set-up",
+        "Room bookings via management software",
+      ],
     },
   ],
+  cta: { label: "All services", href: "/services" },
 };
 
 /* ------------------------------------------------------------------ */
-/* Insights (the "what we're into" wall)                              */
+/* Projects                                                           */
 /* ------------------------------------------------------------------ */
 
-export const insightsContent: InsightsContent = {
+export const projectsContent: ProjectsContent = {
   number: 3,
-  label: "Journal",
-  title: "What we're cooking up right now.",
-  cta: { label: "Read the journal", href: "/about" },
+  label: "Projects",
+  title: "Hotels, restaurants and kitchens we've delivered.",
+  intro:
+    "Eleven projects across India and Bangladesh — from 3-star hotels and island resorts to Bengali restaurants, banquets and cloud kitchens.",
+  featured: [
+    {
+      name: "Hotel Daltin",
+      type: "Premium 3-star hotel · 54 keys",
+      location: "New Digha, West Bengal",
+      year: "2021",
+      summary:
+        "A 54-key premium three-star hotel on the coast at New Digha, West Bengal.",
+      image: img("/images/creatives/hotel-daltin-57.jpg"),
+    },
+    {
+      name: "The Bhoj Company",
+      type: "Bengali restaurant · 92 + 54 covers",
+      location: "Kolkata & Dhaka",
+      year: "2017–18",
+      summary:
+        "A 92-cover Bengali restaurant in Kolkata, followed by a 54-cover outlet in Dhaka. The brand now runs four outlets in Kolkata and one in Dhaka.",
+      image: img("/images/creatives/the-bhoj-company-71.jpg"),
+    },
+    {
+      name: "Bangla Canvas",
+      type: "Bengali restaurant & café · 40 + 20 covers",
+      location: "Delhi & Noida",
+      year: "2023",
+      summary:
+        "A 40-cover Bengali restaurant in Delhi and a 20-cover Bengali café in Noida for India's only multinational ethnic food & lifestyle brand inspired by Bengali culture.",
+      image: img("/images/creatives/bangla-canvas-99.jpg"),
+    },
+    {
+      name: "Kaftaan",
+      type: "Cloud kitchen",
+      location: "Patuli, Garia, Kolkata",
+      year: "2019",
+      summary:
+        "A delivery-first cloud kitchen in Patuli, Garia — biryani, chaap and more.",
+      image: img("/images/creatives/kaftaan-110.jpg"),
+    },
+  ],
+  listHeading: "Projects completed",
+  list: [
+    {
+      year: "2011",
+      name: "Venky Residency",
+      details: "55 keys · 3-star hotel",
+      location: "Kakinada, Andhra Pradesh",
+    },
+    {
+      year: "2014",
+      name: "Master Chefs Restaurant & Qazi Banquet",
+      details: "Restaurant & banquet",
+      location: "Sodepur, West Bengal",
+    },
+    {
+      year: "2016",
+      name: "Belini",
+      details: "200-cover multi-cuisine resto-bar",
+      location: "G S Road, Guwahati, Assam",
+    },
+    {
+      year: "2017",
+      name: "The Bhoj Company",
+      details: "92-cover Bengali restaurant",
+      location: "Kolkata, West Bengal",
+    },
+    {
+      year: "2018",
+      name: "The Bhoj Company",
+      details: "54-cover Bengali restaurant",
+      location: "Dhaka, Bangladesh",
+    },
+    {
+      year: "2018",
+      name: "Daruchini",
+      details: "Multi-cuisine restaurant & 500-cover banquet",
+      location: "Khardah, West Bengal",
+    },
+    {
+      year: "2019",
+      name: "Kaftaan",
+      details: "Cloud kitchen",
+      location: "Patuli, Garia, Kolkata",
+    },
+    {
+      year: "2021",
+      name: "Hotel Daltin",
+      details: "54 keys · Premium 3-star hotel",
+      location: "New Digha, West Bengal",
+    },
+    {
+      year: "2022",
+      name: "My Chef",
+      details: "Cloud kitchen",
+      location: "Thakur Village, Mumbai",
+    },
+    {
+      year: "2022",
+      name: "Narkelkunja Island Resort",
+      details: "Island resort",
+      location: "Agartala, Tripura",
+    },
+    {
+      year: "2023",
+      name: "Bangla Canvas",
+      details: "40-cover Bengali restaurant · 20-cover Bengali café",
+      location: "Delhi & Noida",
+    },
+    {
+      year: "2024",
+      name: "Raj Darbar",
+      details: "60-cover restaurant with 150-cover banquet",
+      location: "Ruby, West Bengal",
+    },
+  ],
+  moreCta: { label: "See the full gallery", href: "/projects" },
+};
+
+/* ------------------------------------------------------------------ */
+/* Clients                                                            */
+/* ------------------------------------------------------------------ */
+
+export const clientsContent: ClientsContent = {
+  number: 4,
+  label: "Professional association",
+  title: "Brands we've worked with.",
+  intro:
+    "From four-star hotels and Asia's largest lounge to bakery chains with 180+ outlets — the hospitality names we've partnered with.",
+  groups: [
+    {
+      title: "Hotels & resorts",
+      names: [
+        "Allita Hotels & Resorts (4-star)",
+        "Hotel Monotel (4-star) — a unit of Haldiram",
+        "Hotel De Sovrani (3-star) — a unit of D.C. Paul",
+        "Hotel Daltin (premium 3-star)",
+        "Hotel Marigold (3-star budget)",
+        "Hotel La Mishika",
+      ],
+    },
+    {
+      title: "Restaurants, lounges & bars",
+      names: [
+        "Ambuja Neotia — Sonar Tori, The Orient, Afraa Lounge, Conclave at Afraa, Loafer's Cafe",
+        "Speciality Group — Mainland China, Riyasaat, Hoppipola, Haka, Oh! Calcutta",
+        "The Bhoj Company — 4 outlets in Kolkata, 1 in Dhaka",
+        "Club Fenicia — Asia's largest lounge",
+        "BJ's Sports Lounge & Cafe",
+        "Lords & Barons",
+        "Miss Ginko",
+        "Red Kitchen & Lounge",
+        "Opium — Kolkata's oldest rock bar",
+        "Bangla Canvas — New Delhi, Noida & Kolkata",
+        "Lusscibo World Cuisine",
+      ],
+    },
+    {
+      title: "Bakery & patisserie",
+      names: [
+        "Mio Amore — Asia's largest bakery chain",
+        "Brunch Italino — 180+ outlets",
+        "Bleubury — patisserie & gifting studio",
+      ],
+    },
+    {
+      title: "Cloud kitchens & FMCG",
+      names: [
+        "Moti Mahal Delux",
+        "Kaftaan",
+        "My Chef",
+        "Desi Chullah",
+        "My Fishwala — fresh fish delivery",
+        "Aashirvaad by ITC Limited",
+      ],
+    },
+  ],
+  otherSectors:
+    "Beyond hospitality, our clients include salon, kitchen-appliance and fashion brands — EyeCatcher, Häfele, Maaya, Adore India and many others.",
+};
+
+/** Short names for the scrolling marquee in the clients section. */
+export const clientMarquee: string[][] = [
+  [
+    "Mainland China",
+    "Oh! Calcutta",
+    "Allita",
+    "Monotel",
+    "Club Fenicia",
+    "The Bhoj Company",
+    "Afraa Lounge",
+    "Sonar Tori",
+    "Aashirvaad",
+  ],
+  [
+    "Mio Amore",
+    "Brunch Italino",
+    "Bangla Canvas",
+    "Hoppipola",
+    "Haka",
+    "Riyasaat",
+    "De Sovrani",
+    "Bleubury",
+    "Moti Mahal Delux",
+  ],
+];
+
+/* ------------------------------------------------------------------ */
+/* Wall (cards scrolling past a pinned heading)                       */
+/* ------------------------------------------------------------------ */
+
+export const wallContent: WallContent = {
+  number: 5,
+  label: "Kitchens, people & press",
+  title: "From our kitchens to the front page.",
+  cta: { label: "View the gallery", href: "/projects" },
   cards: [
     {
       kind: "image",
-      tag: "Menu lab",
-      title: "Why your best-selling dish might be losing you money",
-      image: {
-        src: "/images/insights/menu-lab.jpg",
-        alt: "Plates on a test kitchen pass",
-      },
-      href: "/about",
+      tag: "In the press",
+      title: "Our work, across print and TV",
+      image: img("/images/press/press-01.jpg"),
+      href: "/projects",
+    },
+    {
+      kind: "image",
+      tag: "Aashirvaad by ITC",
+      title: "Food styling for Aashirvaad Mishti Doi",
+      image: img("/images/creatives/aashirvaad-itc-44.jpg"),
+      href: "/projects",
     },
     {
       kind: "quote",
-      tag: "Client story",
-      quote: "They spoke chef and they spoke spreadsheet. That's rare.",
-      href: "/about",
+      tag: "Press shoots",
+      quote:
+        "Shoots for ABP (Anandabazar Patrika) at Monotel and Howard Johnson, Kolkata.",
+      href: "/projects",
+    },
+    {
+      kind: "image",
+      tag: "Training",
+      title: "Training the floor team before opening",
+      image: img("/images/training/training-01.jpg"),
+      href: "/projects",
     },
     {
       kind: "stat",
-      tag: "Research",
-      value: "6 of 10",
-      caption:
-        "new restaurants never see their third birthday. Here's what the other four do.",
-      href: "/about",
+      tag: "Since 2011",
+      value: "11",
+      caption: "hotels, restaurants and kitchens delivered across India and Bangladesh.",
+      href: "/projects",
     },
     {
       kind: "image",
-      tag: "People",
-      title: "Inside our kitchen-design workshop",
-      image: { src: "/images/insights/team.jpg", alt: "Team planning a kitchen layout" },
-      href: "/about",
+      tag: "The Bhoj Company",
+      title: "First look: the fourth Bhoj Company outlet",
+      image: img("/images/press/press-08.jpg"),
+      href: "/projects",
     },
     {
       kind: "image",
-      tag: "Openings",
-      title: "Opening night checklist, 30 days out",
-      image: {
-        src: "/images/insights/opening-night.jpg",
-        alt: "A restaurant on opening night",
-      },
-      href: "/about",
+      tag: "Afraa Lounge",
+      title: "Ambuja Neotia's Afraa Lounge",
+      image: img("/images/creatives/afraa-lounge-68.jpg"),
+      href: "/projects",
+    },
+    {
+      kind: "image",
+      tag: "Kitchens",
+      title: "A kitchen line, ready for service",
+      image: img("/images/kitchens/kitchen-03.jpg"),
+      href: "/projects",
+    },
+    {
+      kind: "image",
+      tag: "Brunch Italino",
+      title: "Celebration cakes for 180+ outlets",
+      image: img("/images/creatives/brunch-italino-95.jpg"),
+      href: "/projects",
     },
   ],
 };
@@ -220,7 +458,7 @@ export const insightsContent: InsightsContent = {
 /* ------------------------------------------------------------------ */
 
 export const ctaBandContent: CtaBandContent = {
-  title: "Got a hard problem on the floor? We're listening.",
-  body: "Tell us what you're facing and we'll take it from there.",
-  cta: { label: "Get in touch", href: "/contact" },
+  title: "Planning a restaurant, hotel or cloud kitchen? Let's talk.",
+  body: "Tell us what you're building and we'll take it from there.",
+  cta: { label: "Book a consultation", href: "/contact" },
 };

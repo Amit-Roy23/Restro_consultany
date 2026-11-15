@@ -1,26 +1,24 @@
 import type { SiteConfig } from "@/types";
 
 /**
- * Global brand settings. Change the brand name, contact details and social
- * links here — every component reads from this file.
+ * Global brand settings. Every component reads from this file.
+ *
+ * TODO (missing from the company profile): email, phone, address, city and
+ * social links. Empty values are hidden on the site until they are filled in.
  */
 export const siteConfig: SiteConfig = {
   name: "Resto Consultancy",
   logoLines: ["Resto", "Consultancy"],
-  tagline: "Restaurant consulting for operators who plan to last.",
+  tagline: "Food & beverage consultants for restaurants, hotels and cloud kitchens.",
   description:
-    "Resto Consultancy is a hospitality consultancy helping restaurant founders and groups plan, open and run venues that stay profitable long after opening night.",
+    "Resto Consultancy sets up fully functional food & beverage businesses — restaurants, hotels, banquets and cloud kitchens — from kitchen layout and menu planning to SOPs, staffing and handover.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  foundedYear: 2010,
+  foundedYear: 2011,
   contact: {
-    email: "hello@restoconsultancy.example",
-    phone: "+91 98765 43210",
-    city: "Mumbai, India",
-    address: "Studio 4, 21 Harbour Lane, Mumbai 400001",
+    email: "",
+    phone: "",
+    city: "",
+    address: "",
   },
-  socials: [
-    { platform: "instagram", label: "Instagram", href: "https://instagram.com/" },
-    { platform: "linkedin", label: "LinkedIn", href: "https://linkedin.com/" },
-    { platform: "whatsapp", label: "WhatsApp", href: "https://wa.me/919876543210" },
-  ],
+  socials: [],
 };

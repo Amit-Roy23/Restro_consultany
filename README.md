@@ -1,28 +1,60 @@
 # Resto Consultancy — Website
 
-Marketing / lead-generation site for a restaurant & hospitality consulting firm.
-Dark, warm, editorial design: grainy lit-room backgrounds, oversized serif headlines,
-a floating photo collage in the hero and a single muted-gold accent.
+Lead-generation website for **Resto Consultancy**, food & beverage consultants for
+restaurants, hotels, banquets and cloud kitchens. Dark, warm, editorial design in
+the brand's brown and orange, with scroll-driven sections.
 
-> **Current scope:** full home-page layout with placeholder copy and images (real
-> content to come), plus stub inner pages.
+All copy, the logo and the photos come from the company profile document
+(`RESTO_POWDER_POINT_1.docx`).
+
+## Pages
+
+| Route       | Contents                                                              |
+| ----------- | --------------------------------------------------------------------- |
+| `/`         | Hero, Ask, About, Services, Projects, Clients, Wall, call to action   |
+| `/about`    | About, clients                                                        |
+| `/services` | All service groups                                                    |
+| `/projects` | Featured projects, full project list, gallery of every supplied photo |
+| `/contact`  | Ask box, next steps, contact details (hidden until filled in)         |
 
 ## Home page sections
 
-| Section        | File                                        | Behaviour                                                                                     |
-| -------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| Hero           | `components/sections/home/Hero.tsx`         | Desktop: photos drift outward on scroll while a showcase frame rises and grows to full screen |
-| Ask Resto      | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it               |
-| Featured work  | `components/sections/home/FeaturedWork.tsx` | Case-study cards stack on top of each other (CSS sticky)                                      |
-| How we help    | `components/sections/home/HowWeHelp.tsx`    | Problem → solution rows, floating "Ask" bar pinned to the bottom                              |
-| Journal        | `components/sections/home/Insights.tsx`     | Pinned heading with cards scrolling past it                                                   |
-| Call to action | `components/sections/home/CtaBand.tsx`      | Gold band with animated equaliser bars                                                        |
-| Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                                       |
-| Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                                      |
+| Section        | File                                        | Behaviour                                                                             |
+| -------------- | ------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Hero           | `components/sections/home/Hero.tsx`         | Desktop: photos drift outward while a showcase (mosaic or video) grows to full screen |
+| Ask Resto      | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it       |
+| 01 Who we are  | `components/sections/home/AboutSection.tsx` | Story, founder portrait, market stat, philosophy, team video slot                     |
+| 02 What we do  | `components/sections/home/Services.tsx`     | Three service groups as numbered rows; floating ask bar                               |
+| 03 Projects    | `components/sections/home/Projects.tsx`     | Featured projects as stacking cards + full list of completed projects                 |
+| 04 Clients     | `components/sections/home/Clients.tsx`      | Scrolling marquee of brand names + grouped client list                                |
+| 05 Wall        | `components/sections/home/Wall.tsx`         | Pinned heading with photo, press and stat cards scrolling past                        |
+| Call to action | `components/sections/home/CtaBand.tsx`      | Orange band with animated equaliser bars                                              |
+| Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                               |
+| Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                              |
 
 The "Ask" boxes have no backend yet — they submit to `/contact?q=…`.
 On phones and for visitors with "reduce motion" enabled, scroll effects fall back
 to a static layout.
+
+## Adding the videos
+
+Video slots show a photo until a file is set. Put the files in `public/videos/`
+(MP4/H.264, ideally under ~8 MB each) and set them in `src/content/home.ts`:
+
+| Slot                    | Field                                        |
+| ----------------------- | -------------------------------------------- |
+| Hero showreel           | `heroContent.showcase.video`                 |
+| About / team video      | `aboutContent.video.src`                     |
+| A featured project card | add `video: { src, poster }` to that project |
+
+## Still missing from the company profile
+
+These fields are empty and hidden on the site until filled in
+(`src/config/site.ts` and `src/content/home.ts`):
+
+- Email, phone, office address and city
+- Website URL and social media links
+- Founder's name (the portrait is shown with the role only)
 
 ## Tech stack
 
@@ -58,27 +90,31 @@ npm run dev                  # http://localhost:3000
 
 You should rarely need to touch components to change words:
 
-| What                                                      | File                       |
-| --------------------------------------------------------- | -------------------------- |
-| Brand name, logo lines, tagline, contact, socials         | `src/config/site.ts`       |
-| Navbar / footer links, CTA, menu & footer UI strings      | `src/config/navigation.ts` |
-| Home page copy (hero headline, text, CTAs, stats, images) | `src/content/home.ts`      |
-| Stub page and 404 copy                                    | `src/content/pages.ts`     |
-| Colors, fonts, type scale, radii, grain texture           | `src/app/globals.css`      |
-| Font families                                             | `src/lib/fonts.ts`         |
+| What                                                         | File                       |
+| ------------------------------------------------------------ | -------------------------- |
+| Brand name, logo lines, tagline, contact, socials            | `src/config/site.ts`       |
+| Navbar / footer links, CTA, menu & footer UI strings         | `src/config/navigation.ts` |
+| All home page copy: hero, about, services, projects, clients | `src/content/home.ts`      |
+| Every supplied photo (generated list, with categories)       | `src/content/gallery.ts`   |
+| Inner page headers, contact page, gallery, 404 copy          | `src/content/pages.ts`     |
+| Colors, fonts, type scale, radii, grain texture              | `src/app/globals.css`      |
+| Font families                                                | `src/lib/fonts.ts`         |
 
 Hero headline accents: in `src/content/home.ts` each headline line is a list of
-segments; mark a segment with `accent: true` to render it in the gold italic.
+segments; mark a segment with `accent: true` to render it in the orange italic.
 
-Images live in `public/images/` (`hero/`, `projects/`, `insights/`). The current
-files are generated placeholders — replace them with real photography (same
-filenames, or update the paths in `src/content/home.ts`).
+Images live in `public/images/` (`team/`, `kitchens/`, `interiors/`, `training/`,
+`press/`, `creatives/`) and are listed in `src/content/gallery.ts`. Content files
+reference them with `img("/images/…")`, which fails the build if a path is wrong.
+The logo is in `public/brand/` (`resto-mark.png` original tile,
+`resto-mark-light.png` for dark backgrounds).
 
 ## Folder structure
 
 ```
 public/
-  images/             hero/, projects/, insights/ — generated placeholders
+  brand/              Logo files
+  images/             team/, kitchens/, interiors/, training/, press/, creatives/
   icons/              Static icons
   favicon.ico
 src/
@@ -87,12 +123,12 @@ src/
     page.tsx          Home page
     globals.css       Tailwind import + design tokens
     not-found.tsx
-    about/ services/ projects/ contact/   Stub pages
+    about/ services/ projects/ contact/   Inner pages
   components/
     layout/           Navbar, MenuOverlay, Footer
-    sections/         Page sections (home/*, StubPage)
+    sections/         Page sections (home/*, PageHeader, GalleryGrid, ContactSection)
     ui/               Primitives: Button, Container, SectionLabel, Logo, AskForm,
-                      SocialIcon, FloatingDots, EqualizerBars, Reveal
+                      SocialIcon, FloatingDots, EqualizerBars, VideoSlot, Reveal
   config/             Site + navigation config
   content/            Page copy
   lib/                utils (cn, isActivePath), fonts
@@ -117,7 +153,7 @@ src/
 | `border`            | `#2E261F` |
 | `foreground`        | `#F3EDE4` |
 | `muted`             | `#A89B8C` |
-| `accent`            | `#C9A15B` |
+| `accent`            | `#D9782A` |
 | `accent-foreground` | `#14100D` |
 
 Use them as Tailwind classes: `bg-surface`, `text-muted`, `border-border`,

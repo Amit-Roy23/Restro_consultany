@@ -3,7 +3,7 @@ export type NavItem = {
   href: string;
 };
 
-export type SocialPlatform = "instagram" | "linkedin" | "whatsapp";
+export type SocialPlatform = "instagram" | "linkedin" | "whatsapp" | "facebook";
 
 export type SocialLink = {
   platform: SocialPlatform;
@@ -19,6 +19,7 @@ export type SiteConfig = {
   description: string;
   url: string;
   foundedYear: number;
+  /** Leave a field empty ("") to hide it everywhere on the site. */
   contact: {
     email: string;
     phone: string;
@@ -46,6 +47,26 @@ export type HeadlineSegment = {
 export type ImageAsset = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
+};
+
+export type GalleryImage = ImageAsset & {
+  width: number;
+  height: number;
+  category: "team" | "kitchen" | "interior" | "training" | "press" | "creative";
+  /** Client brand shown on a creative. */
+  brand?: string;
+};
+
+/**
+ * A slot that shows a video once `src` is provided, and the poster image
+ * (or poster mosaic) until then.
+ */
+export type VideoAsset = {
+  /** e.g. "/videos/hero.mp4" — leave undefined until the video is ready. */
+  src?: string;
+  poster: ImageAsset;
 };
 
 export type HeroContent = {
@@ -58,12 +79,12 @@ export type HeroContent = {
   stats: Stat[];
   scrollLabel: string;
   images: ImageAsset[];
-};
-
-export type StubPageContent = {
-  label: string;
-  title: string;
-  body: string;
+  showcase: {
+    caption: string;
+    video?: string;
+    /** Shown as a mosaic until the showcase video is added. */
+    tiles: ImageAsset[];
+  };
 };
 
 export type AskContent = {
@@ -75,50 +96,94 @@ export type AskContent = {
   suggestions: string[];
 };
 
-export type Project = {
-  client: string;
-  sector: string;
+export type AboutContent = {
+  number: number;
+  label: string;
+  title: string;
+  paragraphs: string[];
+  founder: {
+    /** Leave empty to hide the name line. */
+    name: string;
+    role: string;
+    image: ImageAsset;
+  };
+  video: VideoAsset;
+  market: {
+    value: string;
+    caption: string;
+    body: string;
+  };
+  philosophy: string;
+};
+
+export type ServiceGroup = {
+  title: string;
+  summary: string;
+  items: string[];
+};
+
+export type ServicesContent = {
+  number: number;
+  label: string;
+  title: string;
+  intro: string;
+  groups: ServiceGroup[];
+  cta: Cta;
+};
+
+export type FeaturedProject = {
+  name: string;
+  type: string;
+  location: string;
+  year: string;
   summary: string;
   image: ImageAsset;
-  href: string;
+  video?: VideoAsset;
 };
 
-export type FeaturedWorkContent = {
+export type ProjectListItem = {
+  year: string;
+  name: string;
+  details: string;
+  location: string;
+};
+
+export type ProjectsContent = {
   number: number;
   label: string;
   title: string;
   intro: string;
-  projects: Project[];
-  industryPrompt: Cta;
+  featured: FeaturedProject[];
+  listHeading: string;
+  list: ProjectListItem[];
   moreCta: Cta;
-  readMoreLabel: string;
 };
 
-export type HelpItem = {
-  problem: string;
-  solution: string;
-  href: string;
+export type ClientGroup = {
+  title: string;
+  names: string[];
 };
 
-export type HowWeHelpContent = {
+export type ClientsContent = {
   number: number;
   label: string;
   title: string;
   intro: string;
-  items: HelpItem[];
+  groups: ClientGroup[];
+  otherSectors: string;
 };
 
-export type InsightCard =
+export type WallCard =
   | { kind: "image"; tag: string; title: string; image: ImageAsset; href: string }
   | { kind: "quote"; tag: string; quote: string; href: string }
   | { kind: "stat"; tag: string; value: string; caption: string; href: string };
 
-export type InsightsContent = {
+export type WallContent = {
   number: number;
   label: string;
   title: string;
   cta: Cta;
-  cards: InsightCard[];
+  cards: WallCard[];
 };
 
 export type CtaBandContent = {
@@ -130,4 +195,10 @@ export type CtaBandContent = {
 export type MenuPromo = {
   title: string;
   cta: Cta;
+};
+
+export type PageHeaderContent = {
+  label: string;
+  title: string;
+  intro: string;
 };

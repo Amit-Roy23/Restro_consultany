@@ -17,7 +17,7 @@ export const legalNav: NavItem[] = [
 
 /** Small promo card shown at the bottom of the menu overlay. */
 export const menuPromo: MenuPromo = {
-  title: "Opening a restaurant this year?",
+  title: "Planning a restaurant, hotel or cloud kitchen?",
   cta: { label: "Talk to us", href: "/contact" },
 };
 

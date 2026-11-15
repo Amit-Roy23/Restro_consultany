@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 
-import { StubPage } from "@/components/sections/StubPage";
-import { stubPages } from "@/content/pages";
+import { PageHeader } from "@/components/sections/PageHeader";
+import { AboutSection } from "@/components/sections/home/AboutSection";
+import { Clients } from "@/components/sections/home/Clients";
+import { CtaBand } from "@/components/sections/home/CtaBand";
+import { pageHeaders } from "@/content/pages";
 
 export const metadata: Metadata = {
-  title: stubPages.about.title,
+  title: pageHeaders.about.label,
+  description: pageHeaders.about.intro,
 };
 
 export default function AboutPage() {
-  return <StubPage content={stubPages.about} />;
+  return (
+    <>
+      <PageHeader content={pageHeaders.about} />
+      <AboutSection />
+      <Clients />
+      <CtaBand />
+    </>
+  );
 }
