@@ -58,8 +58,8 @@ export const heroShowcase: ImageAsset[] = [
 /* ------------------------------------------------------------------ */
 
 export const askContent: AskContent = {
-  label: "Ask Restro",
-  title: "Ask Restro",
+  label: "Ask Resto",
+  title: "Ask Resto",
   placeholder: "Ask us anything…",
   submitLabel: "Send question",
   suggestionsLabel: "Not sure where to start? Try one of these.",
@@ -67,7 +67,7 @@ export const askContent: AskContent = {
     "What does a restaurant consultant actually do?",
     "How much does it cost to open a restaurant?",
     "Show me work relevant to my concept…",
-    "How is Restro different from a typical agency?",
+    "How is Resto different from a typical agency?",
   ],
 };
 

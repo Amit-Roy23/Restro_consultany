@@ -1,4 +1,4 @@
-# Restro Consultancy — Website
+# Resto Consultancy — Website
 
 Marketing / lead-generation site for a restaurant & hospitality consulting firm.
 Dark, warm, editorial design: grainy lit-room backgrounds, oversized serif headlines,
@@ -12,7 +12,7 @@ a floating photo collage in the hero and a single muted-gold accent.
 | Section        | File                                        | Behaviour                                                                                     |
 | -------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | Hero           | `components/sections/home/Hero.tsx`         | Desktop: photos drift outward on scroll while a showcase frame rises and grows to full screen |
-| Ask Restro     | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it               |
+| Ask Resto      | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it               |
 | Featured work  | `components/sections/home/FeaturedWork.tsx` | Case-study cards stack on top of each other (CSS sticky)                                      |
 | How we help    | `components/sections/home/HowWeHelp.tsx`    | Problem → solution rows, floating "Ask" bar pinned to the bottom                              |
 | Journal        | `components/sections/home/Insights.tsx`     | Pinned heading with cards scrolling past it                                                   |
