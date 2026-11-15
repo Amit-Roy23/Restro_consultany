@@ -6,9 +6,9 @@ import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { VideoSlot } from "@/components/ui/VideoSlot";
 import { projectsContent } from "@/content/home";
-import { Reveal } from "@/components/ui/Reveal";
 import { StackCard, StackList } from "@/components/ui/StackCards";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { HoverImageList } from "@/components/ui/HoverImageList";
 
 type ProjectsProps = {
   showCta?: boolean;
@@ -94,30 +94,7 @@ export function Projects({ showCta = true, showHeading = true }: ProjectsProps) 
 
         <div className="mt-24">
           <h3 className="eyebrow font-sans text-ink-muted">{listHeading}</h3>
-          <ol className="mt-6 border-b border-background/15">
-            {list.map((item, index) => (
-              <li
-                key={`${item.year}-${item.name}-${item.location}`}
-                className="border-t border-background/15"
-              >
-                <Reveal
-                  inView
-                  y={16}
-                  delay={(index % 4) * 0.05}
-                  className="grid gap-1 py-5 md:grid-cols-[5rem_1.2fr_1fr_1fr] md:items-baseline md:gap-6"
-                >
-                  <span className="font-display text-lg text-accent-deep">
-                    {item.year}
-                  </span>
-                  <span className="font-sans text-lg font-semibold tracking-tight">
-                    {item.name}
-                  </span>
-                  <span className="text-sm text-ink-muted">{item.details}</span>
-                  <span className="text-sm text-ink-muted">{item.location}</span>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
+          <HoverImageList items={list} />
         </div>
 
         {showCta && (
