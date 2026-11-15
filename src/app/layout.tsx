@@ -1,0 +1,60 @@
+import type { Metadata, Viewport } from "next";
+
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { navStrings } from "@/config/navigation";
+import { siteConfig } from "@/config/site";
+import { fontDisplay, fontSans } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+
+import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  icons: { icon: "/favicon.ico" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [{ url: "/images/hero/dining-room.jpg", width: 1200, height: 900 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#14100D",
+  colorScheme: "dark",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html lang="en" className={cn(fontDisplay.variable, fontSans.variable)}>
+      <body className="flex min-h-svh flex-col">
+        <a
+          href="#main"
+          className="sr-only rounded-full bg-accent px-5 py-3 text-sm font-medium text-accent-foreground focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70]"
+        >
+          {navStrings.skipToContent}
+        </a>
+        <Navbar />
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <Footer />
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,12 @@
+import type { Metadata } from "next";
+
+import { StubPage } from "@/components/sections/StubPage";
+import { stubPages } from "@/content/pages";
+
+export const metadata: Metadata = {
+  title: stubPages.services.title,
+};
+
+export default function ServicesPage() {
+  return <StubPage content={stubPages.services} />;
+}
