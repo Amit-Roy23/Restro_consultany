@@ -220,72 +220,84 @@ export const projectsContent: ProjectsContent = {
       name: "Venky Residency",
       details: "55 keys · 3-star hotel",
       location: "Kakinada, Andhra Pradesh",
+      image: img("/images/interiors/interior-04.jpg"), // TODO: placeholder — replace with a photo of this project
     },
     {
       year: "2014",
       name: "Master Chefs Restaurant & Qazi Banquet",
       details: "Restaurant & banquet",
       location: "Sodepur, West Bengal",
+      image: img("/images/team/chef-brigade.jpg"), // TODO: placeholder — replace with a photo of this project
     },
     {
       year: "2016",
       name: "Belini",
       details: "200-cover multi-cuisine resto-bar",
       location: "G S Road, Guwahati, Assam",
+      image: img("/images/interiors/interior-01.jpg"), // TODO: placeholder — replace with a photo of this project
     },
     {
       year: "2017",
       name: "The Bhoj Company",
       details: "92-cover Bengali restaurant",
       location: "Kolkata, West Bengal",
+      image: img("/images/creatives/the-bhoj-company-71.jpg"),
     },
     {
       year: "2018",
       name: "The Bhoj Company",
       details: "54-cover Bengali restaurant",
       location: "Dhaka, Bangladesh",
+      image: img("/images/creatives/the-bhoj-company-72.jpg"),
     },
     {
       year: "2018",
       name: "Daruchini",
       details: "Multi-cuisine restaurant & 500-cover banquet",
       location: "Khardah, West Bengal",
+      image: img("/images/interiors/interior-03.jpg"), // TODO: placeholder — replace with a photo of this project
     },
     {
       year: "2019",
       name: "Kaftaan",
       details: "Cloud kitchen",
       location: "Patuli, Garia, Kolkata",
+      image: img("/images/creatives/kaftaan-110.jpg"),
     },
     {
       year: "2021",
       name: "Hotel Daltin",
       details: "54 keys · Premium 3-star hotel",
       location: "New Digha, West Bengal",
+      image: img("/images/creatives/hotel-daltin-57.jpg"),
     },
     {
       year: "2022",
       name: "My Chef",
       details: "Cloud kitchen",
       location: "Thakur Village, Mumbai",
+      image: img("/images/kitchens/kitchen-03.jpg"), // TODO: placeholder — replace with a photo of this project
     },
     {
       year: "2022",
       name: "Narkelkunja Island Resort",
       details: "Island resort",
       location: "Agartala, Tripura",
+      image: img("/images/interiors/interior-02.jpg"), // TODO: placeholder — replace with a photo of this project
     },
     {
       year: "2023",
       name: "Bangla Canvas",
       details: "40-cover Bengali restaurant · 20-cover Bengali café",
       location: "Delhi & Noida",
+      image: img("/images/creatives/bangla-canvas-99.jpg"),
     },
     {
       year: "2024",
       name: "Raj Darbar",
       details: "60-cover restaurant with 150-cover banquet",
       location: "Ruby, West Bengal",
+      image: img("/images/kitchens/kitchen-05.jpg"), // TODO: placeholder — replace with a photo of this project
     },
   ],
   moreCta: { label: "See the full gallery", href: "/projects" },

@@ -148,6 +148,8 @@ export type ProjectListItem = {
   name: string;
   details: string;
   location: string;
+  /** Shown floating beside the cursor when the row is hovered. */
+  image: ImageAsset;
 };
 
 export type ProjectsContent = {
