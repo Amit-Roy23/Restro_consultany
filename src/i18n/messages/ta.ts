@@ -1,7 +1,7 @@
-import type { Messages } from "@/i18n/messages/en";
+import type { Translation } from "@/i18n/messages/en";
 
 /** Tamil — தமிழ் */
-const messages: Messages = {
+const messages: Translation = {
   nav: {
     home: "முகப்பு",
     about: "எங்களைப் பற்றி",

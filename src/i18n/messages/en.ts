@@ -299,6 +299,256 @@ export const en = {
     intro: "The page you're looking for has moved or never existed.",
     cta: "Back to home",
   },
+  /* -------------------------------------------------------------- */
+  /* Business areas (vision, opportunities, buy & sell, management, */
+  /* licensing, manpower, why us, motto)                            */
+  /* -------------------------------------------------------------- */
+  biz: {
+    nav: {
+      opportunities: "Opportunities",
+    },
+    page: {
+      label: "Opportunities",
+      title: "Buy, sell, invest and grow in hospitality.",
+      intro:
+        "Franchise brands, restaurants and cafés for sale, acquisitions and partnerships — connecting the right opportunities with the right people across India.",
+    },
+    vision: {
+      label: "Founder's vision",
+      title: "Building a Connected Hospitality Ecosystem Across India",
+      body: "To establish RestoMate Easy as a unified, technology-driven hospitality ecosystem that bridges the gap between business aspirations and successful execution. Our vision is to connect café owners, restaurant entrepreneurs, hospitality professionals and industry service providers on one integrated platform, providing accessible expertise, strategic business guidance and reliable support to empower sustainable operations, long-term growth and success across India's hospitality industry.",
+      hub: "RestoMate Easy",
+      nodes: [
+        "Café owners",
+        "Restaurant entrepreneurs",
+        "Hospitality professionals",
+        "Industry service providers",
+      ],
+      pillars: [
+        "Accessible expertise",
+        "Strategic business guidance",
+        "Reliable support",
+      ],
+    },
+    opportunities: {
+      label: "Business & franchise opportunities",
+      verbs: ["Buy", "Sell", "Invest", "Partner", "Grow"],
+      title:
+        "Connecting Hospitality Entrepreneurs with the Right Business Opportunities.",
+      intro: [
+        "At Resto Consultancy, we provide a professional platform for entrepreneurs, investors and hospitality business owners to explore, acquire, sell and expand opportunities across India's hospitality industry.",
+        "Whether you are planning to invest in a franchise, acquire an existing restaurant, sell your café or bar, or explore strategic business partnerships, we help connect the right opportunities with the right people.",
+      ],
+      servicesLabel: "Our business services",
+      services: [
+        {
+          title: "Franchise Opportunities",
+          body: "Explore established franchise brands and discover opportunities to start and expand your hospitality business.",
+        },
+        {
+          title: "Restaurant & Café for Sale",
+          body: "Connect with potential buyers and sellers for existing restaurants, cafés and food businesses.",
+        },
+        {
+          title: "Bar & Restaurant Acquisition",
+          body: "Explore business acquisition, ownership transfers and opportunities to acquire operational hospitality establishments.",
+        },
+        {
+          title: "Business Investment & Partnerships",
+          body: "Connect with investors, business owners and potential partners to explore strategic collaborations and business expansion.",
+        },
+        {
+          title: "Business Expansion & Development",
+          body: "Explore new locations, business opportunities and expansion possibilities across India.",
+        },
+      ],
+      approachLabel: "Our approach",
+      approach:
+        "We aim to simplify hospitality business transactions by connecting entrepreneurs, investors, buyers, sellers and franchise brands through a trusted professional network.",
+      tagline: [
+        "Your Business Vision.",
+        "Our Industry Connections.",
+        "Endless Opportunities.",
+      ],
+    },
+    buySell: {
+      label: "Restaurant & café buying and selling",
+      title: "Across India",
+      verbs: ["Buy", "Sell", "Connect"],
+      intro:
+        "A dedicated business platform by Resto Consultancy, connecting restaurant, café, bar and hotel owners with potential buyers across India.",
+      intro2:
+        "Whether you want to buy an existing hospitality business or sell your restaurant, café, bar or hotel, submit your complete requirements through our inquiry form.",
+      formTitle: "Submit your inquiry",
+      options: [
+        {
+          title: "Buy a business",
+          body: "Looking to purchase a restaurant, café, bar or hotel? Share your requirements and preferred location.",
+        },
+        {
+          title: "Sell your business",
+          body: "Want to sell your existing restaurant, café, bar or hotel? Submit your business details and expected selling price.",
+        },
+      ],
+      form: {
+        fullName: "Full name",
+        phone: "Contact number",
+        email: "Email address",
+        type: "Inquiry type",
+        typeBuy: "Buy",
+        typeSell: "Sell",
+        category: "Business category",
+        categories: ["Restaurant", "Café", "Bar", "Hotel", "Cloud kitchen", "Other"],
+        choose: "Choose…",
+        businessName: "Business name (if applicable)",
+        city: "City & location",
+        budgetBuy: "Expected budget",
+        budgetSell: "Expected selling price",
+        notes: "Additional requirements",
+        submit: "Submit your inquiry",
+        mailHint:
+          "Submitting opens your email app with these details filled in — just press send.",
+      },
+      emailLabel: "Official inquiry email",
+      reviewNote:
+        "Our team will review your inquiry and contact you for further discussion.",
+      footer: "Connecting Buyers & Sellers Across India's Hospitality Industry.",
+    },
+    management: {
+      label: "Resto business management",
+      title: "From Small Businesses to Established Hospitality Brands",
+      types: [
+        "Hotels",
+        "Restaurants",
+        "Cafés",
+        "Bars",
+        "Pubs",
+        "Cloud Kitchens",
+        "Bakeries",
+        "Sweet Shops",
+        "Food Courts",
+        "QSRs",
+        "Catering & More",
+      ],
+      tagline: ["Your Business.", "Our Management.", "Your Growth."],
+      body: "Complete hospitality business management & operational support by Resto Consultancy.",
+    },
+    licensing: {
+      label: "Pan-India business licensing & compliance",
+      kicker: ["License", "Registration", "Documentation", "Approval assistance"],
+      title: "Professional Licensing & Regulatory Support Across India",
+      body: "Resto Consultancy provides professional assistance to entrepreneurs, startups, restaurants, cafés, hotels, bars, bakeries and other businesses across India for business licensing, statutory registrations, regulatory documentation and government application processes.",
+      servicesLabel: "Our services",
+      services: [
+        "FSSAI Licensing & Registration",
+        "GST Registration",
+        "Trade License",
+        "Shop & Establishment Registration",
+        "Fire Safety NOC Assistance",
+        "Liquor License Assistance",
+        "Pollution Control Permissions",
+        "Other Business Licenses & Regulatory Registrations",
+      ],
+      coverage: "Service coverage: All India",
+      tagline: "Simplifying Business Compliance. Supporting Entrepreneurs Across India.",
+    },
+    manpower: {
+      label: "Manpower & staffing solutions",
+      verbs: ["Hire", "Recruit", "Deploy"],
+      body: "Providing skilled, trained and experienced hospitality professionals for hotels, restaurants, cafés, bars, pubs, bakeries, cloud kitchens and other hospitality businesses across India.",
+      categoriesLabel: "Our staffing categories",
+      categories: [
+        "Executive Chefs & Head Chefs",
+        "Sous Chefs & CDPs",
+        "Commis Chefs & Kitchen Helpers",
+        "Restaurant & Café Staff",
+        "Hotel Management Staff",
+        "F&B Service Professionals",
+        "Bar Staff & Bartenders",
+        "Housekeeping Staff",
+        "Supervisors & Managers",
+        "Skilled & Unskilled Hospitality Manpower",
+      ],
+      coverage: "Service coverage: Pan India",
+      tagline: "The Right People. The Right Place. The Right Hospitality Team.",
+    },
+    turnkey: {
+      label: "Turnkey projects & kitchen solutions",
+    },
+    why: {
+      label: "Why Resto Consultancy?",
+      title:
+        "Running a Restaurant? Congratulations! You Have 99 Problems. Let Us Handle 98!",
+      problemsLeft: "Problems left",
+      items: [
+        {
+          emoji: "🇮🇳",
+          title: "Pan India",
+          body: "From Kashmir to Kanyakumari, we bring the Hospitality Ki Taiyaari!",
+        },
+        {
+          emoji: "💸",
+          title: "Affordable prices, not owner's surprises!",
+          body: "Great professional services without making your bank balance cry! 😜",
+        },
+        {
+          emoji: "👨‍🍳",
+          title: "We know hospitality — not just how to Google it!",
+          body: "Real kitchen experience, real business knowledge and zero textbook drama!",
+        },
+        {
+          emoji: "🤝",
+          title: "6 months free handholding support!",
+          body: "We don't just shake hands and disappear. Your project is done, but our support isn't gone! 😉",
+        },
+        {
+          emoji: "🔥",
+          title: "Your kitchen is on fire? Don't panic!",
+          body: "Before calling the fire brigade, call Resto! We help turn operational chaos into organised business!",
+        },
+        {
+          emoji: "📊",
+          title: "Less wastage, more profit — that's the real magic!",
+          body: "Because throwing food away is not a business strategy!",
+        },
+        {
+          emoji: "🎯",
+          title: "You own the dream. We handle the scheme!",
+          body: "From planning to operations, we help keep your hospitality business moving.",
+        },
+      ],
+    },
+    motto: {
+      label: "Our motto",
+      lines: ["You Bring the Dream.", "We Bring the Team."],
+      slogan: "Restaurant Made Easy.",
+      joke: "We Take Hospitality Seriously. Ourselves? Not Always! 😂",
+    },
+    more: {
+      label: "More ways we help",
+      title: "One partner for the whole journey.",
+      explore: "Explore",
+      cards: [
+        {
+          title: "Business & franchise opportunities",
+          line: "Buy • Sell • Invest • Partner • Grow",
+        },
+        {
+          title: "Restaurant & café buying and selling",
+          line: "Buy • Sell • Connect — across India",
+        },
+        {
+          title: "Resto business management",
+          line: "Your Business. Our Management. Your Growth.",
+        },
+        {
+          title: "Pan-India licensing & compliance",
+          line: "License • Registration • Documentation • Approval",
+        },
+        { title: "Manpower & staffing solutions", line: "Hire • Recruit • Deploy" },
+      ],
+    },
+  },
 };
 
 type Widen<T> = T extends string
@@ -311,3 +561,9 @@ type Widen<T> = T extends string
 
 /** Shape every translation must follow. */
 export type Messages = Widen<typeof en>;
+
+/**
+ * Translation files: everything required except `biz` (the newest business
+ * sections), which falls back to English until translated.
+ */
+export type Translation = Omit<Messages, "biz"> & { biz?: Messages["biz"] };

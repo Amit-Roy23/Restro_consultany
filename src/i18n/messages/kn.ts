@@ -1,7 +1,7 @@
-import type { Messages } from "@/i18n/messages/en";
+import type { Translation } from "@/i18n/messages/en";
 
 /** Kannada — ಕನ್ನಡ */
-const messages: Messages = {
+const messages: Translation = {
   nav: {
     home: "ಮುಖಪುಟ",
     about: "ನಮ್ಮ ಬಗ್ಗೆ",

@@ -1,7 +1,7 @@
-import type { Messages } from "@/i18n/messages/en";
+import type { Translation } from "@/i18n/messages/en";
 
 /** Punjabi — ਪੰਜਾਬੀ (Gurmukhi) */
-const messages: Messages = {
+const messages: Translation = {
   nav: {
     home: "ਹੋਮ",
     about: "ਸਾਡੇ ਬਾਰੇ",

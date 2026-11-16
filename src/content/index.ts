@@ -12,6 +12,7 @@ export function buildContent(m: Messages) {
     intro: m.intro,
     welcome: m.welcome,
     tagline: m.site.tagline,
+    biz: m.biz,
   };
 }
 

@@ -7,6 +7,7 @@ export function buildNavigation(m: Messages) {
     { label: m.nav.home, href: "/" },
     { label: m.nav.about, href: "/about" },
     { label: m.nav.services, href: "/services" },
+    { label: m.biz.nav.opportunities, href: "/opportunities" },
     { label: m.nav.projects, href: "/projects" },
     { label: m.nav.contact, href: "/contact" },
   ];

@@ -3,8 +3,8 @@ import type { SiteConfig } from "@/types";
 /**
  * Global brand settings. Every component reads from this file.
  *
- * TODO (missing from the company profile): email, phone, address, city and
- * social links. Empty values are hidden on the site until they are filled in.
+ * TODO (not yet supplied): phone, address, city and social links. Empty values
+ * are hidden on the site until they are filled in.
  */
 export const siteConfig: SiteConfig = {
   name: "Resto Consultancy",
@@ -15,7 +15,7 @@ export const siteConfig: SiteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   foundedYear: 2011,
   contact: {
-    email: "",
+    email: "restoconsultancyofficial@gmail.com",
     phone: "",
     city: "",
     address: "",
