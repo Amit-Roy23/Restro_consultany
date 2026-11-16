@@ -11,7 +11,7 @@ export const pageHeaders = {
     label: "Services",
     title: "From kitchen layout to handover.",
     intro:
-      "Restaurant set-up, kitchen operations and rooms — planned, budgeted and documented as SOPs your team can follow.",
+      "Restaurant set-up, kitchen operations, staffing, franchise and brand support — planned, budgeted and documented as SOPs your team can follow.",
   },
   projects: {
     label: "Projects",
@@ -35,7 +35,7 @@ export const contactPage = {
   stepsHeading: "What happens next",
   steps: [
     "We read your question and look at the property, concept and budget.",
-    "We suggest the right scope — layout, menu, SOPs, rooms or a full set-up.",
+    "We suggest the right scope — layout, menu, SOPs, staffing or a full set-up.",
     "We plan, budget and work with your architects through to handover.",
   ],
 };
