@@ -548,6 +548,13 @@ export const en = {
         { title: "Manpower & staffing solutions", line: "Hire • Recruit • Deploy" },
       ],
     },
+    team: {
+      label: "Our team",
+      title: "The faces behind Resto",
+      intro:
+        "Real chefs and seasoned operators — the people who'll stand in your kitchen with you, from the first plan to a packed opening night.",
+      roles: { corporateChef: "Resto Corporate Chef", director: "Director" },
+    },
   },
 };
 
