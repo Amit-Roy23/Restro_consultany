@@ -140,6 +140,20 @@
     }
   }
 
+  /* Scripts with long words: smaller display headings so lines don't pile up. */
+  html[data-script="tamil"],
+  html[data-script="malayalam"] {
+    & :is(h1, h2) {
+      zoom: 0.78;
+    }
+  }
+  html[data-script="telugu"],
+  html[data-script="kannada"] {
+    & :is(h1, h2) {
+      zoom: 0.88;
+    }
+  }
+
   html.is-loading,
   html.is-loading body {
     overflow: hidden;
