@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,10 +7,10 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Parallax } from "@/components/ui/Parallax";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { wallContent } from "@/content/home";
 import { cn } from "@/lib/utils";
 import type { WallCard } from "@/types";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /** How far each card drifts, so neighbours move at different speeds. */
 const drift = [140, 60, 180, 90, 150, 50, 170, 110, 70];
@@ -30,6 +32,7 @@ const placement = [
 ];
 
 export function Wall() {
+  const { wall: wallContent } = useContent();
   const { number, label, title, cta, cards } = wallContent;
 
   return (

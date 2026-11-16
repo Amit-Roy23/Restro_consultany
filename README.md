@@ -43,6 +43,24 @@ plays once per browser session; entrance animations wait for it via
 the loader if it already played, and on a browser **reload** always sends the
 visitor to the homepage at the top.
 
+## Languages
+
+After the loading screen, a **welcome journey** (`components/layout/WelcomeFlow.tsx`)
+asks the visitor to pick one of 12 languages, then shows the idea, 635+ projects,
+cities and budget steps. The **Build my business model** button currently opens
+the website — replace `onBuildModel` in `WelcomeFlow.tsx` when the client decides
+what it should do.
+
+- All text lives in `src/i18n/messages/<code>.ts` (`en` is the source; every other
+  file must match its shape — TypeScript enforces it). Brand, client and project
+  names stay in `src/content`.
+- Languages: English, Hindi, Bengali, Gujarati, Marathi, Tamil, Telugu, Kannada,
+  Malayalam, Punjabi, Odia, Assamese (`src/i18n/languages.ts`). Translations were
+  machine-written and should be reviewed by native speakers.
+- The choice is saved in the browser and can be changed from the menu or footer.
+  Each language's text loads only when chosen; Noto fonts per script load only
+  when that script is on screen.
+
 The "Ask" boxes have no backend yet — they submit to `/contact?q=…`.
 On phones and for visitors with "reduce motion" enabled, scroll effects fall back
 to a static layout.

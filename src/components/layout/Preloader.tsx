@@ -11,9 +11,8 @@ import { useEffect, useState } from "react";
 
 import { useIntro } from "@/components/layout/IntroProvider";
 import { siteConfig } from "@/config/site";
-import { introContent } from "@/content/intro";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { INTRO_KEY } from "@/lib/intro";
+import { useContent } from "@/i18n/LanguageProvider";
 
 type Stage = "drawing" | "reveal" | "split";
 
@@ -30,7 +29,8 @@ const EASE_OUT = [0.16, 1, 0.3, 1] as const;
  *    along it (top half up, bottom half down) to reveal the site.
  */
 export function Preloader() {
-  const { finish } = useIntro();
+  const { intro: introContent } = useContent();
+  const { finish, showWelcome } = useIntro();
   const reduceMotion = usePrefersReducedMotion();
   const [visible, setVisible] = useState(true);
   const [stage, setStage] = useState<Stage>("drawing");
@@ -69,14 +69,8 @@ export function Preloader() {
       if (cancelled) return;
 
       setStage("split");
-      try {
-        sessionStorage.setItem(INTRO_KEY, "1");
-      } catch {
-        // storage unavailable (private mode): the intro just plays again
-      }
-      await wait(420); // seam stretches across the screen first
-      document.documentElement.classList.remove("is-loading");
-      finish(); // hero starts animating as the halves part
+      showWelcome(); // the welcome journey renders underneath and is revealed by the split
+      await wait(420);
       await wait(1100);
       if (!cancelled) setVisible(false);
     };
@@ -85,9 +79,8 @@ export function Preloader() {
     return () => {
       cancelled = true;
       timers.forEach(clearTimeout);
-      document.documentElement.classList.remove("is-loading");
     };
-  }, [progress, finish]);
+  }, [progress, finish, showWelcome]);
 
   if (!visible) return null;
 

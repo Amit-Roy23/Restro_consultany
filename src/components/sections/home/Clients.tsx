@@ -1,12 +1,15 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { clientMarquee, clientsContent } from "@/content/home";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/ui/Reveal";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /** Scrolling marquee of brand names plus the full grouped client list. */
 export function Clients() {
+  const { clients: clientsContent, clientMarquee } = useContent();
   const { number, label, title, intro, groups, otherSectors } = clientsContent;
 
   return (

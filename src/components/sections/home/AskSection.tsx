@@ -14,9 +14,9 @@ import { AskForm } from "@/components/ui/AskForm";
 import { Container } from "@/components/ui/Container";
 import { FloatingDots } from "@/components/ui/FloatingDots";
 import { TextReveal } from "@/components/ui/TextReveal";
-import { askContent } from "@/content/home";
 import { cn } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /**
  * Scroll sequence:
@@ -26,6 +26,7 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
  * Reduced motion: the wordmark and the card are simply stacked.
  */
 export function AskSection() {
+  const { ask: askContent } = useContent();
   const { title, placeholder, submitLabel, suggestionsLabel, suggestions } = askContent;
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = usePrefersReducedMotion();

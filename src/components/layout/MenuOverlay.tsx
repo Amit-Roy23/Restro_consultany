@@ -8,10 +8,10 @@ import { useEffect, useRef } from "react";
 import { AskForm } from "@/components/ui/AskForm";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
-import { mainNav, menuPromo, navStrings } from "@/config/navigation";
-import { askContent } from "@/content/home";
 import { getLenis } from "@/lib/smoothScroll";
 import { cn, isActivePath } from "@/lib/utils";
+import { useContent } from "@/i18n/LanguageProvider";
+import { LanguageSelect } from "@/components/ui/LanguageSelect";
 
 type MenuOverlayProps = {
   open: boolean;
@@ -21,6 +21,7 @@ type MenuOverlayProps = {
 
 /** Full-screen site menu: navigation on the left, "Ask" box in the centre. */
 export function MenuOverlay({ open, onClose, pathname }: MenuOverlayProps) {
+  const { ask: askContent, mainNav, menuPromo, navStrings } = useContent();
   const dialogRef = useRef<HTMLDivElement>(null);
 
   // Escape to close, lock body scroll, keep focus inside the dialog.
@@ -121,6 +122,11 @@ export function MenuOverlay({ open, onClose, pathname }: MenuOverlayProps) {
                   </ul>
                 </nav>
 
+                <div>
+                  <p className="mb-3 eyebrow text-muted">{navStrings.language}</p>
+                  <LanguageSelect />
+                </div>
+
                 <div className="hidden rounded-md border border-foreground/10 bg-background/50 p-5 backdrop-blur lg:block">
                   <p className="font-sans text-sm font-semibold">{menuPromo.title}</p>
                   <Button
@@ -188,6 +194,7 @@ function CloseButton({
   onClose: () => void;
   className?: string;
 }) {
+  const { navStrings } = useContent();
   return (
     <button
       data-menu-close

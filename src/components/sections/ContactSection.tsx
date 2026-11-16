@@ -1,12 +1,14 @@
+"use client";
+
 import { Mail, MapPin, Phone } from "lucide-react";
 
 import { AskForm } from "@/components/ui/AskForm";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/config/site";
-import { askContent } from "@/content/home";
-import { contactPage } from "@/content/pages";
+import { useContent } from "@/i18n/LanguageProvider";
 
 export function ContactSection() {
+  const { ask: askContent, contactPage } = useContent();
   const { email, phone, address, city } = siteConfig.contact;
   const hasDetails = Boolean(email || phone || address || city);
 

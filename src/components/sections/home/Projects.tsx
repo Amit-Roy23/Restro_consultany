@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight, MapPin } from "lucide-react";
 import Image from "next/image";
 
@@ -5,10 +7,10 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { VideoSlot } from "@/components/ui/VideoSlot";
-import { projectsContent } from "@/content/home";
 import { StackCard, StackList } from "@/components/ui/StackCards";
 import { TextReveal } from "@/components/ui/TextReveal";
 import { HoverImageList } from "@/components/ui/HoverImageList";
+import { useContent } from "@/i18n/LanguageProvider";
 
 type ProjectsProps = {
   showCta?: boolean;
@@ -17,6 +19,7 @@ type ProjectsProps = {
 
 /** Featured projects as stacking cards, followed by the full project list. */
 export function Projects({ showCta = true, showHeading = true }: ProjectsProps) {
+  const { projects: projectsContent } = useContent();
   const { number, label, title, intro, featured, listHeading, list, moreCta } =
     projectsContent;
 

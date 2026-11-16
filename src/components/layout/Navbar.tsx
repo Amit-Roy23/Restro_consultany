@@ -8,15 +8,16 @@ import { MenuOverlay } from "@/components/layout/MenuOverlay";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
-import { navCta, navStrings } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /**
  * Minimal floating header: logo and CTA sit at the top of the page and slide
  * away once you scroll; the round menu button stays put.
  */
 export function Navbar() {
+  const { navCta, navStrings } = useContent();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);

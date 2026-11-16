@@ -31,6 +31,15 @@ const tags = {
   span: motion.span,
 };
 
+/** Split into user-perceived letters (keeps Indian-script conjuncts together). */
+function graphemes(text: string): string[] {
+  if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
+    const segmenter = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+    return Array.from(segmenter.segment(text), (part) => part.segment);
+  }
+  return Array.from(text);
+}
+
 const piece: Variants = {
   hidden: { y: "115%", rotate: 4 },
   visible: {
@@ -71,6 +80,7 @@ export function TextReveal({
 
   return (
     <Tag
+      key={label}
       id={id}
       aria-label={label}
       className={className}
@@ -94,7 +104,7 @@ export function TextReveal({
             className="-mb-[0.14em] inline-block overflow-hidden pb-[0.14em] align-top whitespace-nowrap"
           >
             {by === "char" ? (
-              word.split("").map((char, charIndex) => (
+              graphemes(word).map((char, charIndex) => (
                 <motion.span
                   key={charIndex}
                   variants={piece}
