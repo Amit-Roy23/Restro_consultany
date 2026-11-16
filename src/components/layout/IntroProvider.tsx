@@ -1,22 +1,47 @@
 "use client";
 
-import { type ReactNode, createContext, useCallback, useContext, useState } from "react";
+import {
+  type ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 
-type IntroState = { done: boolean; finish: () => void };
+type Stage = "loading" | "welcome" | "done";
 
-const IntroContext = createContext<IntroState>({ done: true, finish: () => {} });
+type IntroState = {
+  stage: Stage;
+  /** True once the visitor reaches the website itself. */
+  done: boolean;
+  /** Loader finished → show the welcome journey underneath it. */
+  showWelcome: () => void;
+  /** Welcome finished (or skipped) → start the website's entrance animations. */
+  finish: () => void;
+};
+
+const IntroContext = createContext<IntroState>({
+  stage: "done",
+  done: true,
+  showWelcome: () => {},
+  finish: () => {},
+});
 
 /**
- * Tracks whether the first-visit loading screen has finished, so entrance
- * animations (hero headline, page headers) wait for it instead of playing
- * behind it.
+ * First-visit flow: loading screen → welcome journey → website. Entrance
+ * animations (hero headline, page headers) wait for `done` instead of playing
+ * behind the overlays.
  */
 export function IntroProvider({ children }: { children: ReactNode }) {
-  const [done, setDone] = useState(false);
-  const finish = useCallback(() => setDone(true), []);
-  return (
-    <IntroContext.Provider value={{ done, finish }}>{children}</IntroContext.Provider>
+  const [stage, setStage] = useState<Stage>("loading");
+  const showWelcome = useCallback(() => setStage("welcome"), []);
+  const finish = useCallback(() => setStage("done"), []);
+  const value = useMemo(
+    () => ({ stage, done: stage === "done", showWelcome, finish }),
+    [stage, showWelcome, finish],
   );
+  return <IntroContext.Provider value={value}>{children}</IntroContext.Provider>;
 }
 
 export function useIntro() {

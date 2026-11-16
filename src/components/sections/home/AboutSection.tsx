@@ -1,15 +1,18 @@
+"use client";
+
 import Image from "next/image";
 
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { VideoSlot } from "@/components/ui/VideoSlot";
-import { aboutContent } from "@/content/home";
 import { ImageReveal } from "@/components/ui/ImageReveal";
 import { Reveal } from "@/components/ui/Reveal";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /** Who we are: story, founder portrait, market context and a team video slot. */
 export function AboutSection() {
+  const { about: aboutContent } = useContent();
   const { number, label, title, paragraphs, founder, video, market, philosophy } =
     aboutContent;
   const [lead, ...rest] = paragraphs;

@@ -4,17 +4,17 @@ import { PageHeader } from "@/components/sections/PageHeader";
 import { AboutSection } from "@/components/sections/home/AboutSection";
 import { Clients } from "@/components/sections/home/Clients";
 import { CtaBand } from "@/components/sections/home/CtaBand";
-import { pageHeaders } from "@/content/pages";
+import { en } from "@/i18n/messages/en";
 
 export const metadata: Metadata = {
-  title: pageHeaders.about.label,
-  description: pageHeaders.about.intro,
+  title: en.pages.about.label,
+  description: en.pages.about.intro,
 };
 
 export default function AboutPage() {
   return (
     <>
-      <PageHeader content={pageHeaders.about} />
+      <PageHeader page="about" />
       <AboutSection />
       <Clients />
       <CtaBand />

@@ -1,12 +1,15 @@
+"use client";
+
 import Image from "next/image";
 
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { galleryBy } from "@/content/gallery";
-import { galleryPage } from "@/content/pages";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /** Every supplied photo, grouped by category in a masonry layout. */
 export function GalleryGrid() {
+  const { galleryPage } = useContent();
   const { number, label, title, sections } = galleryPage;
 
   return (

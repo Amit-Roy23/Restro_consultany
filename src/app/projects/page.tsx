@@ -4,17 +4,17 @@ import { GalleryGrid } from "@/components/sections/GalleryGrid";
 import { PageHeader } from "@/components/sections/PageHeader";
 import { CtaBand } from "@/components/sections/home/CtaBand";
 import { Projects } from "@/components/sections/home/Projects";
-import { pageHeaders } from "@/content/pages";
+import { en } from "@/i18n/messages/en";
 
 export const metadata: Metadata = {
-  title: pageHeaders.projects.label,
-  description: pageHeaders.projects.intro,
+  title: en.pages.projects.label,
+  description: en.pages.projects.intro,
 };
 
 export default function ProjectsPage() {
   return (
     <>
-      <PageHeader content={pageHeaders.projects} />
+      <PageHeader page="projects" />
       <Projects showCta={false} showHeading={false} />
       <GalleryGrid />
       <CtaBand />

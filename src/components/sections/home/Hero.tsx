@@ -16,13 +16,13 @@ import { Magnetic } from "@/components/ui/Magnetic";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { VideoSlot } from "@/components/ui/VideoSlot";
-import { heroContent } from "@/content/home";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 import type { ImageAsset } from "@/types";
 import { ImageReveal } from "@/components/ui/ImageReveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useIntro } from "@/components/layout/IntroProvider";
+import { useContent } from "@/i18n/LanguageProvider";
 
 /**
  * Floating photo collage around the headline. Order matches
@@ -54,6 +54,7 @@ const collage: { className: string; drift: [number, number] }[] = [
 ];
 
 export function Hero() {
+  const { hero: heroContent } = useContent();
   const {
     eyebrow,
     headline,

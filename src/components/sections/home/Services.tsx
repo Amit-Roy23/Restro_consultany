@@ -1,12 +1,14 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 
 import { AskForm } from "@/components/ui/AskForm";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { askContent, servicesContent } from "@/content/home";
 import { Reveal } from "@/components/ui/Reveal";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { useContent } from "@/i18n/LanguageProvider";
 
 type ServicesProps = {
   /** Show the "All services" link (home page only). */
@@ -17,6 +19,7 @@ type ServicesProps = {
 
 /** Service groups as numbered rows, with a floating ask bar pinned to the bottom. */
 export function Services({ showCta = true, showHeading = true }: ServicesProps) {
+  const { ask: askContent, services: servicesContent } = useContent();
   const { number, label, title, intro, groups, cta } = servicesContent;
 
   return (

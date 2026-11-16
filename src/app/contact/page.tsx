@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 
 import { ContactSection } from "@/components/sections/ContactSection";
 import { PageHeader } from "@/components/sections/PageHeader";
-import { pageHeaders } from "@/content/pages";
+import { en } from "@/i18n/messages/en";
 
 export const metadata: Metadata = {
-  title: pageHeaders.contact.label,
-  description: pageHeaders.contact.intro,
+  title: en.pages.contact.label,
+  description: en.pages.contact.intro,
 };
 
 export default function ContactPage() {
   return (
     <>
-      <PageHeader content={pageHeaders.contact} />
+      <PageHeader page="contact" />
       <ContactSection />
     </>
   );

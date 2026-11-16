@@ -1,19 +1,12 @@
 import type { Metadata } from "next";
 
-import { PageHeader } from "@/components/sections/PageHeader";
-import { Button } from "@/components/ui/Button";
-import { notFoundContent } from "@/content/pages";
+import { NotFoundView } from "@/components/sections/NotFoundView";
+import { en } from "@/i18n/messages/en";
 
 export const metadata: Metadata = {
-  title: notFoundContent.label,
+  title: en.notFound.label,
 };
 
 export default function NotFound() {
-  return (
-    <PageHeader content={notFoundContent}>
-      <Button href={notFoundContent.cta.href} variant="outline" className="mt-10">
-        {notFoundContent.cta.label}
-      </Button>
-    </PageHeader>
-  );
+  return <NotFoundView />;
 }

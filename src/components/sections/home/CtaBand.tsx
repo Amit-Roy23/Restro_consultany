@@ -1,13 +1,16 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { EqualizerBars } from "@/components/ui/EqualizerBars";
-import { ctaBandContent } from "@/content/home";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { TextReveal } from "@/components/ui/TextReveal";
+import { useContent } from "@/i18n/LanguageProvider";
 
 export function CtaBand() {
+  const { cta: ctaBandContent } = useContent();
   const { title, body, cta } = ctaBandContent;
 
   return (

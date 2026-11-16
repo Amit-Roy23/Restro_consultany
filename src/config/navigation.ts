@@ -1,35 +1,40 @@
+import type { Messages } from "@/i18n/messages/en";
 import type { Cta, MenuPromo, NavItem } from "@/types";
 
-export const mainNav: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Contact", href: "/contact" },
-];
+/** Navigation labels for the active language (hrefs are the same everywhere). */
+export function buildNavigation(m: Messages) {
+  const mainNav: NavItem[] = [
+    { label: m.nav.home, href: "/" },
+    { label: m.nav.about, href: "/about" },
+    { label: m.nav.services, href: "/services" },
+    { label: m.nav.projects, href: "/projects" },
+    { label: m.nav.contact, href: "/contact" },
+  ];
 
-export const navCta: Cta = { label: "Book Consultation", href: "/contact" };
+  const navCta: Cta = { label: m.nav.bookConsultation, href: "/contact" };
 
-export const legalNav: NavItem[] = [
-  { label: "Terms", href: "#" },
-  { label: "Privacy", href: "#" },
-];
+  const legalNav: NavItem[] = [
+    { label: m.nav.terms, href: "#" },
+    { label: m.nav.privacy, href: "#" },
+  ];
 
-/** Small promo card shown at the bottom of the menu overlay. */
-export const menuPromo: MenuPromo = {
-  title: "Planning a restaurant, hotel or cloud kitchen?",
-  cta: { label: "Talk to us", href: "/contact" },
-};
+  const menuPromo: MenuPromo = {
+    title: m.nav.promoTitle,
+    cta: { label: m.nav.promoCta, href: "/contact" },
+  };
 
-/** UI strings used by the navigation chrome (menu, footer headings). */
-export const navStrings = {
-  skipToContent: "Skip to content",
-  openMenu: "Open menu",
-  closeMenu: "Close menu",
-  menuTitle: "Menu",
-  menuNavLabel: "Site navigation",
-  footerNavLabel: "Footer navigation",
-  exploreHeading: "Explore",
-  footerContactHeading: "Contact",
-  rightsReserved: "All rights reserved.",
-};
+  const navStrings = {
+    skipToContent: m.nav.skipToContent,
+    openMenu: m.nav.openMenu,
+    closeMenu: m.nav.closeMenu,
+    menuTitle: m.nav.menuTitle,
+    menuNavLabel: m.nav.menuNavLabel,
+    footerNavLabel: m.nav.footerNavLabel,
+    exploreHeading: m.nav.explore,
+    footerContactHeading: m.nav.contactHeading,
+    rightsReserved: m.nav.rightsReserved,
+    language: m.nav.language,
+  };
+
+  return { mainNav, navCta, legalNav, menuPromo, navStrings };
+}

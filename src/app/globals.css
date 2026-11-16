@@ -41,8 +41,17 @@
   --color-accent-deep: var(--accent-deep);
   --color-ink-muted: var(--ink-muted);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  /* Latin first; each Indian script falls through to its Noto font. */
+  --font-sans:
+    var(--font-inter), var(--font-sans-deva), var(--font-sans-beng),
+    var(--font-sans-gujr), var(--font-sans-guru), var(--font-sans-orya),
+    var(--font-sans-taml), var(--font-sans-telu), var(--font-sans-knda),
+    var(--font-sans-mlym), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-fraunces), var(--font-serif-deva), var(--font-serif-beng),
+    var(--font-serif-gujr), var(--font-serif-guru), var(--font-serif-orya),
+    var(--font-serif-taml), var(--font-serif-telu), var(--font-serif-knda),
+    var(--font-serif-mlym), ui-serif, Georgia, serif;
 
   --radius-sm: var(--radius-sm);
   --radius-md: var(--radius-md);
@@ -111,6 +120,24 @@
   /* First-visit loader: hidden before paint once seen; no scrolling while it runs. */
   html[data-intro="seen"] .preloader {
     display: none;
+  }
+
+  /* Returning visitor with a saved language: hide until its text is loaded. */
+  html[data-lang]:not([data-lang="en"]):not([data-i18n-ready]) body {
+    visibility: hidden;
+  }
+
+  /* Indian scripts: no tight tracking, roomier line height. */
+  html[data-script]:not([data-script="latin"]) {
+    & .eyebrow {
+      letter-spacing: 0.04em;
+    }
+    & h1,
+    & h2,
+    & h3 {
+      letter-spacing: 0;
+      line-height: 1.25;
+    }
   }
 
   html.is-loading,
