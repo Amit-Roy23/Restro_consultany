@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/bn";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Bengali — বাংলা */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "হোম",
     about: "আমাদের কথা",
@@ -293,6 +294,7 @@ const messages: Translation = {
     intro: "আপনি যে পাতাটি খুঁজছেন সেটি সরানো হয়েছে বা কখনও ছিল না।",
     cta: "হোমে ফিরে যান",
   },
+  biz,
 };
 
 export default messages;

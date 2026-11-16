@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/te";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Telugu — తెలుగు */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "హోమ్",
     about: "మా గురించి",
@@ -292,6 +293,7 @@ const messages: Translation = {
     intro: "మీరు వెతుకుతున్న పేజీ తరలించబడింది లేదా ఉనికిలో లేదు.",
     cta: "హోమ్‌కు తిరిగి వెళ్ళండి",
   },
+  biz,
 };
 
 export default messages;

@@ -18,12 +18,12 @@ import {
   isLanguageCode,
   languages,
 } from "@/i18n/languages";
-import { type Messages, type Translation, en } from "@/i18n/messages/en";
+import { type Messages, en } from "@/i18n/messages/en";
 
 /** Each language is its own chunk, downloaded only when chosen. */
 const loaders: Record<
   Exclude<LanguageCode, "en">,
-  () => Promise<{ default: Translation }>
+  () => Promise<{ default: Messages }>
 > = {
   hi: () => import("@/i18n/messages/hi"),
   bn: () => import("@/i18n/messages/bn"),
@@ -40,9 +40,7 @@ const loaders: Record<
 
 async function loadMessages(code: LanguageCode): Promise<Messages> {
   if (code === "en") return en;
-  const translation = (await loaders[code]()).default;
-  // Sections not yet translated fall back to English.
-  return { ...translation, biz: translation.biz ?? en.biz };
+  return (await loaders[code]()).default;
 }
 
 function applyToDocument(code: LanguageCode) {

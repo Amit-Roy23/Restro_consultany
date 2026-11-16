@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/hi";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Hindi — हिन्दी */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "होम",
     about: "हमारे बारे में",
@@ -292,6 +293,7 @@ const messages: Translation = {
     intro: "आप जो पेज ढूँढ रहे हैं, वह हट गया है या मौजूद नहीं है।",
     cta: "होम पर वापस जाएँ",
   },
+  biz,
 };
 
 export default messages;

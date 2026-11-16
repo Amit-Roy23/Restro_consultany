@@ -129,8 +129,15 @@
 
   /* Indian scripts: no tight tracking, roomier line height. */
   html[data-script]:not([data-script="latin"]) {
-    & .eyebrow {
-      letter-spacing: 0.04em;
+    /* Wide tracking pulls conjuncts apart, so keep it near zero. */
+    & .eyebrow,
+    & [class*="tracking-"] {
+      letter-spacing: 0.02em !important;
+    }
+    /* Deeper descenders (e.g. Tamil ு, ூ) need more room below the mask. */
+    & .reveal-mask {
+      padding-bottom: 0.32em !important;
+      margin-bottom: -0.32em !important;
     }
     & h1,
     & h2,

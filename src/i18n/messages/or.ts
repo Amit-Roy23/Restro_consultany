@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/or";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Odia — ଓଡ଼ିଆ */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "ହୋମ",
     about: "ଆମ ବିଷୟରେ",
@@ -292,6 +293,7 @@ const messages: Translation = {
     intro: "ଆପଣ ଖୋଜୁଥିବା ପୃଷ୍ଠା ସ୍ଥାନାନ୍ତରିତ ହୋଇଛି କିମ୍ବା ନାହିଁ।",
     cta: "ହୋମ୍‌କୁ ଫେରନ୍ତୁ",
   },
+  biz,
 };
 
 export default messages;

@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/pa";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Punjabi — ਪੰਜਾਬੀ (Gurmukhi) */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "ਹੋਮ",
     about: "ਸਾਡੇ ਬਾਰੇ",
@@ -292,6 +293,7 @@ const messages: Translation = {
     intro: "ਤੁਸੀਂ ਜੋ ਪੰਨਾ ਲੱਭ ਰਹੇ ਹੋ, ਉਹ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਜਾਂ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
     cta: "ਹੋਮ 'ਤੇ ਵਾਪਸ ਜਾਓ",
   },
+  biz,
 };
 
 export default messages;

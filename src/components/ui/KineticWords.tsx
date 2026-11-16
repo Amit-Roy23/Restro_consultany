@@ -52,7 +52,7 @@ export function KineticWords({
           {index > 0 && (
             <span className="size-[0.18em] rounded-full bg-current opacity-40" />
           )}
-          <span className="-mb-[0.12em] inline-block overflow-hidden pb-[0.12em]">
+          <span className="reveal-mask -mb-[0.12em] inline-block overflow-hidden pb-[0.12em]">
             <motion.span
               className={cn(
                 "inline-block transition-colors duration-500",

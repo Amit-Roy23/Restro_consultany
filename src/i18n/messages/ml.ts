@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/ml";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Malayalam — മലയാളം */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "ഹോം",
     about: "ഞങ്ങളെക്കുറിച്ച്",
@@ -295,6 +296,7 @@ const messages: Translation = {
     intro: "നിങ്ങൾ തിരയുന്ന പേജ് മാറ്റിയിരിക്കുന്നു അല്ലെങ്കിൽ നിലവിലില്ല.",
     cta: "ഹോമിലേക്ക് മടങ്ങുക",
   },
+  biz,
 };
 
 export default messages;

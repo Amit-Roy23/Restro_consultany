@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/kn";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Kannada — ಕನ್ನಡ */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "ಮುಖಪುಟ",
     about: "ನಮ್ಮ ಬಗ್ಗೆ",
@@ -294,6 +295,7 @@ const messages: Translation = {
     intro: "ನೀವು ಹುಡುಕುತ್ತಿರುವ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಲಾಗಿದೆ ಅಥವಾ ಅದು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.",
     cta: "ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ",
   },
+  biz,
 };
 
 export default messages;

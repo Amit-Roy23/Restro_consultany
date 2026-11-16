@@ -1,7 +1,8 @@
-import type { Translation } from "@/i18n/messages/en";
+import biz from "@/i18n/messages/biz/gu";
+import type { Messages } from "@/i18n/messages/en";
 
 /** Gujarati — ગુજરાતી */
-const messages: Translation = {
+const messages: Messages = {
   nav: {
     home: "હોમ",
     about: "અમારા વિશે",
@@ -292,6 +293,7 @@ const messages: Translation = {
     intro: "તમે જે પેજ શોધી રહ્યા છો તે ખસેડાયું છે અથવા અસ્તિત્વમાં નથી.",
     cta: "હોમ પર પાછા જાઓ",
   },
+  biz,
 };
 
 export default messages;

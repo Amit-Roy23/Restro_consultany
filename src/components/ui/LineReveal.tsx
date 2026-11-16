@@ -36,7 +36,7 @@ export function LineReveal({
         <span
           key={text}
           aria-hidden="true"
-          className="-mb-[0.1em] block overflow-hidden pb-[0.1em]"
+          className="reveal-mask -mb-[0.1em] block overflow-hidden pb-[0.1em]"
         >
           <motion.span
             variants={line}

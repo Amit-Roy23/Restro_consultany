@@ -561,9 +561,3 @@ type Widen<T> = T extends string
 
 /** Shape every translation must follow. */
 export type Messages = Widen<typeof en>;
-
-/**
- * Translation files: everything required except `biz` (the newest business
- * sections), which falls back to English until translated.
- */
-export type Translation = Omit<Messages, "biz"> & { biz?: Messages["biz"] };
