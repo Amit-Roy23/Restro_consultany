@@ -548,6 +548,14 @@ export const en = {
         { title: "Manpower & staffing solutions", line: "Hire • Recruit • Deploy" },
       ],
     },
+    partners: {
+      label: "Our trusted brand partners",
+      title: "Brands that trust Resto.",
+      intro:
+        "From hotels and resorts to neighbourhood cafés, bakeries and quick-service chains — names we're proud to work alongside.",
+      yourBrand: "Your brand, next?",
+      cta: "Let's talk",
+    },
     team: {
       label: "Our team",
       title: "The faces behind Resto",
