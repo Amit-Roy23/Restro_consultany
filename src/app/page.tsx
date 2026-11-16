@@ -1,3 +1,4 @@
+import { BrandPartners } from "@/components/sections/biz/BrandPartners";
 import { MoreWays } from "@/components/sections/biz/MoreWays";
 import { MottoBand } from "@/components/sections/biz/MottoBand";
 import { TeamSection } from "@/components/sections/biz/TeamSection";
@@ -23,6 +24,7 @@ export default function HomePage() {
       <MoreWays />
       <Projects />
       <Clients />
+      <BrandPartners />
       <WhySection />
       <Wall />
       <MottoBand />
