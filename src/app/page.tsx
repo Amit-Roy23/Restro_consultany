@@ -1,5 +1,6 @@
 import { MoreWays } from "@/components/sections/biz/MoreWays";
 import { MottoBand } from "@/components/sections/biz/MottoBand";
+import { TeamSection } from "@/components/sections/biz/TeamSection";
 import { VisionSection } from "@/components/sections/biz/VisionSection";
 import { WhySection } from "@/components/sections/biz/WhySection";
 import { AboutSection } from "@/components/sections/home/AboutSection";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Hero />
       <AskSection />
       <AboutSection />
+      <TeamSection />
       <VisionSection />
       <Services />
       <MoreWays />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/sections/PageHeader";
+import { TeamSection } from "@/components/sections/biz/TeamSection";
 import { VisionSection } from "@/components/sections/biz/VisionSection";
 import { WhySection } from "@/components/sections/biz/WhySection";
 import { AboutSection } from "@/components/sections/home/AboutSection";
@@ -18,6 +19,7 @@ export default function AboutPage() {
     <>
       <PageHeader page="about" />
       <AboutSection />
+      <TeamSection />
       <VisionSection />
       <Clients />
       <WhySection />
