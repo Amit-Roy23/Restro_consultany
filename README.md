@@ -24,7 +24,7 @@ All copy, the logo and the photos come from the company profile document
 | Hero           | `components/sections/home/Hero.tsx`         | Desktop: photos drift outward while a showcase (mosaic or video) grows to full screen |
 | Ask Resto      | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it       |
 | 01 Who we are  | `components/sections/home/AboutSection.tsx` | Story, founder portrait, market stat, philosophy, team video slot                     |
-| 02 What we do  | `components/sections/home/Services.tsx`     | Three service groups as numbered rows; floating ask bar                               |
+| 02 What we do  | `components/sections/home/Services.tsx`     | Service groups as numbered rows; floating ask bar                                     |
 | 03 Projects    | `components/sections/home/Projects.tsx`     | Featured projects as stacking cards + full list of completed projects                 |
 | 04 Clients     | `components/sections/home/Clients.tsx`      | Scrolling marquee of brand names + grouped client list                                |
 | 05 Wall        | `components/sections/home/Wall.tsx`         | Pinned heading with photo, press and stat cards scrolling past                        |
