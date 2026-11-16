@@ -39,7 +39,8 @@ const loaders: Record<
 };
 
 async function loadMessages(code: LanguageCode): Promise<Messages> {
-  return code === "en" ? en : (await loaders[code]()).default;
+  if (code === "en") return en;
+  return (await loaders[code]()).default;
 }
 
 function applyToDocument(code: LanguageCode) {

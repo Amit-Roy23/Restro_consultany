@@ -1,3 +1,4 @@
+import biz from "@/i18n/messages/biz/pa";
 import type { Messages } from "@/i18n/messages/en";
 
 /** Punjabi — ਪੰਜਾਬੀ (Gurmukhi) */
@@ -292,6 +293,7 @@ const messages: Messages = {
     intro: "ਤੁਸੀਂ ਜੋ ਪੰਨਾ ਲੱਭ ਰਹੇ ਹੋ, ਉਹ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਜਾਂ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।",
     cta: "ਹੋਮ 'ਤੇ ਵਾਪਸ ਜਾਓ",
   },
+  biz,
 };
 
 export default messages;

@@ -1,3 +1,4 @@
+import biz from "@/i18n/messages/biz/te";
 import type { Messages } from "@/i18n/messages/en";
 
 /** Telugu — తెలుగు */
@@ -292,6 +293,7 @@ const messages: Messages = {
     intro: "మీరు వెతుకుతున్న పేజీ తరలించబడింది లేదా ఉనికిలో లేదు.",
     cta: "హోమ్‌కు తిరిగి వెళ్ళండి",
   },
+  biz,
 };
 
 export default messages;

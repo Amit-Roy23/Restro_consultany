@@ -11,6 +11,8 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { useContent } from "@/i18n/LanguageProvider";
 
 type ServicesProps = {
+  /** Label the section "Turnkey projects & kitchen solutions" (Services page). */
+  turnkey?: boolean;
   /** Show the "All services" link (home page only). */
   showCta?: boolean;
   /** Use the section title as the page's h2 (false when a PageHeader h1 is above). */
@@ -18,17 +20,25 @@ type ServicesProps = {
 };
 
 /** Service groups as numbered rows, with a floating ask bar pinned to the bottom. */
-export function Services({ showCta = true, showHeading = true }: ServicesProps) {
-  const { ask: askContent, services: servicesContent } = useContent();
+export function Services({
+  showCta = true,
+  showHeading = true,
+  turnkey = false,
+}: ServicesProps) {
+  const { ask: askContent, services: servicesContent, biz } = useContent();
+  const labelOverride = turnkey ? biz.turnkey.label : undefined;
   const { number, label, title, intro, groups, cta } = servicesContent;
 
   return (
     <section
+      id="turnkey"
       aria-labelledby="services-heading"
       className="grain bg-background py-24 md:py-32"
     >
       <Container>
-        <SectionLabel number={number}>{label}</SectionLabel>
+        <SectionLabel number={labelOverride ? undefined : number}>
+          {labelOverride ?? label}
+        </SectionLabel>
         {showHeading ? (
           <TextReveal
             id="services-heading"

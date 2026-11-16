@@ -1,3 +1,4 @@
+import biz from "@/i18n/messages/biz/hi";
 import type { Messages } from "@/i18n/messages/en";
 
 /** Hindi — हिन्दी */
@@ -292,6 +293,7 @@ const messages: Messages = {
     intro: "आप जो पेज ढूँढ रहे हैं, वह हट गया है या मौजूद नहीं है।",
     cta: "होम पर वापस जाएँ",
   },
+  biz,
 };
 
 export default messages;

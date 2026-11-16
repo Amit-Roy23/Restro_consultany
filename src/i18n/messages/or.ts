@@ -1,3 +1,4 @@
+import biz from "@/i18n/messages/biz/or";
 import type { Messages } from "@/i18n/messages/en";
 
 /** Odia — ଓଡ଼ିଆ */
@@ -292,6 +293,7 @@ const messages: Messages = {
     intro: "ଆପଣ ଖୋଜୁଥିବା ପୃଷ୍ଠା ସ୍ଥାନାନ୍ତରିତ ହୋଇଛି କିମ୍ବା ନାହିଁ।",
     cta: "ହୋମ୍‌କୁ ଫେରନ୍ତୁ",
   },
+  biz,
 };
 
 export default messages;

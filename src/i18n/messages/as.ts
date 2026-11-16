@@ -1,3 +1,4 @@
+import biz from "@/i18n/messages/biz/as";
 import type { Messages } from "@/i18n/messages/en";
 
 /** Assamese — অসমীয়া */
@@ -292,6 +293,7 @@ const messages: Messages = {
     intro: "আপুনি বিচৰা পৃষ্ঠাটো স্থানান্তৰ কৰা হৈছে বা কেতিয়াও নাছিল।",
     cta: "হোমলৈ উভতি যাওক",
   },
+  biz,
 };
 
 export default messages;

@@ -101,7 +101,7 @@ export function TextReveal({
           <span
             key={index}
             aria-hidden="true"
-            className="-mb-[0.14em] inline-block overflow-hidden pb-[0.14em] align-top whitespace-nowrap"
+            className="reveal-mask -mb-[0.14em] inline-block overflow-hidden pb-[0.14em] align-top whitespace-nowrap"
           >
             {by === "char" ? (
               graphemes(word).map((char, charIndex) => (

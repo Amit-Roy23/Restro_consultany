@@ -103,7 +103,7 @@ export function buildHomeContent(m: Messages) {
   /* ------------------------------------------------------------------ */
 
   const servicesContent: ServicesContent = {
-    number: 2,
+    number: 3,
     label: m.services.label,
     title: m.services.title,
     intro: m.services.intro,
@@ -116,7 +116,7 @@ export function buildHomeContent(m: Messages) {
   /* ------------------------------------------------------------------ */
 
   const projectsContent: ProjectsContent = {
-    number: 3,
+    number: 4,
     label: m.projects.label,
     title: m.projects.title,
     intro: m.projects.intro,
@@ -249,7 +249,7 @@ export function buildHomeContent(m: Messages) {
   /* ------------------------------------------------------------------ */
 
   const clientsContent: ClientsContent = {
-    number: 4,
+    number: 5,
     label: m.clients.label,
     title: m.clients.title,
     intro: m.clients.intro,
@@ -335,7 +335,7 @@ export function buildHomeContent(m: Messages) {
   /* ------------------------------------------------------------------ */
 
   const wallContent: WallContent = {
-    number: 5,
+    number: 7,
     label: m.wall.label,
     title: m.wall.title,
     cta: { label: m.wall.cta, href: "/projects" },

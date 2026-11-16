@@ -9,13 +9,14 @@ All copy, the logo and the photos come from the company profile document
 
 ## Pages
 
-| Route       | Contents                                                              |
-| ----------- | --------------------------------------------------------------------- |
-| `/`         | Hero, Ask, About, Services, Projects, Clients, Wall, call to action   |
-| `/about`    | About, clients                                                        |
-| `/services` | All service groups                                                    |
-| `/projects` | Featured projects, full project list, gallery of every supplied photo |
-| `/contact`  | Ask box, next steps, contact details (hidden until filled in)         |
+| Route            | Contents                                                                              |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| `/`              | Hero, Ask, About, Vision, Services, More ways, Projects, Clients, Why us, Wall, Motto |
+| `/about`         | About, founder's vision, clients, why us                                              |
+| `/services`      | Service groups (turnkey), business management, licensing, manpower                    |
+| `/opportunities` | Business & franchise opportunities, restaurant & café buy/sell inquiry form           |
+| `/projects`      | Featured projects, full project list, gallery of every supplied photo                 |
+| `/contact`       | Ask box, next steps, contact details (hidden until filled in)                         |
 
 ## Home page sections
 
@@ -31,6 +32,18 @@ All copy, the logo and the photos come from the company profile document
 | Call to action | `components/sections/home/CtaBand.tsx`      | Orange band with animated equaliser bars                                              |
 | Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                               |
 | Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                              |
+
+Business sections live in `components/sections/biz/`: `VisionSection`
+(animated ecosystem hub), `OpportunitiesSection`, `BuySellSection` (inquiry
+form), `ManagementSection`, `LicensingSection`, `ManpowerSection`, `WhySection`
+(sticker cards + 99 → 1 problem counter), `MoreWays` (horizontal card rail) and
+`MottoBand` (motto with rotating "Restaurant Made Easy" stamp). Their text is the
+`biz` namespace of the messages (`src/i18n/messages/biz/<code>.ts` for each
+translation).
+
+The **buy/sell inquiry form** has no backend yet: submitting opens the visitor's
+email app with a pre-filled message (labels always in English) to
+`restoconsultancyofficial@gmail.com` (`siteConfig.contact.email`).
 
 Shared motion primitives (`components/ui/`): `TextReveal` (masked word/letter
 reveals), `ImageReveal` (curtain wipe), `Reveal` (fade-up), `StackCards`

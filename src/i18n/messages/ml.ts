@@ -1,3 +1,4 @@
+import biz from "@/i18n/messages/biz/ml";
 import type { Messages } from "@/i18n/messages/en";
 
 /** Malayalam — മലയാളം */
@@ -295,6 +296,7 @@ const messages: Messages = {
     intro: "നിങ്ങൾ തിരയുന്ന പേജ് മാറ്റിയിരിക്കുന്നു അല്ലെങ്കിൽ നിലവിലില്ല.",
     cta: "ഹോമിലേക്ക് മടങ്ങുക",
   },
+  biz,
 };
 
 export default messages;
