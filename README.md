@@ -12,7 +12,7 @@ All copy, the logo and the photos come from the company profile document
 | Route            | Contents                                                                              |
 | ---------------- | ------------------------------------------------------------------------------------- |
 | `/`              | Hero, Ask, About, Vision, Services, More ways, Projects, Clients, Why us, Wall, Motto |
-| `/about`         | About, founder's vision, clients, why us                                              |
+| `/about`         | About, team, founder's vision, clients, why us                                        |
 | `/services`      | Service groups (turnkey), business management, licensing, manpower                    |
 | `/opportunities` | Business & franchise opportunities, restaurant & café buy/sell inquiry form           |
 | `/projects`      | Featured projects, full project list, gallery of every supplied photo                 |
