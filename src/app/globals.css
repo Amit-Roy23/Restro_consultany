@@ -12,6 +12,8 @@
   --muted: #a89b8c;
   --accent: #d9782a;
   --accent-foreground: #14100d;
+  /* Champagne gold for hairlines and ornaments in the hero. */
+  --gold: #cfa25e;
 
   /* Light sections (featured work, journal) */
   --paper: #fbf8f3;
@@ -40,6 +42,7 @@
   --color-paper: var(--paper);
   --color-accent-deep: var(--accent-deep);
   --color-ink-muted: var(--ink-muted);
+  --color-gold: var(--gold);
 
   /* Latin first; each Indian script falls through to its Noto font. */
   --font-sans:
@@ -65,6 +68,49 @@
   --animate-drift: drift 14s ease-in-out infinite alternate;
   --animate-eq: eq 1.6s ease-in-out infinite alternate;
   --animate-marquee: marquee 45s linear infinite;
+  --animate-glow: glow 18s ease-in-out infinite alternate;
+  --animate-rise: rise var(--duration, 14s) linear infinite;
+  --animate-breathe: breathe 7s ease-in-out infinite alternate;
+
+  @keyframes glow {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(var(--gx, 6%), var(--gy, -4%), 0) scale(1.12);
+    }
+    100% {
+      transform: translate3d(calc(var(--gx, 6%) * -0.6), calc(var(--gy, -4%) * -1), 0)
+        scale(0.95);
+    }
+  }
+
+  /* Gold dust drifting up through the hero. */
+  @keyframes rise {
+    0% {
+      transform: translate3d(0, 0, 0);
+      opacity: 0;
+    }
+    15% {
+      opacity: var(--peak, 0.7);
+    }
+    85% {
+      opacity: var(--peak, 0.7);
+    }
+    100% {
+      transform: translate3d(var(--sway, 20px), -70vh, 0);
+      opacity: 0;
+    }
+  }
+
+  @keyframes breathe {
+    from {
+      opacity: 0.55;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   @keyframes drift {
     from {
@@ -158,6 +204,42 @@
   html[data-script="kannada"] {
     & :is(h1, h2) {
       zoom: 0.88;
+    }
+  }
+
+  /* Light sweeping across the primary hero button. */
+  @keyframes sweep {
+    0% {
+      transform: translateX(0) skewX(-12deg);
+    }
+    45%,
+    100% {
+      transform: translateX(480%) skewX(-12deg);
+    }
+  }
+
+  /* Lead dialog: rise in with the backdrop fading up. */
+  dialog.lead-dialog[open] {
+    animation: lead-in 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  dialog.lead-dialog[open]::backdrop {
+    animation: lead-fade 0.35s ease-out;
+  }
+  @keyframes lead-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.97);
+    }
+  }
+  @keyframes lead-fade {
+    from {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    dialog.lead-dialog[open],
+    dialog.lead-dialog[open]::backdrop {
+      animation: none;
     }
   }
 
