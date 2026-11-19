@@ -74,19 +74,7 @@ export type HeroContent = {
   /** Each inner array is one visual line of the headline. */
   headline: HeadlineSegment[][];
   description: string;
-  primaryCta: Cta;
-  secondaryCta: Cta;
   stats: Stat[];
-  scrollLabel: string;
-  images: ImageAsset[];
-  showcase: {
-    caption: string;
-    video?: string;
-    /** First frame of the video, shown while it loads. */
-    videoPoster?: string;
-    /** Shown as a mosaic until the showcase video is added. */
-    tiles: ImageAsset[];
-  };
 };
 
 export type AskContent = {
