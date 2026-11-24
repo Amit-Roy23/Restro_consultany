@@ -70,6 +70,8 @@ what it should do.
 - Languages: English, Hindi, Bengali, Gujarati, Marathi, Tamil, Telugu, Kannada,
   Malayalam, Punjabi, Odia, Assamese (`src/i18n/languages.ts`). Translations were
   machine-written and should be reviewed by native speakers.
+- Each language button on the welcome screen shows a colourful illustration of a
+  famous sight from its state (`components/layout/StateArt.tsx`, hand-drawn SVG).
 - The choice is saved in the browser and can be changed from the menu or footer.
   Each language's text loads only when chosen; Noto fonts per script load only
   when that script is on screen.

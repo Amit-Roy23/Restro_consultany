@@ -19,6 +19,7 @@ import { useContent, useLanguage } from "@/i18n/LanguageProvider";
 import { getLenis } from "@/lib/smoothScroll";
 import { INTRO_KEY } from "@/lib/intro";
 import { cn } from "@/lib/utils";
+import { StateArt, stateArtCaptions } from "@/components/layout/StateArt";
 
 const STEPS = 5;
 /** Steps 1–3 move on by themselves after this long (ms). */
@@ -351,19 +352,32 @@ function LanguageStep({
                     onChoose(language.code);
                   }}
                   className={cn(
-                    "group relative flex w-full flex-col items-start gap-1 rounded-xl border px-4 py-3.5 text-left transition-[border-color,background-color,transform] duration-300 hover:-translate-y-0.5",
+                    "group relative flex h-full w-full flex-col items-start gap-1 overflow-hidden rounded-xl border p-1.5 pb-3 text-left transition-[border-color,background-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-18px_rgba(201,164,92,0.55)]",
                     selected
                       ? "border-accent bg-accent/15"
                       : "border-foreground/12 bg-surface/50 hover:border-accent/60",
                   )}
                 >
-                  <span className="text-lg font-semibold text-foreground">
+                  {/* A famous sight from the state where the language is spoken */}
+                  <span className="mb-1.5 block aspect-[16/9] w-full overflow-hidden rounded-lg">
+                    <StateArt
+                      code={language.code}
+                      className="size-full transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                  </span>
+                  <span className="px-2 text-lg font-semibold text-foreground">
                     {language.native}
                   </span>
-                  <span className="text-xs text-muted">{language.english}</span>
+                  <span className="px-2 text-xs text-muted">{language.english}</span>
+                  <span
+                    className="px-2 text-[0.65rem] leading-snug text-gold/80"
+                    lang="en"
+                  >
+                    {stateArtCaptions[language.code]}
+                  </span>
                   <span
                     className={cn(
-                      "absolute top-3 right-3 inline-flex size-5 items-center justify-center rounded-full bg-accent text-accent-foreground transition-[opacity,scale] duration-300",
+                      "absolute top-3 right-3 inline-flex size-6 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-md transition-[opacity,scale] duration-300",
                       selected ? "scale-100 opacity-100" : "scale-50 opacity-0",
                     )}
                   >
