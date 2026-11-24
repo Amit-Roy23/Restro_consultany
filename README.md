@@ -20,18 +20,18 @@ All copy, the logo and the photos come from the company profile document
 
 ## Home page sections
 
-| Section        | File                                        | Behaviour                                                                                                                                                                                                                               |
-| -------------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Hero           | `components/sections/home/Hero.tsx`         | Photo-free "grand entrance" (gold Deco sunburst + arch, candle-light glows, gold dust); same on laptop and phone. **Start Your Project** / **Free Consultation** open `LeadDialog.tsx`; rotating line shows the languages we consult in |
-| Ask Resto      | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it                                                                                                                                                         |
-| 01 Who we are  | `components/sections/home/AboutSection.tsx` | Story, founder portrait, market stat, philosophy, team video slot                                                                                                                                                                       |
-| 02 What we do  | `components/sections/home/Services.tsx`     | Service groups as numbered rows; floating ask bar                                                                                                                                                                                       |
-| 03 Projects    | `components/sections/home/Projects.tsx`     | Featured projects as stacking cards + full list of completed projects                                                                                                                                                                   |
-| 04 Clients     | `components/sections/home/Clients.tsx`      | Scrolling marquee of brand names + grouped client list                                                                                                                                                                                  |
-| 05 Wall        | `components/sections/home/Wall.tsx`         | Pinned heading with photo, press and stat cards scrolling past                                                                                                                                                                          |
-| Call to action | `components/sections/home/CtaBand.tsx`      | Orange band with animated equaliser bars                                                                                                                                                                                                |
-| Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                                                                                                                                                                                 |
-| Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                                                                                                                                                                                |
+| Section        | File                                        | Behaviour                                                                                                                                                                                          |
+| -------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hero           | `components/sections/home/Hero.tsx`         | Desktop: photos drift outward while a showcase (video) grows to full screen. **Start Your Project** / **Free Consultation** open `LeadDialog.tsx`; rotating line shows the languages we consult in |
+| Ask Resto      | `components/sections/home/AskSection.tsx`   | Giant pinned wordmark with drifting dots; frosted question card scrolls over it                                                                                                                    |
+| 01 Who we are  | `components/sections/home/AboutSection.tsx` | Story, founder portrait, market stat, philosophy, team video slot                                                                                                                                  |
+| 02 What we do  | `components/sections/home/Services.tsx`     | Service groups as numbered rows; floating ask bar                                                                                                                                                  |
+| 03 Projects    | `components/sections/home/Projects.tsx`     | Featured projects as stacking cards + full list of completed projects                                                                                                                              |
+| 04 Clients     | `components/sections/home/Clients.tsx`      | Scrolling marquee of brand names + grouped client list                                                                                                                                             |
+| 05 Wall        | `components/sections/home/Wall.tsx`         | Pinned heading with photo, press and stat cards scrolling past                                                                                                                                     |
+| Call to action | `components/sections/home/CtaBand.tsx`      | Orange band with animated equaliser bars                                                                                                                                                           |
+| Footer         | `components/layout/Footer.tsx`              | Gradient footer revealed from under the page on desktop                                                                                                                                            |
+| Menu           | `components/layout/MenuOverlay.tsx`         | Full-screen menu: links, Ask box and suggested questions                                                                                                                                           |
 
 Business sections live in `components/sections/biz/`: `VisionSection`
 (animated ecosystem hub), `OpportunitiesSection`, `BuySellSection` (inquiry
@@ -88,8 +88,7 @@ Video slots show a photo until a file is set. Put the files in `public/videos/`
 | About / team video      | `aboutContent.video.src`                     |
 | A featured project card | add `video: { src, poster }` to that project |
 
-The first screen no longer uses photos or video (client request, Nov 2026);
-`public/videos/hero.mp4` is kept for reuse elsewhere.
+The hero showreel loop is `public/videos/hero.mp4` (`heroContent.showcase.video`).
 
 ## Lead forms
 

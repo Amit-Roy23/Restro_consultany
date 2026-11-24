@@ -75,6 +75,16 @@ export type HeroContent = {
   headline: HeadlineSegment[][];
   description: string;
   stats: Stat[];
+  scrollLabel: string;
+  images: ImageAsset[];
+  showcase: {
+    caption: string;
+    video?: string;
+    /** First frame of the video, shown while it loads. */
+    videoPoster?: string;
+    /** Shown as a mosaic until the showcase video is added. */
+    tiles: ImageAsset[];
+  };
 };
 
 export type AskContent = {

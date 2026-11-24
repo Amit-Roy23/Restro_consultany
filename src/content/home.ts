@@ -31,6 +31,28 @@ export function buildHomeContent(m: Messages) {
       { value: "30+", label: m.hero.statBrands },
       { value: "2", label: m.hero.statCountries },
     ],
+    scrollLabel: m.hero.scroll,
+    images: [
+      img("/images/team/hospitality-team.jpg"),
+      img("/images/team/chef-brigade.jpg"),
+      img("/images/interiors/interior-01.jpg"),
+      img("/images/kitchens/kitchen-03.jpg"),
+      img("/images/training/training-01.jpg"),
+    ],
+    showcase: {
+      caption: m.hero.showcaseCaption,
+      // Mood footage: a 9 s muted loop cut from supplied lounge footage.
+      video: "/videos/hero.mp4",
+      videoPoster: "/videos/hero-poster.jpg",
+      tiles: [
+        img("/images/interiors/interior-02.jpg"),
+        img("/images/kitchens/kitchen-01.jpg"),
+        img("/images/interiors/interior-03.jpg"),
+        img("/images/training/training-02.jpg"),
+        img("/images/interiors/interior-04.jpg"),
+        img("/images/kitchens/kitchen-05.jpg"),
+      ],
+    },
   };
 
   /* ------------------------------------------------------------------ */
