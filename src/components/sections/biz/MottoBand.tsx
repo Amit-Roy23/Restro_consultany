@@ -25,7 +25,7 @@ export function MottoBand() {
     >
       <div
         aria-hidden="true"
-        className="absolute top-0 right-0 h-1/2 w-1/2 bg-[radial-gradient(rgba(20,16,13,0.18)_1.5px,transparent_1.5px)] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] [background-size:18px_18px]"
+        className="absolute top-0 right-0 h-1/2 w-1/2 bg-[radial-gradient(rgba(6,12,26,0.18)_1.5px,transparent_1.5px)] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] [background-size:18px_18px]"
       />
       <Container className="relative grid items-center gap-14 lg:grid-cols-12">
         <div className="lg:col-span-8">
@@ -77,7 +77,7 @@ export function MottoBand() {
             className="size-56 text-background md:size-64"
           >
             <Image
-              src="/brand/resto-mark.png"
+              src="/brand/resto-mark-gold.png"
               alt=""
               width={512}
               height={512}

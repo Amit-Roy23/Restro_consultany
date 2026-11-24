@@ -97,7 +97,7 @@ export function Preloader() {
       {/* Top half: cloche + wordmark sitting on the seam */}
       <motion.div
         aria-hidden="true"
-        className="grain absolute inset-x-0 top-0 flex h-1/2 items-end justify-center bg-background bg-[radial-gradient(ellipse_55%_70%_at_50%_100%,rgba(217,120,42,0.16),transparent_70%)]"
+        className="grain absolute inset-x-0 top-0 flex h-1/2 items-end justify-center bg-background bg-[radial-gradient(ellipse_55%_70%_at_50%_100%,rgba(201,164,92,0.16),transparent_70%)]"
         animate={splitting && !reduceMotion ? { y: "-100%" } : { y: "0%" }}
         transition={halfTransition}
       >
@@ -110,7 +110,7 @@ export function Preloader() {
       {/* Bottom half: subtitle under the seam */}
       <motion.div
         aria-hidden="true"
-        className="grain absolute inset-x-0 bottom-0 flex h-1/2 flex-col items-center bg-background bg-[radial-gradient(ellipse_55%_70%_at_50%_0%,rgba(217,120,42,0.16),transparent_70%)] pt-6 md:pt-8"
+        className="grain absolute inset-x-0 bottom-0 flex h-1/2 flex-col items-center bg-background bg-[radial-gradient(ellipse_55%_70%_at_50%_0%,rgba(201,164,92,0.16),transparent_70%)] pt-6 md:pt-8"
         animate={splitting && !reduceMotion ? { y: "100%" } : { y: "0%" }}
         transition={halfTransition}
       >

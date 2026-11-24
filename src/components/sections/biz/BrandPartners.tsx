@@ -129,7 +129,7 @@ function LogoTile({ partner }: { partner: BrandPartner }) {
   return (
     <div className="group relative h-28 w-40 shrink-0 md:h-40 md:w-60">
       <div
-        className="relative h-full w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:scale-[1.06] group-hover:shadow-[0_30px_60px_-20px_rgba(217,120,42,0.45)]"
+        className="relative h-full w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.7)] ring-1 ring-white/10 transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:scale-[1.06] group-hover:shadow-[0_30px_60px_-20px_rgba(201,164,92,0.45)]"
         style={{ backgroundColor: partner.bg }}
       >
         <Image

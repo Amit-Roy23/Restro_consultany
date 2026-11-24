@@ -81,7 +81,7 @@ export function LicensingSection() {
             className="size-44 shrink-0 text-accent-deep"
           >
             <Image
-              src="/brand/resto-mark.png"
+              src="/brand/resto-mark-gold.png"
               alt=""
               width={512}
               height={512}
@@ -107,7 +107,7 @@ export function LicensingSection() {
                 }}
                 className="[perspective:800px]"
               >
-                <article className="group flex h-full flex-col justify-between gap-8 rounded-2xl border border-background/10 bg-white p-6 transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(20,16,13,0.35)]">
+                <article className="group flex h-full flex-col justify-between gap-8 rounded-2xl border border-background/10 bg-white p-6 transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(6,12,26,0.35)]">
                   <div className="flex items-start justify-between">
                     <span className="grid size-12 place-items-center rounded-xl bg-accent/15 text-accent-deep transition-colors duration-500 group-hover:bg-accent group-hover:text-accent-foreground">
                       <Icon className="size-6" aria-hidden="true" />

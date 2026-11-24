@@ -30,7 +30,7 @@ export function FooterContent({ year }: { year: ReactNode }) {
       <Container className="flex min-h-[80svh] flex-col justify-between gap-16 py-14 md:py-20">
         <div aria-hidden="true" className="flex items-end gap-5 md:gap-8">
           <Image
-            src="/brand/resto-mark-light.png"
+            src="/brand/resto-mark-light-gold.png"
             alt=""
             width={531}
             height={598}

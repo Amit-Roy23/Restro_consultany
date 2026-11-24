@@ -3,7 +3,8 @@ export type NavItem = {
   href: string;
 };
 
-export type SocialPlatform = "instagram" | "linkedin" | "whatsapp" | "facebook";
+export type SocialPlatform =
+  "instagram" | "facebook" | "youtube" | "linkedin" | "whatsapp";
 
 export type SocialLink = {
   platform: SocialPlatform;

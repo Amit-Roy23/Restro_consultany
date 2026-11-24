@@ -29,7 +29,7 @@ export function buildHomeContent(m: Messages) {
     stats: [
       { value: "635+", label: m.hero.statProjects },
       { value: "30+", label: m.hero.statBrands },
-      { value: "2", label: m.hero.statCountries },
+      { value: "15+", label: m.hero.statYears },
     ],
     scrollLabel: m.hero.scroll,
     images: [

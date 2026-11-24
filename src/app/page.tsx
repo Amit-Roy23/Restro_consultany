@@ -1,7 +1,9 @@
 import { BrandPartners } from "@/components/sections/biz/BrandPartners";
+import { HospiverseSection } from "@/components/sections/biz/HospiverseSection";
 import { MoreWays } from "@/components/sections/biz/MoreWays";
 import { MottoBand } from "@/components/sections/biz/MottoBand";
 import { TeamSection } from "@/components/sections/biz/TeamSection";
+import { VideoStories } from "@/components/sections/biz/VideoStories";
 import { VisionSection } from "@/components/sections/biz/VisionSection";
 import { WhySection } from "@/components/sections/biz/WhySection";
 import { AboutSection } from "@/components/sections/home/AboutSection";
@@ -19,12 +21,14 @@ export default function HomePage() {
       <AskSection />
       <AboutSection />
       <TeamSection />
+      <VideoStories />
       <VisionSection />
       <Services />
       <MoreWays />
       <Projects />
       <Clients />
       <BrandPartners />
+      <HospiverseSection />
       <WhySection />
       <Wall />
       <MottoBand />

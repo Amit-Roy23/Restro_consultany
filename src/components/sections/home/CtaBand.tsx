@@ -21,7 +21,7 @@ export function CtaBand() {
       {/* dotted texture in the top-right corner */}
       <div
         aria-hidden="true"
-        className="absolute top-0 right-0 h-1/2 w-1/2 bg-[radial-gradient(rgba(20,16,13,0.18)_1.5px,transparent_1.5px)] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] [background-size:18px_18px]"
+        className="absolute top-0 right-0 h-1/2 w-1/2 bg-[radial-gradient(rgba(6,12,26,0.18)_1.5px,transparent_1.5px)] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)] [background-size:18px_18px]"
       />
       <Container className="relative py-32 text-center">
         <TextReveal

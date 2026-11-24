@@ -47,7 +47,7 @@ export function TeamSection({ number }: { number?: number }) {
       <motion.p
         aria-hidden="true"
         style={{ x: reduceMotion ? 0 : drift }}
-        className="pointer-events-none absolute top-[42%] left-0 font-display text-[22vw] leading-none font-bold whitespace-nowrap text-transparent select-none [-webkit-text-stroke:1px_rgba(217,120,42,0.22)]"
+        className="pointer-events-none absolute top-[42%] left-0 font-display text-[22vw] leading-none font-bold whitespace-nowrap text-transparent select-none [-webkit-text-stroke:1px_rgba(201,164,92,0.22)]"
       >
         Resto • Resto • Resto
       </motion.p>
@@ -96,7 +96,7 @@ function PortraitCard({ member, index }: { member: TeamMember; index: number }) 
   const rotateX = useSpring(useTransform(py, [0, 1], [6, -6]), spring);
   const lightX = useTransform(px, (v) => `${v * 100}%`);
   const lightY = useTransform(py, (v) => `${v * 100}%`);
-  const spotlight = useMotionTemplate`radial-gradient(circle at ${lightX} ${lightY}, rgba(217,120,42,0.18) 0%, transparent 22%, rgba(20,16,13,0.55) 52%)`;
+  const spotlight = useMotionTemplate`radial-gradient(circle at ${lightX} ${lightY}, rgba(201,164,92,0.18) 0%, transparent 22%, rgba(6,12,26,0.55) 52%)`;
 
   const onMove = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== "mouse" || reduceMotion) return;

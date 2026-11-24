@@ -152,13 +152,13 @@ function WelcomeSteps({ onDone }: { onDone: () => void }) {
       aria-modal="true"
       aria-label={welcome.title}
       data-lenis-prevent
-      className="grain relative flex h-full flex-col overflow-y-auto bg-background bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,rgba(217,120,42,0.13),transparent_70%)]"
+      className="grain relative flex h-full flex-col overflow-y-auto bg-background bg-[radial-gradient(ellipse_70%_60%_at_50%_45%,rgba(201,164,92,0.13),transparent_70%)]"
     >
       {/* Top bar */}
       <div className="relative z-10 flex items-center justify-between gap-4 px-5 pt-5 md:px-10 md:pt-7">
         <div className="flex items-center gap-3">
           <Image
-            src="/brand/resto-mark-light.png"
+            src="/brand/resto-mark-light-gold.png"
             alt=""
             width={531}
             height={598}
@@ -572,7 +572,7 @@ function BudgetStep({ onBuild }: { onBuild: () => void }) {
             type="button"
             data-autofocus=""
             onClick={onBuild}
-            className="group inline-flex h-16 items-center gap-3 rounded-full bg-accent px-9 text-base font-semibold tracking-wide text-accent-foreground uppercase shadow-[0_20px_60px_-15px_rgba(217,120,42,0.7)] transition-colors hover:bg-foreground"
+            className="group inline-flex h-16 items-center gap-3 rounded-full bg-accent px-9 text-base font-semibold tracking-wide text-accent-foreground uppercase shadow-[0_20px_60px_-15px_rgba(201,164,92,0.7)] transition-colors hover:bg-foreground"
           >
             {welcome.buildButton}
             <ArrowRight

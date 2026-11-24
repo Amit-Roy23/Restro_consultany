@@ -90,6 +90,21 @@ Video slots show a photo until a file is set. Put the files in `public/videos/`
 
 The hero showreel loop is `public/videos/hero.mp4` (`heroContent.showcase.video`).
 
+## Resto Hospiverse and videos
+
+- **Resto Hospiverse** (`components/sections/biz/HospiverseSection.tsx`, home page,
+  menu link `/#hospiverse`): international markets one per line with live local
+  time (`src/content/hospiverse.ts` for codes and time zones; names in the
+  messages), and an enquiry form (mailto, labels in English).
+- **Founder & team videos** (`components/sections/biz/VideoStories.tsx`): set the
+  files in `src/content/videos.ts`; until then the cards show "Video coming soon".
+
+## Social links
+
+Add the official profiles to `siteConfig.socials` in `src/config/site.ts`
+(Instagram, Facebook, YouTube, LinkedIn, WhatsApp); the footer icons appear
+automatically.
+
 ## Lead forms
 
 **Start Your Project** and **Free Consultation** (hero) open a dialog with a
@@ -198,15 +213,24 @@ src/
 
 ## Design tokens
 
-| Token               | Value     |
-| ------------------- | --------- |
-| `background`        | `#14100D` |
-| `surface`           | `#1E1813` |
-| `border`            | `#2E261F` |
-| `foreground`        | `#F3EDE4` |
-| `muted`             | `#A89B8C` |
-| `accent`            | `#D9782A` |
-| `accent-foreground` | `#14100D` |
+Luxury palette (client request, Nov 2026): midnight navy, champagne gold, ivory and white.
+
+| Token               | Value     | Role                         |
+| ------------------- | --------- | ---------------------------- |
+| `background`        | `#0A1428` | Midnight navy                |
+| `surface`           | `#111E38` | Raised navy                  |
+| `border`            | `#243352` | Hairlines on navy            |
+| `foreground`        | `#F6F1E7` | Ivory (text, light sections) |
+| `paper`             | `#FFFFFF` | White sections and cards     |
+| `muted`             | `#A5AFC3` | Secondary text on navy       |
+| `accent`            | `#C9A45C` | Champagne gold               |
+| `gold`              | `#DCC08A` | Light gold ornaments         |
+| `accent-deep`       | `#7D5C20` | Gold text on light sections  |
+| `ink-muted`         | `#56607A` | Secondary text on light      |
+| `accent-foreground` | `#0A1428` | Text on gold                 |
+
+The site uses gold versions of the logo (`public/brand/resto-mark-light-gold.png`,
+`resto-mark-gold.png`); the original orange files are kept next to them.
 
 Use them as Tailwind classes: `bg-surface`, `text-muted`, `border-border`,
 `text-accent`, etc. Extra utilities: `text-hero` (fluid hero size), `eyebrow`

@@ -8,6 +8,7 @@ export function buildNavigation(m: Messages) {
     { label: m.nav.about, href: "/about" },
     { label: m.nav.services, href: "/services" },
     { label: m.biz.nav.opportunities, href: "/opportunities" },
+    { label: m.biz.hospiverse.label, href: "/#hospiverse" },
     { label: m.nav.projects, href: "/projects" },
     { label: m.nav.contact, href: "/contact" },
   ];

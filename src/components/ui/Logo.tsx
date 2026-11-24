@@ -22,7 +22,7 @@ export function Logo({ className, markOnly = false }: LogoProps) {
       )}
     >
       <Image
-        src="/brand/resto-mark-light.png"
+        src="/brand/resto-mark-light-gold.png"
         alt=""
         width={531}
         height={598}

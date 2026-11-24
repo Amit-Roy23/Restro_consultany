@@ -34,7 +34,7 @@ export function VisionSection({ number = 2 }: { number?: number }) {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_80%_50%,rgba(217,120,42,0.14),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_80%_50%,rgba(201,164,92,0.14),transparent_70%)]"
       />
       <Container className="relative grid items-center gap-16 lg:grid-cols-12">
         <div className="lg:col-span-7">
@@ -128,7 +128,7 @@ function Ecosystem({ hub, nodes }: { hub: string; nodes: string[] }) {
 
       {/* Hub */}
       <motion.div
-        className="absolute top-1/2 left-1/2 grid size-[38%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-accent/50 bg-surface text-center shadow-[0_0_80px_-10px_rgba(217,120,42,0.55)]"
+        className="absolute top-1/2 left-1/2 grid size-[38%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-accent/50 bg-surface text-center shadow-[0_0_80px_-10px_rgba(201,164,92,0.55)]"
         initial={{ scale: 0.6, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
@@ -137,7 +137,7 @@ function Ecosystem({ hub, nodes }: { hub: string; nodes: string[] }) {
         <span className="absolute inset-0 animate-ping rounded-full border border-accent/30 [animation-duration:3s] motion-reduce:animate-none" />
         <div className="flex flex-col items-center gap-1.5 px-2">
           <Image
-            src="/brand/resto-mark-light.png"
+            src="/brand/resto-mark-light-gold.png"
             alt=""
             width={531}
             height={598}

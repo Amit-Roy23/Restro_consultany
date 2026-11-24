@@ -20,5 +20,8 @@ export const siteConfig: SiteConfig = {
     city: "",
     address: "",
   },
+  // Add the official profiles here; icons appear in the footer automatically.
+  // e.g. { platform: "instagram", label: "Instagram", href: "https://instagram.com/…" }
+  // Platforms: instagram, facebook, youtube, linkedin, whatsapp (href "https://wa.me/91…").
   socials: [],
 };

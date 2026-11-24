@@ -83,7 +83,7 @@ export function AskSection() {
     >
       <div
         className={cn(
-          "grain overflow-hidden bg-[radial-gradient(ellipse_60%_50%_at_20%_80%,rgba(150,70,35,0.28),transparent_70%),radial-gradient(ellipse_50%_50%_at_85%_20%,rgba(217,120,42,0.16),transparent_70%)]",
+          "grain overflow-hidden bg-[radial-gradient(ellipse_60%_50%_at_20%_80%,rgba(30,58,110,0.28),transparent_70%),radial-gradient(ellipse_50%_50%_at_85%_20%,rgba(201,164,92,0.16),transparent_70%)]",
           animate ? "sticky top-0 h-svh" : "relative py-28",
         )}
       >
