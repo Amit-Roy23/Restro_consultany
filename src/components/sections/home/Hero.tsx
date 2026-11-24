@@ -1,205 +1,299 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  type MotionValue,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowRight, Languages, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 
-import { useIntro } from "@/components/layout/IntroProvider";
 import {
   type LeadMode,
   LeadDialog,
   openLeadDialog,
 } from "@/components/sections/home/LeadDialog";
+import { Container } from "@/components/ui/Container";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { VideoSlot } from "@/components/ui/VideoSlot";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { cn } from "@/lib/utils";
+import type { ImageAsset } from "@/types";
+import { ImageReveal } from "@/components/ui/ImageReveal";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { useIntro } from "@/components/layout/IntroProvider";
 import { useContent } from "@/i18n/LanguageProvider";
 import { languages } from "@/i18n/languages";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
 /**
- * First screen: a "grand entrance" — champagne-gold Art Deco sunburst and
- * arch over deep espresso, drifting candle-light and gold dust. No photos,
- * so it reads the same on laptop and phone. Two calls to action open the
- * project / free-consultation dialog, and a rotating line says which
- * languages the team consults in.
+ * Floating photo collage around the headline. Order matches
+ * `heroContent.images`. `drift` is how far (px) each photo travels outward
+ * while the visitor scrolls through the hero.
  */
-export function Hero() {
-  const { hero, biz } = useContent();
-  const { lead } = biz;
-  const { done } = useIntro();
-  const reduceMotion = usePrefersReducedMotion();
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const [mode, setMode] = useState<LeadMode>("consult");
+const collage: { className: string; drift: [number, number] }[] = [
+  {
+    className:
+      "left-[22%] top-0 hidden h-[15vh] w-[18vw] max-w-[300px] md:block lg:left-[24%]",
+    drift: [-60, -260],
+  },
+  {
+    className: "left-0 top-[30%] hidden h-[44vh] w-[14vw] max-w-[240px] lg:block",
+    drift: [-320, -40],
+  },
+  {
+    className: "right-0 top-[24%] hidden h-[34vh] w-[15vw] max-w-[260px] lg:block",
+    drift: [320, -80],
+  },
+  {
+    className: "-bottom-[8vh] left-[5%] hidden h-[22vh] w-[15vw] max-w-[260px] lg:block",
+    drift: [-260, 160],
+  },
+  {
+    className: "-bottom-[6vh] right-[3%] hidden h-[24vh] w-[19vw] max-w-[320px] lg:block",
+    drift: [260, 200],
+  },
+];
 
-  const open = (next: LeadMode) => {
-    // Render the right form before the dialog appears.
-    flushSync(() => setMode(next));
+export function Hero() {
+  const { hero: heroContent, biz } = useContent();
+  const { lead } = biz;
+  const { eyebrow, headline, description, stats, scrollLabel, images, showcase } =
+    heroContent;
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const reduceMotion = usePrefersReducedMotion();
+  const { done } = useIntro();
+  const animate = isDesktop && !reduceMotion;
+
+  // "Start your project" / "Free consultation" dialog.
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [leadMode, setLeadMode] = useState<LeadMode>("consult");
+  const openLead = (next: LeadMode) => {
+    flushSync(() => setLeadMode(next));
     openLeadDialog(dialogRef.current);
   };
 
-  // Entrance choreography, held until the intro has finished.
-  const show = (delay: number, y = 24) => ({
-    initial: reduceMotion ? false : { opacity: 0, y },
-    animate: done ? { opacity: 1, y: 0 } : undefined,
-    transition: { duration: 1.1, delay, ease: EASE },
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
   });
+  // A light spring so the collage and showcase glide rather than track the
+  // scroll position frame-for-frame.
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 160,
+    damping: 32,
+    mass: 0.4,
+    restDelta: 0.0005,
+  });
+
+  const textOpacity = useTransform(progress, [0.08, 0.38], [1, 0]);
+  const textY = useTransform(progress, [0, 0.4], [0, -140]);
+  const textScale = useTransform(progress, [0, 0.4], [1, 0.94]);
+
+  const frameOpacity = useTransform(progress, [0.04, 0.14], [0, 1]);
+  const frameY = useTransform(progress, [0.04, 0.72], ["64vh", "0vh"]);
+  const frameScale = useTransform(progress, [0.12, 0.72], [0.3, 1]);
+  const frameRadius = useTransform(progress, [0.12, 0.72], [36, 0]);
+  const captionOpacity = useTransform(progress, [0.72, 0.85], [0, 1]);
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="hero-heading"
-      className="relative isolate flex min-h-svh flex-col overflow-hidden bg-background"
+      className="relative"
+      style={animate ? { height: "260vh" } : undefined}
     >
-      <Backdrop play={done} reduceMotion={reduceMotion} />
-
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-[calc(var(--nav-height)+0.5rem)] pb-6 text-center md:px-10 md:pt-[calc(var(--nav-height)+1rem)]">
-        {/* Crest */}
-        <motion.div
-          {...show(0.05, 12)}
-          className="relative grid size-12 place-items-center md:size-16"
-        >
-          <span className="absolute inset-0 rounded-full border border-gold/50" />
-          <span className="absolute -inset-2 rounded-full border border-dashed border-gold/25 motion-safe:animate-[spin_40s_linear_infinite]" />
-          <span className="absolute inset-0 rounded-full bg-gold/10 blur-xl" />
-          <Image
-            src="/brand/resto-mark-light.png"
-            alt=""
-            width={531}
-            height={598}
-            preload
-            className="relative h-6 w-auto md:h-8"
-          />
-        </motion.div>
-
-        <motion.p
-          {...show(0.15, 12)}
-          className="mt-5 flex items-center gap-3 eyebrow text-[0.62rem] text-gold md:text-xs"
-        >
-          <span aria-hidden="true" className="hidden h-px w-10 bg-gold/60 md:block" />
-          {hero.eyebrow}
-          <span aria-hidden="true" className="hidden h-px w-10 bg-gold/60 md:block" />
-        </motion.p>
-
-        <motion.h1
-          id="hero-heading"
-          aria-label={hero.headline
-            .map((line) => line.map((part) => part.text).join(""))
-            .join(" ")}
-          className="mt-4 max-w-[16ch] font-display text-[clamp(2.15rem,1.2rem+4.6vw,5.25rem)] leading-[1.02] font-semibold tracking-[-0.03em] sm:max-w-none"
-          initial={reduceMotion ? false : "hidden"}
-          animate={done ? "visible" : "hidden"}
-          variants={{
-            visible: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
-          }}
-        >
-          {hero.headline.map((line, lineIndex) => (
-            <span
-              key={lineIndex}
-              aria-hidden="true"
-              className="reveal-mask -mb-[0.1em] block overflow-hidden pb-[0.1em]"
-            >
-              <motion.span
-                className="block"
-                variants={{
-                  hidden: { y: "110%" },
-                  visible: { y: "0%", transition: { duration: 1.3, ease: EASE } },
-                }}
-              >
-                {line.map((segment, segmentIndex) =>
-                  segment.accent ? (
-                    <em
-                      key={segmentIndex}
-                      className="bg-gradient-to-r from-gold via-[#f1d7a6] to-accent bg-clip-text text-transparent italic"
-                    >
-                      {segment.text}
-                    </em>
-                  ) : (
-                    <span key={segmentIndex}>{segment.text}</span>
-                  ),
-                )}
-              </motion.span>
-            </span>
-          ))}
-        </motion.h1>
-
-        <motion.p
-          {...show(0.65)}
-          className="mt-5 max-w-2xl text-[0.95rem] text-pretty text-foreground/70 md:text-lg"
-        >
-          {hero.description}
-        </motion.p>
-
-        {/* Calls to action */}
-        <motion.div
-          {...show(0.8)}
-          className="mt-7 flex w-full max-w-md flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row"
-        >
-          <Magnetic className="w-full sm:w-auto">
-            <button
-              type="button"
-              onClick={() => open("project")}
-              className="group relative inline-flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-accent px-8 font-semibold text-accent-foreground shadow-[0_18px_40px_-14px_rgba(217,120,42,0.7)] transition-colors hover:bg-foreground sm:w-auto"
-            >
-              {/* light sweep */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-y-0 -left-1/2 w-1/3 bg-white/35 blur-md motion-safe:animate-[sweep_4.5s_ease-in-out_2s_infinite]"
-              />
-              <span className="relative">{lead.startProject}</span>
-              <ArrowRight
-                className="relative size-5 transition-transform group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </button>
-          </Magnetic>
-          <button
-            type="button"
-            onClick={() => open("consult")}
-            className="group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full border border-gold/60 bg-background/40 px-8 font-semibold text-foreground backdrop-blur-md transition-colors hover:border-gold hover:bg-gold hover:text-background sm:w-auto"
-          >
-            <span className="relative flex size-2.5">
-              <span className="absolute inset-0 rounded-full bg-gold motion-safe:animate-ping" />
-              <span className="relative size-2.5 rounded-full bg-gold group-hover:bg-background" />
-            </span>
-            {lead.freeConsultation}
-            <MessageCircle className="size-5" aria-hidden="true" />
-          </button>
-        </motion.div>
-
-        {/* Languages we consult in */}
-        <motion.div {...show(0.95)} className="mt-6 flex flex-col items-center gap-2">
-          <p className="inline-flex items-center gap-2.5 rounded-full border border-foreground/10 bg-background/50 py-2 pr-5 pl-3 text-sm text-foreground/85 backdrop-blur-md">
-            <span className="grid size-7 place-items-center rounded-full bg-gold/15 text-gold">
-              <Languages className="size-4" aria-hidden="true" />
-            </span>
-            <span>{lead.languagesLead}</span>
-            <RotatingLanguage play={done && !reduceMotion} />
-          </p>
-          <p className="max-w-sm text-xs text-muted">{lead.languagesNote}</p>
-        </motion.div>
-      </div>
-
-      {/* Stats */}
-      <motion.dl
-        {...show(1.1, 16)}
-        className="relative z-10 mx-auto mb-7 grid w-[min(34rem,calc(100%-3rem))] grid-cols-3 border-t border-gold/20 md:mb-10"
+      <div
+        className={cn(
+          "grain flex flex-col overflow-hidden",
+          animate ? "sticky top-0 h-svh" : "relative min-h-[100svh]",
+          "bg-[radial-gradient(ellipse_70%_55%_at_85%_10%,rgba(217,120,42,0.20),transparent_65%),radial-gradient(ellipse_60%_60%_at_0%_100%,rgba(150,70,35,0.22),transparent_70%),radial-gradient(ellipse_at_center,#1c1612,var(--background)_75%)]",
+        )}
       >
-        {hero.stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex flex-col-reverse items-center gap-0.5 pt-3"
-          >
-            <dt className="eyebrow text-[0.65rem] text-muted">{stat.label}</dt>
-            <dd className="font-display text-2xl font-semibold text-foreground md:text-3xl">
-              {stat.value}
-            </dd>
-          </div>
-        ))}
-      </motion.dl>
+        {/* Floating photo collage */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          {images.map((image, index) => (
+            <CollagePhoto
+              key={image.src}
+              image={image}
+              index={index}
+              className={collage[index]?.className}
+              drift={collage[index]?.drift ?? [0, 0]}
+              progress={progress}
+              animate={animate}
+            />
+          ))}
+        </div>
 
-      <LeadDialog dialogRef={dialogRef} mode={mode} />
+        <motion.div
+          style={
+            animate ? { opacity: textOpacity, y: textY, scale: textScale } : undefined
+          }
+          className="flex flex-1 flex-col"
+        >
+          <Container className="flex flex-1 flex-col items-center justify-center pt-[calc(var(--nav-height)+3rem)] pb-28 text-center md:pt-[calc(var(--nav-height)+5rem)] lg:pb-32">
+            <Reveal delay={0.05}>
+              <SectionLabel className="justify-center">{eyebrow}</SectionLabel>
+            </Reveal>
+
+            <motion.h1
+              id="hero-heading"
+              aria-label={headline
+                .map((line) => line.map((part) => part.text).join(""))
+                .join(" ")}
+              className="mt-6 max-w-[14ch] text-hero font-semibold sm:max-w-none"
+              initial={reduceMotion ? false : "hidden"}
+              animate={done ? "visible" : "hidden"}
+              variants={{
+                visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+              }}
+            >
+              {headline.map((line, lineIndex) => (
+                <span
+                  key={lineIndex}
+                  aria-hidden="true"
+                  className="-mb-[0.1em] block overflow-hidden pb-[0.1em]"
+                >
+                  <motion.span
+                    className="block origin-bottom-left"
+                    variants={{
+                      hidden: { y: "110%", rotate: 3 },
+                      visible: {
+                        y: "0%",
+                        rotate: 0,
+                        transition: { duration: 1.3, ease: [0.16, 1, 0.3, 1] },
+                      },
+                    }}
+                  >
+                    {line.map((segment, segmentIndex) =>
+                      segment.accent ? (
+                        <em key={segmentIndex} className="text-accent italic">
+                          {segment.text}
+                        </em>
+                      ) : (
+                        <span key={segmentIndex}>{segment.text}</span>
+                      ),
+                    )}
+                  </motion.span>
+                </span>
+              ))}
+            </motion.h1>
+
+            <Reveal delay={0.55} className="mt-7 max-w-2xl">
+              <p className="text-base text-pretty text-muted md:text-lg">{description}</p>
+            </Reveal>
+
+            <Reveal
+              delay={0.7}
+              className="mt-10 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row"
+            >
+              <Magnetic className="w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => openLead("project")}
+                  className="group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full bg-accent px-8 font-semibold text-accent-foreground shadow-[0_18px_40px_-14px_rgba(217,120,42,0.7)] transition-colors hover:bg-foreground sm:w-auto"
+                >
+                  {lead.startProject}
+                  <ArrowRight
+                    className="size-5 transition-transform group-hover:translate-x-1"
+                    aria-hidden="true"
+                  />
+                </button>
+              </Magnetic>
+              <button
+                type="button"
+                onClick={() => openLead("consult")}
+                className="group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full border border-foreground/25 bg-foreground/[0.04] px-8 font-semibold text-foreground backdrop-blur-md transition-colors hover:border-accent hover:text-accent sm:w-auto"
+              >
+                <span className="relative flex size-2.5">
+                  <span className="absolute inset-0 rounded-full bg-accent motion-safe:animate-ping" />
+                  <span className="relative size-2.5 rounded-full bg-accent" />
+                </span>
+                {lead.freeConsultation}
+                <MessageCircle className="size-5" aria-hidden="true" />
+              </button>
+            </Reveal>
+
+            <Reveal delay={0.8} className="mt-7 flex flex-col items-center gap-2">
+              <p className="inline-flex items-center gap-2.5 rounded-full border border-foreground/10 bg-background/50 py-2 pr-5 pl-3 text-sm text-foreground/85 backdrop-blur-md">
+                <span className="grid size-7 place-items-center rounded-full bg-accent/15 text-accent">
+                  <Languages className="size-4" aria-hidden="true" />
+                </span>
+                <span>{lead.languagesLead}</span>
+                <RotatingLanguage play={done && !reduceMotion} />
+              </p>
+              <p className="max-w-sm text-xs text-muted">{lead.languagesNote}</p>
+            </Reveal>
+
+            <Reveal delay={0.85} className="mt-10 w-full max-w-xl">
+              <dl className="grid grid-cols-3 divide-x divide-border border-y border-border">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="flex flex-col-reverse gap-1 px-2 py-5">
+                    <dt className="eyebrow text-muted">{stat.label}</dt>
+                    <dd className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
+                      {stat.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </Reveal>
+
+            {!animate && (
+              <Showcase
+                video={showcase.video}
+                poster={showcase.videoPoster}
+                tiles={showcase.tiles}
+                className="mt-14 aspect-[16/10] w-full overflow-hidden rounded-lg"
+              />
+            )}
+          </Container>
+
+          <div className="absolute inset-x-0 bottom-6 hidden flex-col items-center gap-3 text-muted [@media(min-width:768px)_and_(min-height:980px)]:flex">
+            <span className="eyebrow text-[0.65rem]">{scrollLabel}</span>
+            <span className="relative h-10 w-px overflow-hidden bg-border">
+              <span className="absolute inset-0 animate-scroll-cue bg-accent motion-reduce:animate-none" />
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Showcase frame that rises and grows to fill the screen (desktop only) */}
+        {animate && (
+          <motion.div
+            aria-hidden="true"
+            style={{
+              opacity: frameOpacity,
+              y: frameY,
+              scale: frameScale,
+              borderRadius: frameRadius,
+            }}
+            className="absolute inset-0 z-10 overflow-hidden will-change-transform"
+          >
+            <Showcase
+              video={showcase.video}
+              poster={showcase.videoPoster}
+              tiles={showcase.tiles}
+              className="absolute inset-0"
+            />
+            <motion.div
+              style={{ opacity: captionOpacity }}
+              className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/80 to-transparent p-10"
+            >
+              <Container>
+                <SectionLabel>{showcase.caption}</SectionLabel>
+              </Container>
+            </motion.div>
+          </motion.div>
+        )}
+      </div>
+      <LeadDialog dialogRef={dialogRef} mode={leadMode} />
     </section>
   );
 }
@@ -224,7 +318,7 @@ function RotatingLanguage({ play }: { play: boolean }) {
       <span className="sr-only">{languages.map((item) => item.native).join(", ")}</span>
       <span
         aria-hidden="true"
-        className="relative inline-grid overflow-hidden text-center font-semibold text-gold"
+        className="relative inline-grid overflow-hidden text-center font-semibold text-accent"
       >
         {/* Invisible copies hold the width of the longest name. */}
         {languages.map((item) => (
@@ -239,7 +333,7 @@ function RotatingLanguage({ play }: { play: boolean }) {
             initial={{ y: "100%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             exit={{ y: "-100%", opacity: 0 }}
-            transition={{ duration: 0.5, ease: EASE }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             {current.native}
           </motion.span>
@@ -249,156 +343,80 @@ function RotatingLanguage({ play }: { play: boolean }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Backdrop                                                            */
-/* ------------------------------------------------------------------ */
+type CollagePhotoProps = {
+  image: ImageAsset;
+  index: number;
+  className?: string;
+  drift: [number, number];
+  progress: MotionValue<number>;
+  animate: boolean;
+};
 
-/** Sunburst rays fanning down from above the top edge. */
-const RAYS = Array.from({ length: 29 }, (_, i) => {
-  const angle = ((14 + (i * 152) / 28) * Math.PI) / 180;
-  return {
-    x: Math.round(500 + Math.cos(angle) * 1500),
-    y: Math.round(-120 + Math.sin(angle) * 1500),
-    strong: i % 2 === 0,
-  };
-});
-
-/** Fixed positions for the gold dust (deterministic: no hydration mismatch). */
-const DUST = [
-  { left: "8%", bottom: "6%", size: 3, duration: 16, delay: 0, sway: 18 },
-  { left: "16%", bottom: "22%", size: 2, duration: 12, delay: 4, sway: -14 },
-  { left: "24%", bottom: "4%", size: 2, duration: 18, delay: 7, sway: 22 },
-  { left: "33%", bottom: "14%", size: 3, duration: 15, delay: 2, sway: -20 },
-  { left: "41%", bottom: "2%", size: 2, duration: 13, delay: 9, sway: 12 },
-  { left: "52%", bottom: "10%", size: 2, duration: 17, delay: 5, sway: -16 },
-  { left: "60%", bottom: "3%", size: 3, duration: 14, delay: 1, sway: 20 },
-  { left: "68%", bottom: "18%", size: 2, duration: 16, delay: 8, sway: -12 },
-  { left: "76%", bottom: "7%", size: 3, duration: 12, delay: 3, sway: 16 },
-  { left: "84%", bottom: "15%", size: 2, duration: 18, delay: 6, sway: -22 },
-  { left: "91%", bottom: "5%", size: 2, duration: 15, delay: 10, sway: 14 },
-  { left: "47%", bottom: "26%", size: 2, duration: 13, delay: 11, sway: -10 },
-];
-
-/** Diamond ornaments sitting on the frame's corners. */
-const CORNERS = [
-  "-top-1 -left-1",
-  "-top-1 -right-1",
-  "-bottom-1 -left-1",
-  "-bottom-1 -right-1",
-];
-
-function Backdrop({ play, reduceMotion }: { play: boolean; reduceMotion: boolean }) {
-  const draw = (delay: number) => ({
-    initial: reduceMotion ? false : { pathLength: 0, opacity: 0 },
-    animate: play ? { pathLength: 1, opacity: 1 } : undefined,
-    transition: { duration: 2.6, delay, ease: [0.65, 0, 0.35, 1] as const },
-  });
+function CollagePhoto({
+  image,
+  index,
+  className,
+  drift,
+  progress,
+  animate,
+}: CollagePhotoProps) {
+  const x = useTransform(progress, [0, 0.5], [0, drift[0]]);
+  const y = useTransform(progress, [0, 0.5], [0, drift[1]]);
+  const opacity = useTransform(progress, [0.1, 0.45], [1, 0]);
 
   return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-      {/* Candle-light glows */}
-      <div className="absolute -top-[20%] left-1/2 h-[80%] w-[110%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(207,162,94,0.28),transparent)] motion-safe:animate-breathe" />
-      <div className="absolute -bottom-[25%] -left-[20%] h-[70%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(217,120,42,0.22),transparent)] [--gx:8%] [--gy:-6%] motion-safe:animate-glow" />
-      <div className="absolute -right-[20%] -bottom-[15%] h-[65%] w-[65%] rounded-full bg-[radial-gradient(closest-side,rgba(150,70,35,0.28),transparent)] [--gx:-7%] [--gy:-5%] motion-safe:animate-glow motion-safe:[animation-delay:-9s]" />
-
-      {/* Art Deco sunburst (softer on small screens) */}
-      <div className="absolute inset-0 opacity-50 md:opacity-100">
-        <motion.svg
-          viewBox="0 0 1000 1000"
-          preserveAspectRatio="xMidYMin slice"
-          className="absolute inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,black_10%,transparent_78%)]"
-          initial={reduceMotion ? false : { opacity: 0, scale: 1.08 }}
-          animate={play ? { opacity: 1, scale: 1 } : undefined}
-          transition={{ duration: 3, ease: EASE }}
-          style={{ transformOrigin: "50% 0%" }}
-        >
-          <defs>
-            <linearGradient id="hero-ray" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#f1d7a6" stopOpacity="0.55" />
-              <stop offset="1" stopColor="#cfa25e" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          {RAYS.map((ray, index) => (
-            <line
-              key={index}
-              x1="500"
-              y1="-120"
-              x2={ray.x}
-              y2={ray.y}
-              stroke="url(#hero-ray)"
-              strokeWidth={ray.strong ? 1.1 : 0.5}
-              vectorEffect="non-scaling-stroke"
-            />
-          ))}
-        </motion.svg>
-      </div>
-
-      {/* Grand arch framing the headline */}
-      <svg
-        viewBox="0 0 600 1000"
-        preserveAspectRatio="none"
-        className="absolute bottom-0 left-1/2 h-[88%] w-[min(92vw,760px)] -translate-x-1/2"
-      >
-        <defs>
-          <linearGradient id="hero-arch" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stopColor="#f1d7a6" stopOpacity="0.7" />
-            <stop offset="0.7" stopColor="#cfa25e" stopOpacity="0.25" />
-            <stop offset="1" stopColor="#cfa25e" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-        <motion.path
-          d="M8 1000 V300 A292 292 0 0 1 592 300 V1000"
-          fill="none"
-          stroke="url(#hero-arch)"
-          strokeWidth="1"
-          vectorEffect="non-scaling-stroke"
-          {...draw(0.2)}
+    <motion.div
+      style={animate ? { x, y, opacity } : undefined}
+      className={cn("absolute", className)}
+    >
+      <ImageReveal delay={0.1 + index * 0.1} className="absolute inset-0 rounded-sm">
+        <Image
+          src={image.src}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 22vw, 30vw"
+          className="object-cover opacity-80"
+          preload={index === 0}
         />
-        <motion.path
-          d="M30 1000 V306 A270 270 0 0 1 570 306 V1000"
-          fill="none"
-          stroke="url(#hero-arch)"
-          strokeWidth="0.6"
-          strokeDasharray="2 6"
-          vectorEffect="non-scaling-stroke"
-          {...draw(0.5)}
-        />
-      </svg>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
+      </ImageReveal>
+    </motion.div>
+  );
+}
 
-      {/* Gold dust */}
-      {!reduceMotion &&
-        DUST.map((mote, index) => (
-          <span
-            key={index}
-            className="absolute animate-rise rounded-full bg-[#f1d7a6] opacity-0 shadow-[0_0_8px_2px_rgba(241,215,166,0.45)]"
-            style={
-              {
-                left: mote.left,
-                bottom: mote.bottom,
-                width: mote.size,
-                height: mote.size,
-                animationDelay: `${mote.delay}s`,
-                "--duration": `${mote.duration}s`,
-                "--sway": `${mote.sway}px`,
-                "--peak": mote.size > 2 ? 0.85 : 0.55,
-              } as CSSProperties
-            }
-          />
-        ))}
-
-      {/* Hairline frame with Deco corners, like a menu card */}
-      <div className="absolute inset-3 rounded-[1.25rem] border border-gold/20 md:inset-6 md:rounded-[1.75rem]">
-        {CORNERS.map((corner) => (
-          <span
-            key={corner}
-            className={`absolute size-2 rotate-45 border border-gold/60 bg-background ${corner}`}
-          />
-        ))}
-      </div>
-
-      {/* Vignette + film grain */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(10,8,6,0.65))]" />
-      <div className="grain absolute inset-0" />
+/** Showreel video when available, otherwise a mosaic of project photos. */
+function Showcase({
+  video,
+  poster,
+  tiles,
+  className,
+}: {
+  video?: string;
+  poster?: string;
+  tiles: ImageAsset[];
+  className?: string;
+}) {
+  return (
+    <div className={cn("relative bg-background", className)}>
+      <VideoSlot
+        src={video}
+        poster={poster ? { src: poster, alt: "" } : tiles[0]}
+        fallback={
+          <div className="grid h-full grid-cols-3 grid-rows-2 gap-1">
+            {tiles.slice(0, 6).map((tile) => (
+              <div key={tile.src} className="relative overflow-hidden">
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  fill
+                  sizes="34vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        }
+      />
     </div>
   );
 }
