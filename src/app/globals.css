@@ -5,20 +5,20 @@
    Design tokens
    ------------------------------------------------------------------ */
 :root {
-  --background: #14100d;
-  --surface: #1e1813;
-  --border: #2e261f;
-  --foreground: #f3ede4;
-  --muted: #a89b8c;
-  --accent: #d9782a;
-  --accent-foreground: #14100d;
-  /* Champagne gold for hairlines and ornaments in the hero. */
-  --gold: #cfa25e;
+  --background: #0a1428;
+  --surface: #111e38;
+  --border: #243352;
+  --foreground: #f6f1e7;
+  --muted: #a5afc3;
+  --accent: #c9a45c;
+  --accent-foreground: #0a1428;
+  /* Light champagne gold for hairlines and ornaments. */
+  --gold: #dcc08a;
 
-  /* Light sections (featured work, journal) */
-  --paper: #fbf8f3;
-  --accent-deep: #a9520c;
-  --ink-muted: #6e6052;
+  /* Light sections: ivory (--foreground) and white (--paper). */
+  --paper: #ffffff;
+  --accent-deep: #7d5c20;
+  --ink-muted: #56607a;
 
   --radius-sm: 4px;
   --radius-md: 6px;
@@ -28,7 +28,7 @@
   --nav-height: 5rem;
 
   /* Film-grain texture used on dark sections (inline SVG, no request). */
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 0.93 0 0 0 0 0.85 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.94 0 0 0 0 1 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @theme inline {

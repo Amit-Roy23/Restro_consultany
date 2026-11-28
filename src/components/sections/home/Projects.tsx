@@ -54,7 +54,7 @@ export function Projects({ showCta = true, showHeading = true }: ProjectsProps) 
               className="sticky mb-[8vh] last:mb-0"
               style={{ top: `calc(var(--nav-height) + ${index * 1.25}rem)` }}
             >
-              <article className="grid overflow-hidden rounded-lg border border-background/10 bg-paper shadow-[0_-20px_60px_-30px_rgba(20,16,13,0.35)] lg:min-h-[70vh] lg:grid-cols-12">
+              <article className="grid overflow-hidden rounded-lg border border-background/10 bg-paper shadow-[0_-20px_60px_-30px_rgba(6,12,26,0.35)] lg:min-h-[70vh] lg:grid-cols-12">
                 <div className="flex flex-col justify-between gap-10 p-7 md:p-12 lg:col-span-6">
                   <div>
                     <p className="eyebrow text-accent-deep">{project.year}</p>

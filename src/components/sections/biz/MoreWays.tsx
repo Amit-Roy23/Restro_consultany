@@ -24,7 +24,7 @@ const CARDS = [
   { href: "/opportunities", icon: Handshake, tone: "bg-accent text-accent-foreground" },
   { href: "/opportunities#buy-sell", icon: Store, tone: "bg-foreground text-background" },
   { href: "/services#management", icon: TrendingUp, tone: "bg-surface text-foreground" },
-  { href: "/services#licensing", icon: BadgeCheck, tone: "bg-[#2a1a10] text-foreground" },
+  { href: "/services#licensing", icon: BadgeCheck, tone: "bg-[#13244a] text-foreground" },
   { href: "/services#manpower", icon: Users, tone: "bg-accent text-accent-foreground" },
 ];
 

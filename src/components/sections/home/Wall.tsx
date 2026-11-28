@@ -86,7 +86,7 @@ function Tag({ children, tone }: { children: React.ReactNode; tone: "light" | "d
 
 function WallTile({ card }: { card: WallCard }) {
   const base =
-    "group block overflow-hidden rounded-lg shadow-[0_30px_60px_-30px_rgba(20,16,13,0.45)] transition-transform duration-300 hover:-translate-y-1";
+    "group block overflow-hidden rounded-lg shadow-[0_30px_60px_-30px_rgba(6,12,26,0.45)] transition-transform duration-300 hover:-translate-y-1";
 
   if (card.kind === "image") {
     return (

@@ -149,7 +149,7 @@ export function HoverImageList({ items }: { items: ProjectListItem[] }) {
                     clipPath: "inset(50% 50% 50% 50% round 12px)",
                   }}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className="overflow-hidden rounded-xl bg-background shadow-[0_30px_80px_-20px_rgba(20,16,13,0.6)]"
+                  className="overflow-hidden rounded-xl bg-background shadow-[0_30px_80px_-20px_rgba(6,12,26,0.6)]"
                   style={{ width: PREVIEW_W, height: PREVIEW_H }}
                 >
                   <motion.div style={{ y: stripY }} className="h-full w-full">

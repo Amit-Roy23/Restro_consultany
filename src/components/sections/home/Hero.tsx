@@ -115,7 +115,7 @@ export function Hero() {
         className={cn(
           "grain flex flex-col overflow-hidden",
           animate ? "sticky top-0 h-svh" : "relative min-h-[100svh]",
-          "bg-[radial-gradient(ellipse_70%_55%_at_85%_10%,rgba(217,120,42,0.20),transparent_65%),radial-gradient(ellipse_60%_60%_at_0%_100%,rgba(150,70,35,0.22),transparent_70%),radial-gradient(ellipse_at_center,#1c1612,var(--background)_75%)]",
+          "bg-[radial-gradient(ellipse_70%_55%_at_85%_10%,rgba(201,164,92,0.20),transparent_65%),radial-gradient(ellipse_60%_60%_at_0%_100%,rgba(30,58,110,0.22),transparent_70%),radial-gradient(ellipse_at_center,#13233f,var(--background)_75%)]",
         )}
       >
         {/* Floating photo collage */}
@@ -175,7 +175,10 @@ export function Hero() {
                   >
                     {line.map((segment, segmentIndex) =>
                       segment.accent ? (
-                        <em key={segmentIndex} className="text-accent italic">
+                        <em
+                          key={segmentIndex}
+                          className="bg-gradient-to-r from-accent via-gold to-accent bg-clip-text pr-[0.06em] text-transparent italic"
+                        >
                           {segment.text}
                         </em>
                       ) : (
@@ -199,7 +202,7 @@ export function Hero() {
                 <button
                   type="button"
                   onClick={() => openLead("project")}
-                  className="group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full bg-accent px-8 font-semibold text-accent-foreground shadow-[0_18px_40px_-14px_rgba(217,120,42,0.7)] transition-colors hover:bg-foreground sm:w-auto"
+                  className="group inline-flex h-14 w-full items-center justify-center gap-3 rounded-full bg-accent px-8 font-semibold text-accent-foreground shadow-[0_18px_40px_-14px_rgba(201,164,92,0.7)] transition-colors hover:bg-foreground sm:w-auto"
                 >
                   {lead.startProject}
                   <ArrowRight
@@ -369,16 +372,21 @@ function CollagePhoto({
       style={animate ? { x, y, opacity } : undefined}
       className={cn("absolute", className)}
     >
-      <ImageReveal delay={0.1 + index * 0.1} className="absolute inset-0 rounded-sm">
+      <ImageReveal
+        delay={0.1 + index * 0.1}
+        className="absolute inset-0 rounded-xl shadow-[0_30px_60px_-25px_rgba(0,0,0,0.8)]"
+      >
         <Image
           src={image.src}
           alt=""
           fill
           sizes="(min-width: 1024px) 22vw, 30vw"
-          className="object-cover opacity-80"
+          className="object-cover opacity-90 brightness-[0.95] contrast-[1.06] saturate-[0.88]"
           preload={index === 0}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
+        {/* Navy grade + gold hairline so mixed photos read as one set */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/10 to-[rgba(201,164,92,0.08)]" />
+        <div className="absolute inset-0 rounded-[inherit] ring-1 ring-gold/30 ring-inset" />
       </ImageReveal>
     </motion.div>
   );

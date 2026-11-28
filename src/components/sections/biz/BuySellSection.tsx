@@ -153,7 +153,7 @@ export function BuySellSection() {
           <form
             ref={formRef}
             onSubmit={onSubmit}
-            className="scroll-mt-28 rounded-3xl bg-paper p-6 shadow-[0_30px_80px_-40px_rgba(20,16,13,0.5)] md:p-10 lg:col-span-8"
+            className="scroll-mt-28 rounded-3xl bg-paper p-6 shadow-[0_30px_80px_-40px_rgba(6,12,26,0.5)] md:p-10 lg:col-span-8"
           >
             <h3 className="text-3xl md:text-4xl">{b.formTitle}</h3>
             <div className="mt-8 grid gap-5 md:grid-cols-2">

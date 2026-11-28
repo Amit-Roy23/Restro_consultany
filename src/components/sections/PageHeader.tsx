@@ -23,7 +23,7 @@ export function PageHeader({ page, children }: { page: PageKey; children?: React
         : pageHeaders[page];
 
   return (
-    <section className="grain relative overflow-hidden bg-[radial-gradient(ellipse_60%_60%_at_90%_0%,rgba(217,120,42,0.2),transparent_70%)]">
+    <section className="grain relative overflow-hidden bg-[radial-gradient(ellipse_60%_60%_at_90%_0%,rgba(201,164,92,0.2),transparent_70%)]">
       <FloatingDots className="opacity-60" />
       <Container className="relative pt-[calc(var(--nav-height)+5rem)] pb-20 md:pb-28">
         <SectionLabel>{content.label}</SectionLabel>

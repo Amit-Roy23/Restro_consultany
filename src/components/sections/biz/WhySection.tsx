@@ -16,7 +16,7 @@ const STICKERS = [
   { rotate: 2, tone: "bg-accent text-accent-foreground", span: "" },
   { rotate: -1.5, tone: "bg-white text-background", span: "" },
   { rotate: 1.5, tone: "bg-white text-background", span: "" },
-  { rotate: -2, tone: "bg-[#2a1a10] text-foreground", span: "" },
+  { rotate: -2, tone: "bg-[#13244a] text-foreground", span: "" },
   { rotate: 2.5, tone: "bg-background text-foreground", span: "" },
   { rotate: -1, tone: "bg-accent text-accent-foreground", span: "" },
 ];
@@ -67,7 +67,7 @@ export function WhySection({ number = 6 }: { number?: number }) {
               >
                 <article
                   className={cn(
-                    "group flex h-full flex-col gap-4 rounded-2xl p-7 shadow-[0_25px_50px_-25px_rgba(20,16,13,0.6)]",
+                    "group flex h-full flex-col gap-4 rounded-2xl p-7 shadow-[0_25px_50px_-25px_rgba(6,12,26,0.6)]",
                     sticker.tone,
                   )}
                 >
