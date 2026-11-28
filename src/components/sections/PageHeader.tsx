@@ -10,7 +10,13 @@ import { TextReveal } from "@/components/ui/TextReveal";
 import { useContent } from "@/i18n/LanguageProvider";
 
 type PageKey =
-  "about" | "services" | "projects" | "contact" | "opportunities" | "notFound";
+  | "about"
+  | "services"
+  | "projects"
+  | "contact"
+  | "opportunities"
+  | "solutions"
+  | "notFound";
 
 /** Opening block for inner pages: label, h1 and intro on the dark grain. */
 export function PageHeader({ page, children }: { page: PageKey; children?: ReactNode }) {
@@ -20,7 +26,9 @@ export function PageHeader({ page, children }: { page: PageKey; children?: React
       ? notFoundContent
       : page === "opportunities"
         ? biz.page
-        : pageHeaders[page];
+        : page === "solutions"
+          ? biz.solutions
+          : pageHeaders[page];
 
   return (
     <section className="grain relative overflow-hidden bg-[radial-gradient(ellipse_60%_60%_at_90%_0%,rgba(201,164,92,0.2),transparent_70%)]">

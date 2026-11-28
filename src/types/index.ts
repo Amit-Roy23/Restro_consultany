@@ -26,6 +26,7 @@ export type SiteConfig = {
     phone: string;
     city: string;
     address: string;
+    businessWhatsapp: string;
   };
   socials: SocialLink[];
 };

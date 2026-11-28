@@ -101,6 +101,14 @@ The hero showreel loop is `public/videos/hero.mp4` (`heroContent.showcase.video`
 - **Founder & team videos** (`components/sections/biz/VideoStories.tsx`): set the
   files in `src/content/videos.ts`; until then the cards show "Video coming soon".
 
+## Restaurant Business Solutions – Buy & Sell
+
+`/business-solutions` (menu: "Buy & Sell"), `components/sections/biz/BusinessSolutions.tsx`:
+seven categories with icons (clicking one selects it in the enquiry form),
+three subscription plans ("Price on request"; "Ask for price" opens WhatsApp),
+and an enquiry form that sends by email or WhatsApp. The section's own WhatsApp
+number is `siteConfig.contact.businessWhatsapp`.
+
 ## Social links
 
 Add the official profiles to `siteConfig.socials` in `src/config/site.ts`

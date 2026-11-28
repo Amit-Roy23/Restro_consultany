@@ -19,6 +19,8 @@ export const siteConfig: SiteConfig = {
     phone: "",
     city: "",
     address: "",
+    /** WhatsApp for the Restaurant Business Solutions (Buy & Sell) page. */
+    businessWhatsapp: "+91 91010 46487",
   },
   // Add the official profiles here; icons appear in the footer automatically.
   // e.g. { platform: "instagram", label: "Instagram", href: "https://instagram.com/…" }

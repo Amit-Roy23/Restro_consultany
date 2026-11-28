@@ -592,6 +592,101 @@ export const en = {
       call: "Call us",
       close: "Close",
     },
+    solutions: {
+      nav: "Buy & Sell",
+      label: "Restaurant Business Solutions",
+      title: "Buy & Sell",
+      intro:
+        "Whether your business needs a turnaround, a partner, a buyer or the right equipment — choose what you need and we'll connect you with the right people.",
+      steps: ["Choose a category", "Share basic details", "We connect you"],
+      categoriesLabel: "What do you need?",
+      categories: [
+        {
+          title: "Business Running at a Loss",
+          body: "Get professional guidance to improve your business.",
+        },
+        {
+          title: "Looking for a Business Partner",
+          body: "Connect with potential investors or business partners.",
+        },
+        {
+          title: "Want to Sell Your Restaurant?",
+          body: "List your restaurant for sale and connect with interested buyers.",
+        },
+        {
+          title: "Looking to Buy a Restaurant?",
+          body: "Explore available restaurant businesses for purchase.",
+        },
+        {
+          title: "Sell Your Kitchen Equipment",
+          body: "List new or used kitchen equipment for sale.",
+        },
+        {
+          title: "Buy Kitchen Equipment",
+          body: "Find equipment available for purchase.",
+        },
+        {
+          title: "Business Investment & Takeover",
+          body: "Explore investment and business takeover opportunities.",
+        },
+      ],
+      enquire: "Enquire",
+      plansLabel: "Subscription Plans & Support",
+      plansTitle: "Affordable plans for every stage",
+      plansIntro:
+        "Paid plans for business listings, buyer–seller connections and professional consultancy support.",
+      plans: [
+        {
+          name: "Listing",
+          tagline: "Get your business or equipment seen.",
+          features: [
+            "Business or equipment listing",
+            "Shared with interested buyers",
+            "Email & WhatsApp support",
+          ],
+        },
+        {
+          name: "Connect",
+          tagline: "Meet the right buyers, sellers and partners.",
+          features: [
+            "Everything in Listing",
+            "Featured placement",
+            "Buyer–seller & investor matching",
+            "Dedicated relationship manager",
+          ],
+        },
+        {
+          name: "Consult",
+          tagline: "Expert support from start to deal.",
+          features: [
+            "Everything in Connect",
+            "Professional consultancy sessions",
+            "Business review & improvement plan",
+            "Help with negotiation & handover",
+          ],
+        },
+      ],
+      popular: "Most popular",
+      priceOnRequest: "Price on request",
+      askPrice: "Ask for price",
+      enquiryLabel: "Enquiry & WhatsApp Support",
+      enquiryTitle: "Tell us what you need",
+      enquiryIntro:
+        "Share a few basic details and our team will get back to you — or message us on WhatsApp for a quicker reply.",
+      whatsappTitle: "Business Solutions WhatsApp",
+      whatsappCta: "Chat on WhatsApp",
+      fields: {
+        category: "Category",
+        name: "Full name",
+        phone: "Phone / WhatsApp",
+        email: "Email address",
+        city: "City",
+        business: "About your business",
+        budget: "Budget / expected price",
+        requirements: "Your requirements",
+      },
+      submit: "Send enquiry",
+    },
     hospiverse: {
       label: "Resto Hospiverse",
       tagline: "Connecting Hospitality Beyond Borders",
